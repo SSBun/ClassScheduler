@@ -12,7 +12,7 @@ struct LessonListView: View {
     
     var body: some View {
         GeometryReader { windowFrame in
-            ScrollView([.horizontal, .vertical], showsIndicators: true) {
+            ScrollView([.horizontal, .vertical], showsIndicators: false) {
                 HStack {
                     ForEach(store.appState.lessonList.columns) { column in
                         VStack {
@@ -25,6 +25,7 @@ struct LessonListView: View {
                 .frame(minWidth: windowFrame.size.width,
                        minHeight: windowFrame.size.height)
             }
+            .background(Color.white)
         }
     }
 }

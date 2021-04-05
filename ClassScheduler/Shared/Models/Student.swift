@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Student: Codable {
+struct Student: Codable, Identifiable {
+    var id: String = UUID().uuidString
     let name: String
     
     static let mock: Student = .init(name: "Leta Pfeffer")

@@ -10,18 +10,16 @@ import SwiftUI
 
 struct LessonList {
     var columns: [Column]
-    
-    
-               
+                    
     struct Column: Identifiable {
-        var id: String { type.id }
+        var id: String = UUID().uuidString
         
         let type: ColumnType
         var areas: [ColumnArea]
     }
     
     struct ColumnArea: Identifiable {
-        var id: String { type.id }
+        var id: String = UUID().uuidString
         
         let type: ColumnAreaType
         var items: [Block]

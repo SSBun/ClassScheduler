@@ -8,20 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct AppointmentBlock: Block {
+struct AppointmentBlock: Block, Codable {
     let id: String
     let appointment: LessonAppointment
 }
 
-struct AppointmentBlockView: View {
-    let block: AppointmentBlock
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.red)
-            Text(block.appointment.student.name)
-        }
-        .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 50)
-    }
-}
+

@@ -10,11 +10,12 @@ import SwiftUI
 struct AreaView: View {
     @EnvironmentObject var store: Store
     var area: LessonList.ColumnArea
+    @State var isEntered: Bool = false
     
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
-                .fill(Color.gray.opacity(0.5))
+                .fill(isEntered ? Color.red.opacity(0.5) : Color.gray.opacity(0))
             VStack {
                 ForEach(area.items, id: \.id) { block in
                     if block is AppointmentBlock {
@@ -22,8 +23,15 @@ struct AreaView: View {
                     }
                 }
             }
+            .padding(.vertical, 5)
         }
-        .frame(minWidth: 200, minHeight: 150)
+        .frame(minWidth: 100, minHeight: 150)
+        .onDrop(of: DragDropData<AppointmentBlock>.readableTypeIdentifiersForItemProvider,
+                delegate: DropDelegator<AppointmentBlock>(isEntered: $isEntered, receiptData: { block in
+                    DispatchQueue.main.async {
+                        store.dispatch(.move(block.id, area.id))                        
+                    }
+        }))
     }
 }
 
