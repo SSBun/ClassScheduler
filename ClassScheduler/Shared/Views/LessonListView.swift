@@ -1,0 +1,36 @@
+//
+//  LessonListView.swift
+//  ClassScheduler
+//
+//  Created by SSBun on 2021/4/5.
+//
+
+import SwiftUI
+
+struct LessonListView: View {
+    @EnvironmentObject var store: Store
+    
+    var body: some View {
+        GeometryReader { windowFrame in
+            ScrollView([.horizontal, .vertical], showsIndicators: true) {
+                HStack {
+                    ForEach(store.appState.lessonList.columns) { column in
+                        VStack {
+                            ForEach(column.areas) { area in
+                                AreaView(area: area)
+                            }
+                        }
+                    }
+                }
+                .frame(minWidth: windowFrame.size.width,
+                       minHeight: windowFrame.size.height)
+            }
+        }
+    }
+}
+
+struct LessonListView_Previews: PreviewProvider {
+    static var previews: some View {
+        LessonListView()
+    }
+}
