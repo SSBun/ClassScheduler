@@ -36,6 +36,8 @@ extension Store {
             command = nil
         case let .switchSidebar(item):
             newState.sidebarSelection = item
+        case let .requestStudentInfo(id):
+            command = RequestStudentInfoCommand(id: id)
         }
         return (newState, command)
     }

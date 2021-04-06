@@ -8,6 +8,6 @@
 import Foundation
 
 struct StudentList {
-    var students: [Student] = (0...10).map { _ in .mock }
+    var students: [Student] = (0...30).map { _ in .mock }
     var currentStudent: Student = .mock
 }

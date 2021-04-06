@@ -10,9 +10,12 @@ import SwiftUI
 struct NavbarView: View {
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.orange.opacity(0.2))
-        }.frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
+            Text("fjlksjfklads")
+                .font(.largeTitle)
+        }
+        .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+        .background(Color("topbar_bg"))
+        .disabled(true)
     }
 }
 

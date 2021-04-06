@@ -10,15 +10,12 @@ import SwiftUI
 struct StudentListView: View {
     @EnvironmentObject var store: Store
     var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.gray)
-            HStack {
-                StudentSelector()                    
-                StudentDetailView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-        }
+        HStack {
+            StudentSelector()
+            StudentDetailView()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }   
+        .background(Color("background"))
     }
 }
 

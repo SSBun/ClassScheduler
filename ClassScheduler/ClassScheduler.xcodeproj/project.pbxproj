@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		597CE327D6C2895288D4E8AC /* Pods_ClassScheduler__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CCB67AFE07F6D41DE25BC9 /* Pods_ClassScheduler__iOS_.framework */; };
 		8E2D52A6261B015F00B59BEF /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D52A5261B015F00B59BEF /* AreaView.swift */; };
 		8E2D52A7261B015F00B59BEF /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D52A5261B015F00B59BEF /* AreaView.swift */; };
 		8E2D52AC261B0ADE00B59BEF /* DragDropData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D52AB261B0ADE00B59BEF /* DragDropData.swift */; };
@@ -57,6 +58,13 @@
 		8ED5EC96261B5FC600433B17 /* StudentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC94261B5FC600433B17 /* StudentSelector.swift */; };
 		8ED5EC9A261B618700433B17 /* StudentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC99261B618700433B17 /* StudentListModel.swift */; };
 		8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC99261B618700433B17 /* StudentListModel.swift */; };
+		C451BA43261C663F0046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
+		C451BA46261C66430046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
+		C451BA4A261C71F70046CFBD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA49261C71F70046CFBD /* API.swift */; };
+		C451BA4B261C71F70046CFBD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA49261C71F70046CFBD /* API.swift */; };
+		C4F5CD11261C2AA6002A82D8 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */; };
+		C4F5CD12261C2AA6002A82D8 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */; };
+		F68D07D407C48EE9988A5569 /* Pods_ClassScheduler__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC9EC574B0DCA59064FEEAC /* Pods_ClassScheduler__macOS_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +98,15 @@
 		8ED5EC86261B5E3C00433B17 /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
 		8ED5EC94261B5FC600433B17 /* StudentSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSelector.swift; sourceTree = "<group>"; };
 		8ED5EC99261B618700433B17 /* StudentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListModel.swift; sourceTree = "<group>"; };
+		9248A7674812A7C226565974 /* Pods-ClassScheduler (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (iOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		97CCB67AFE07F6D41DE25BC9 /* Pods_ClassScheduler__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassScheduler__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		B4C7420A18827EF9939FF1D1 /* Pods-ClassScheduler (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).debug.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		C451BA42261C663F0046CFBD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		C451BA49261C71F70046CFBD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		CEC9EC574B0DCA59064FEEAC /* Pods_ClassScheduler__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassScheduler__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6EA2BC9DC8A07187C66721F /* Pods-ClassScheduler (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (iOS).debug.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597CE327D6C2895288D4E8AC /* Pods_ClassScheduler__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,12 +122,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F68D07D407C48EE9988A5569 /* Pods_ClassScheduler__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C77C1301FB21CE774B691E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F6EA2BC9DC8A07187C66721F /* Pods-ClassScheduler (iOS).debug.xcconfig */,
+				9248A7674812A7C226565974 /* Pods-ClassScheduler (iOS).release.xcconfig */,
+				B4C7420A18827EF9939FF1D1 /* Pods-ClassScheduler (macOS).debug.xcconfig */,
+				9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3B4FACCFF7A3F651575FAC90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97CCB67AFE07F6D41DE25BC9 /* Pods_ClassScheduler__iOS_.framework */,
+				CEC9EC574B0DCA59064FEEAC /* Pods_ClassScheduler__macOS_.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8E2D52AA261B0A0300B59BEF /* DragDrop */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				8E2D52B3261B0CF700B59BEF /* Codable+Extension.swift */,
+				C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,13 +202,15 @@
 				8EC0215F261AF04F00856139 /* iOS */,
 				8EC02166261AF05000856139 /* macOS */,
 				8EC0215E261AF04F00856139 /* Products */,
+				1C77C1301FB21CE774B691E9 /* Pods */,
+				3B4FACCFF7A3F651575FAC90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		8EC02155261AF04F00856139 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				8ED5EC9E261B635C00433B17 /* Api */,
+				C4F5CD0F261C2A8F002A82D8 /* Api */,
 				8E2D52B2261B0CC900B59BEF /* Extensions */,
 				8E2D52AA261B0A0300B59BEF /* DragDrop */,
 				8EC0217B261AF0A300856139 /* App */,
@@ -243,9 +285,11 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		8ED5EC9E261B635C00433B17 /* Api */ = {
+		C4F5CD0F261C2A8F002A82D8 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				C451BA42261C663F0046CFBD /* Services.swift */,
+				C451BA49261C71F70046CFBD /* API.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -257,9 +301,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EC02171261AF05000856139 /* Build configuration list for PBXNativeTarget "ClassScheduler (iOS)" */;
 			buildPhases = (
+				AF47A237CD488E16733E1B96 /* [CP] Check Pods Manifest.lock */,
 				8EC02159261AF04F00856139 /* Sources */,
 				8EC0215A261AF04F00856139 /* Frameworks */,
 				8EC0215B261AF04F00856139 /* Resources */,
+				184C872E9635D30C0D738F17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -274,9 +320,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EC02174261AF05000856139 /* Build configuration list for PBXNativeTarget "ClassScheduler (macOS)" */;
 			buildPhases = (
+				87D7076067CD58CB6ED199C6 /* [CP] Check Pods Manifest.lock */,
 				8EC02161261AF05000856139 /* Sources */,
 				8EC02162261AF05000856139 /* Frameworks */,
 				8EC02163261AF05000856139 /* Resources */,
+				6BC5CF2F78E1C5A0AC53404B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -342,23 +390,107 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		184C872E9635D30C0D738F17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BC5CF2F78E1C5A0AC53404B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87D7076067CD58CB6ED199C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClassScheduler (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF47A237CD488E16733E1B96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ClassScheduler (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8EC02159261AF04F00856139 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8E2D52B4261B0CF700B59BEF /* Codable+Extension.swift in Sources */,
+				C4F5CD11261C2AA6002A82D8 /* Color+Extension.swift in Sources */,
 				8EC0217D261AF0B000856139 /* Store.swift in Sources */,
 				8E2D52DB261B56FE00B59BEF /* StudentListView.swift in Sources */,
 				8E47D3B6261B5BD00060AC04 /* SettingView.swift in Sources */,
 				8EC02198261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9A261B618700433B17 /* StudentListModel.swift in Sources */,
+				C451BA4A261C71F70046CFBD /* API.swift in Sources */,
 				8EC0218E261AF0F800856139 /* AppCommand.swift in Sources */,
 				8ED5EC95261B5FC600433B17 /* StudentSelector.swift in Sources */,
 				8EC021A2261AFBA800856139 /* Student.swift in Sources */,
 				8E2D52D1261B510600B59BEF /* SidebarView.swift in Sources */,
 				8E2D52D6261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC87261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
+				C451BA43261C663F0046CFBD /* Services.swift in Sources */,
 				8EC02189261AF0F200856139 /* AppAction.swift in Sources */,
 				8EC021AE261AFDB700856139 /* LessonListView.swift in Sources */,
 				8EC0219D261AFB7400856139 /* AppointmentBlock.swift in Sources */,
@@ -379,17 +511,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2D52B5261B0CF700B59BEF /* Codable+Extension.swift in Sources */,
+				C4F5CD12261C2AA6002A82D8 /* Color+Extension.swift in Sources */,
 				8EC0217E261AF0B000856139 /* Store.swift in Sources */,
 				8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */,
 				8ED5EC83261B5C5900433B17 /* SettingView.swift in Sources */,
 				8EC02199261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */,
+				C451BA4B261C71F70046CFBD /* API.swift in Sources */,
 				8EC0218F261AF0F800856139 /* AppCommand.swift in Sources */,
 				8ED5EC96261B5FC600433B17 /* StudentSelector.swift in Sources */,
 				8EC021A3261AFBA800856139 /* Student.swift in Sources */,
 				8E2D52D2261B510600B59BEF /* SidebarView.swift in Sources */,
 				8E2D52D7261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC88261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
+				C451BA46261C66430046CFBD /* Services.swift in Sources */,
 				8EC0218A261AF0F200856139 /* AppAction.swift in Sources */,
 				8EC021AF261AFDB700856139 /* LessonListView.swift in Sources */,
 				8EC0219E261AFB7400856139 /* AppointmentBlock.swift in Sources */,
@@ -521,6 +656,7 @@
 		};
 		8EC02172261AF05000856139 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6EA2BC9DC8A07187C66721F /* Pods-ClassScheduler (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -543,6 +679,7 @@
 		};
 		8EC02173261AF05000856139 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9248A7674812A7C226565974 /* Pods-ClassScheduler (iOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -566,6 +703,7 @@
 		};
 		8EC02175261AF05000856139 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4C7420A18827EF9939FF1D1 /* Pods-ClassScheduler (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -590,6 +728,7 @@
 		};
 		8EC02176261AF05000856139 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS)-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/HandyJSON-macOS/HandyJSON.framework
+${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework

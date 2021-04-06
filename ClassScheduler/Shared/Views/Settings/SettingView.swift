@@ -10,11 +10,11 @@ import SwiftUI
 struct SettingView: View {
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.orange)
             Text("Settings")
                 .font(.largeTitle)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("background"))
     }
 }
 

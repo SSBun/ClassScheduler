@@ -11,12 +11,12 @@ struct StudentSelector: View {
     @EnvironmentObject var store: Store
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 10) {
+        ScrollView(.vertical, showsIndicators: true) {
+            VStack(spacing: 20) {
                 ForEach(store.appState.studentList.students) { student in
                     Text(student.name)
                         .font(.headline)
-                        .frame(minHeight: 40)
+                        .frame(maxWidth: .infinity, minHeight: 40)
                         .background(Color.orange)
                 }
             }
