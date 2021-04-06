@@ -10,7 +10,11 @@ import SwiftUI
 
 struct LessonList {
     var columns: [Column]
-                    
+    var colTypes: [ColumnType] = Weeks.allCases.map { .week($0) }
+    var rowTypes: [ColumnAreaType] = TimeRanges.allCases.map { .timeRange($0) }
+}
+
+extension LessonList {
     struct Column: Identifiable {
         var id: String = UUID().uuidString
         
@@ -76,4 +80,3 @@ enum TimeRanges: Int, Codable, CaseIterable {
     case three
     case four
 }
-

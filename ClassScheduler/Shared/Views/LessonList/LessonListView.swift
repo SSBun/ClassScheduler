@@ -15,19 +15,33 @@ struct LessonListView: View {
             NavbarView()
             HSplitView {
                 StudentSelector()
-                GeometryReader { windowFrame in
-                    ScrollView([.horizontal, .vertical], showsIndicators: false) {
-                        HStack {
-                            ForEach(store.appState.lessonList.columns) { column in
-                                VStack {
-                                    ForEach(column.areas) { area in
-                                        AreaView(area: area)
+                HStack(spacing: 0) {
+                    VStack {
+                        ForEach(store.appState.lessonList.rowTypes) {
+                            VTagView(tagData: $0)
+                        }
+                    }
+                    VStack(spacing: 0) {
+                        HStack(spacing: 0) {
+                            ForEach(store.appState.lessonList.colTypes) {
+                                HTagView(tagData: $0)
+                            }                            
+                        }
+                        GeometryReader { windowFrame in
+                            ScrollView([.horizontal, .vertical], showsIndicators: false) {
+                                HStack(spacing: 0) {
+                                    ForEach(store.appState.lessonList.columns) { column in
+                                        VStack {
+                                            ForEach(column.areas) { area in
+                                                AreaView(area: area)
+                                            }
+                                        }
                                     }
                                 }
+                                .frame(minWidth: windowFrame.size.width,
+                                       minHeight: windowFrame.size.height)
                             }
                         }
-                        .frame(minWidth: windowFrame.size.width,
-                               minHeight: windowFrame.size.height)
                     }
                 }
                 .background(Color("background"))

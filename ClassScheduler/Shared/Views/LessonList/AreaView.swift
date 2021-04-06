@@ -25,9 +25,10 @@ struct AreaView: View {
             }
             .padding(.vertical, 5)
         }
-        .frame(minWidth: 100, minHeight: 150)
+        .background(Color.blue.opacity(0.1))
+        .frame(minWidth: 150, minHeight: 150)
         .onDrop(of: DragDropData<AppointmentBlock>.readableTypeIdentifiersForItemProvider,
-                delegate: DropDelegator<AppointmentBlock>(isEntered: $isEntered, receiptData: { block in
+                delegate: DropDelegator<AppointmentBlock>(isEnabled: area.items.count < 4, isEntered: $isEntered, receiptData: { block in
                     DispatchQueue.main.async {
                         store.dispatch(.move(block.id, area.id))                        
                     }

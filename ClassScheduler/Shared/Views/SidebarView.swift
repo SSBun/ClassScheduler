@@ -24,11 +24,11 @@ struct SidebarView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .frame(maxWidth: .infinity, minHeight: 30, maxHeight: 30)
-                .background(store.appState.sidebarSelection == item ? Color.gray : Color.clear)
+                .background(store.appState.sidebar.sidebarSelection == item ? Color.gray : Color.clear)
             }
         }
-        .padding(.top, 50)
-        .frame(minWidth: 100, maxWidth: 200, maxHeight: .infinity, alignment: .top)
+        .padding(.top, 60)
+        .frame(minWidth: 100, maxWidth: 100, maxHeight: .infinity, alignment: .top)
         .background(Color("sidebar_bg"))
     }
 }

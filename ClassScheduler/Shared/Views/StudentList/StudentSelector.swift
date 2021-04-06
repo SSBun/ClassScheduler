@@ -21,7 +21,7 @@ struct StudentSelector: View {
                 }
             }
         }
-        .frame(minWidth: 200, maxWidth: 200, maxHeight: .infinity, alignment: .top)
+        .frame(minWidth: 150, maxWidth: 150, maxHeight: .infinity, alignment: .top)
         .background(Color.black.opacity(0.2))
     }
 }

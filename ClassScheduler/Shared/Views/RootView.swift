@@ -12,12 +12,14 @@ struct RootView: View {
     
     var body: some View {
         HSplitView {
-            SidebarView()
+            if !store.appState.sidebar.isHidden {
+                SidebarView()
+            }
             VStack(spacing: 0) {
                 ZStack {
-                    LessonListView().zIndex(store.appState.sidebarSelection == .lessonList ? 1 : 0)
-                    StudentListView().zIndex(store.appState.sidebarSelection == .studentList ? 1 : 0)
-                    SettingView().zIndex(store.appState.sidebarSelection == .settings ? 1 : 0)
+                    LessonListView().zIndex(store.appState.sidebar.sidebarSelection == .lessonList ? 1 : 0)
+                    StudentListView().zIndex(store.appState.sidebar.sidebarSelection == .studentList ? 1 : 0)
+                    SettingView().zIndex(store.appState.sidebar.sidebarSelection == .settings ? 1 : 0)
                 }
                 .clipped()
             }

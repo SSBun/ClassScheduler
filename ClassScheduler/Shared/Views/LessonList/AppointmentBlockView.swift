@@ -23,8 +23,8 @@ struct AppointmentBlockView: View {
                 .fill(Color.red)
             Text(block.appointment.student.name)
         }
-        .frame(minWidth: 20, maxWidth: .infinity, minHeight:30, maxHeight: 50)
-        .cornerRadius(10)
+        .frame(minWidth: 20, maxWidth: .infinity, maxHeight: 40)
+        .cornerRadius(5)
         .padding(.horizontal, 5)
     }
 }

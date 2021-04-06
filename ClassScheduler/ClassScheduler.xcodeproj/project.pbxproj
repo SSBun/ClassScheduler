@@ -51,6 +51,10 @@
 		8EC021A8261AFBF600856139 /* LessonAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC021A6261AFBF600856139 /* LessonAppointment.swift */; };
 		8EC021AE261AFDB700856139 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC021AD261AFDB700856139 /* LessonListView.swift */; };
 		8EC021AF261AFDB700856139 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC021AD261AFDB700856139 /* LessonListView.swift */; };
+		8ECFA733261CA0E9008FFE36 /* HTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA732261CA0E9008FFE36 /* HTagView.swift */; };
+		8ECFA734261CA0E9008FFE36 /* HTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA732261CA0E9008FFE36 /* HTagView.swift */; };
+		8ECFA738261CA0EE008FFE36 /* VTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA737261CA0EE008FFE36 /* VTagView.swift */; };
+		8ECFA739261CA0EE008FFE36 /* VTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA737261CA0EE008FFE36 /* VTagView.swift */; };
 		8ED5EC83261B5C5900433B17 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E47D3B5261B5BD00060AC04 /* SettingView.swift */; };
 		8ED5EC87261B5E3C00433B17 /* StudentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC86261B5E3C00433B17 /* StudentDetailView.swift */; };
 		8ED5EC88261B5E3C00433B17 /* StudentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC86261B5E3C00433B17 /* StudentDetailView.swift */; };
@@ -95,6 +99,8 @@
 		8EC021A1261AFBA800856139 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		8EC021A6261AFBF600856139 /* LessonAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAppointment.swift; sourceTree = "<group>"; };
 		8EC021AD261AFDB700856139 /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
+		8ECFA732261CA0E9008FFE36 /* HTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTagView.swift; sourceTree = "<group>"; };
+		8ECFA737261CA0EE008FFE36 /* VTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTagView.swift; sourceTree = "<group>"; };
 		8ED5EC86261B5E3C00433B17 /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
 		8ED5EC94261B5FC600433B17 /* StudentSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSelector.swift; sourceTree = "<group>"; };
 		8ED5EC99261B618700433B17 /* StudentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListModel.swift; sourceTree = "<group>"; };
@@ -173,6 +179,8 @@
 				8E2D52A5261B015F00B59BEF /* AreaView.swift */,
 				8E2D52C6261B3E0700B59BEF /* BlurView.swift */,
 				8E2D52BF261B0FA900B59BEF /* AppointmentBlockView.swift */,
+				8ECFA732261CA0E9008FFE36 /* HTagView.swift */,
+				8ECFA737261CA0EE008FFE36 /* VTagView.swift */,
 			);
 			path = LessonList;
 			sourceTree = "<group>";
@@ -488,8 +496,10 @@
 				8ED5EC95261B5FC600433B17 /* StudentSelector.swift in Sources */,
 				8EC021A2261AFBA800856139 /* Student.swift in Sources */,
 				8E2D52D1261B510600B59BEF /* SidebarView.swift in Sources */,
+				8ECFA733261CA0E9008FFE36 /* HTagView.swift in Sources */,
 				8E2D52D6261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC87261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
+				8ECFA738261CA0EE008FFE36 /* VTagView.swift in Sources */,
 				C451BA43261C663F0046CFBD /* Services.swift in Sources */,
 				8EC02189261AF0F200856139 /* AppAction.swift in Sources */,
 				8EC021AE261AFDB700856139 /* LessonListView.swift in Sources */,
@@ -522,8 +532,10 @@
 				8ED5EC96261B5FC600433B17 /* StudentSelector.swift in Sources */,
 				8EC021A3261AFBA800856139 /* Student.swift in Sources */,
 				8E2D52D2261B510600B59BEF /* SidebarView.swift in Sources */,
+				8ECFA734261CA0E9008FFE36 /* HTagView.swift in Sources */,
 				8E2D52D7261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC88261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
+				8ECFA739261CA0EE008FFE36 /* VTagView.swift in Sources */,
 				C451BA46261C66430046CFBD /* Services.swift in Sources */,
 				8EC0218A261AF0F200856139 /* AppAction.swift in Sources */,
 				8EC021AF261AFDB700856139 /* LessonListView.swift in Sources */,

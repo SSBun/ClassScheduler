@@ -10,7 +10,7 @@ import Foundation
 struct AppState {
     var lessonList: LessonList = .mock
     var studentList: StudentList = .init()
-    var sidebarSelection: SidebarItem = .studentList    
+    var sidebar: Sidebar = .init()
     
     enum SidebarItem: Int, CaseIterable, Identifiable {
         var id: Int { self.rawValue }
@@ -28,5 +28,12 @@ struct AppState {
                 return "系统设置"
             }
         }
+    }
+}
+
+extension AppState {
+    struct Sidebar {
+        var sidebarSelection: SidebarItem = .lessonList
+        var isHidden: Bool = false
     }
 }

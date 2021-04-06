@@ -35,9 +35,15 @@ extension Store {
             newState = moveAction(newState, block, to)
             command = nil
         case let .switchSidebar(item):
-            newState.sidebarSelection = item
+            newState.sidebar.sidebarSelection = item
         case let .requestStudentInfo(id):
             command = RequestStudentInfoCommand(id: id)
+        case .toggleSidebar(let hide):
+            if let hide = hide {
+                newState.sidebar.isHidden = hide
+            } else {
+                newState.sidebar.isHidden.toggle()
+            }
         }
         return (newState, command)
     }
