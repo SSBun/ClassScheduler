@@ -27,6 +27,8 @@
 		8E2D52DB261B56FE00B59BEF /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D52DA261B56FE00B59BEF /* StudentListView.swift */; };
 		8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D52DA261B56FE00B59BEF /* StudentListView.swift */; };
 		8E47D3B6261B5BD00060AC04 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E47D3B5261B5BD00060AC04 /* SettingView.swift */; };
+		8E80AAFF261DE67C0099B92D /* CourseCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80AAFE261DE67C0099B92D /* CourseCalendar.swift */; };
+		8E80AB00261DE67C0099B92D /* CourseCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80AAFE261DE67C0099B92D /* CourseCalendar.swift */; };
 		8EC02169261AF05000856139 /* ClassSchedulerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC02156261AF04F00856139 /* ClassSchedulerApp.swift */; };
 		8EC0216A261AF05000856139 /* ClassSchedulerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC02156261AF04F00856139 /* ClassSchedulerApp.swift */; };
 		8EC0216D261AF05000856139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EC02158261AF04F00856139 /* Assets.xcassets */; };
@@ -62,6 +64,8 @@
 		8ED5EC96261B5FC600433B17 /* StudentSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC94261B5FC600433B17 /* StudentSelector.swift */; };
 		8ED5EC9A261B618700433B17 /* StudentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC99261B618700433B17 /* StudentListModel.swift */; };
 		8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC99261B618700433B17 /* StudentListModel.swift */; };
+		8EDCBF79261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
+		8EDCBF7A261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
 		C451BA43261C663F0046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
 		C451BA46261C66430046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
 		C451BA4A261C71F70046CFBD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA49261C71F70046CFBD /* API.swift */; };
@@ -82,6 +86,7 @@
 		8E2D52D5261B516A00B59BEF /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		8E2D52DA261B56FE00B59BEF /* StudentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListView.swift; sourceTree = "<group>"; };
 		8E47D3B5261B5BD00060AC04 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		8E80AAFE261DE67C0099B92D /* CourseCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCalendar.swift; sourceTree = "<group>"; };
 		8EC02156261AF04F00856139 /* ClassSchedulerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSchedulerApp.swift; sourceTree = "<group>"; };
 		8EC02158261AF04F00856139 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8EC0215D261AF04F00856139 /* ClassScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +109,7 @@
 		8ED5EC86261B5E3C00433B17 /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
 		8ED5EC94261B5FC600433B17 /* StudentSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSelector.swift; sourceTree = "<group>"; };
 		8ED5EC99261B618700433B17 /* StudentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListModel.swift; sourceTree = "<group>"; };
+		8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSwitcher.swift; sourceTree = "<group>"; };
 		9248A7674812A7C226565974 /* Pods-ClassScheduler (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (iOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		97CCB67AFE07F6D41DE25BC9 /* Pods_ClassScheduler__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassScheduler__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).release.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +209,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		8E80AAFD261DE62C0099B92D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8E80AAFE261DE67C0099B92D /* CourseCalendar.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		8EC02150261AF04F00856139 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +232,7 @@
 		8EC02155261AF04F00856139 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8E80AAFD261DE62C0099B92D /* Calendar */,
 				C4F5CD0F261C2A8F002A82D8 /* Api */,
 				8E2D52B2261B0CC900B59BEF /* Extensions */,
 				8E2D52AA261B0A0300B59BEF /* DragDrop */,
@@ -274,7 +289,7 @@
 				8E47D3B4261B5BC60060AC04 /* Settings */,
 				8E2D52E0261B58F600B59BEF /* StudentList */,
 				8E2D52DF261B58E200B59BEF /* LessonList */,
-				8E2D52CB261B50EA00B59BEF /* NavbarView.swift */,
+				8EDCBF75261E00CD00A23B81 /* NavBar */,
 				8E2D52D0261B510600B59BEF /* SidebarView.swift */,
 				8E2D52D5261B516A00B59BEF /* RootView.swift */,
 			);
@@ -291,6 +306,15 @@
 				8EC02192261AF22D00856139 /* SubscriptionToken.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		8EDCBF75261E00CD00A23B81 /* NavBar */ = {
+			isa = PBXGroup;
+			children = (
+				8E2D52CB261B50EA00B59BEF /* NavbarView.swift */,
+				8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */,
+			);
+			path = NavBar;
 			sourceTree = "<group>";
 		};
 		C4F5CD0F261C2A8F002A82D8 /* Api */ = {
@@ -492,6 +516,7 @@
 				8EC02198261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9A261B618700433B17 /* StudentListModel.swift in Sources */,
 				C451BA4A261C71F70046CFBD /* API.swift in Sources */,
+				8E80AAFF261DE67C0099B92D /* CourseCalendar.swift in Sources */,
 				8EC0218E261AF0F800856139 /* AppCommand.swift in Sources */,
 				8ED5EC95261B5FC600433B17 /* StudentSelector.swift in Sources */,
 				8EC021A2261AFBA800856139 /* Student.swift in Sources */,
@@ -512,6 +537,7 @@
 				8E2D52CC261B50EA00B59BEF /* NavbarView.swift in Sources */,
 				8E2D52A6261B015F00B59BEF /* AreaView.swift in Sources */,
 				8EC02169261AF05000856139 /* ClassSchedulerApp.swift in Sources */,
+				8EDCBF79261E010C00A23B81 /* WeekSwitcher.swift in Sources */,
 				8EC02184261AF0D600856139 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +554,7 @@
 				8EC02199261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */,
 				C451BA4B261C71F70046CFBD /* API.swift in Sources */,
+				8E80AB00261DE67C0099B92D /* CourseCalendar.swift in Sources */,
 				8EC0218F261AF0F800856139 /* AppCommand.swift in Sources */,
 				8ED5EC96261B5FC600433B17 /* StudentSelector.swift in Sources */,
 				8EC021A3261AFBA800856139 /* Student.swift in Sources */,
@@ -548,6 +575,7 @@
 				8E2D52CD261B50EA00B59BEF /* NavbarView.swift in Sources */,
 				8E2D52A7261B015F00B59BEF /* AreaView.swift in Sources */,
 				8EC0216A261AF05000856139 /* ClassSchedulerApp.swift in Sources */,
+				8EDCBF7A261E010C00A23B81 /* WeekSwitcher.swift in Sources */,
 				8EC02185261AF0D600856139 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,8 +11,12 @@ struct VTagView: View {
     let tagData: LessonList.ColumnAreaType
     
     var body: some View {
-        ZStack {
-            Text("\(tagData.id)")
+        VStack {
+            switch tagData {
+            case .timeRange(let range):
+                Text("\(range.range.0)")
+                    .font(.headline)
+            }
         }
         .frame(maxWidth: 40, maxHeight: .infinity)
         .background(Color.black)

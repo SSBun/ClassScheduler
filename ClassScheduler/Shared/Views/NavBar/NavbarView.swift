@@ -16,6 +16,8 @@ struct NavbarView: View {
                 .font(.largeTitle)
                 .padding(.leading, store.appState.sidebar.isHidden ? 80 : 20)
             Spacer()
+            WeekSwitcher()
+            Spacer()
             Button {
                 store.dispatch(.toggleSidebar(nil))
             } label: {

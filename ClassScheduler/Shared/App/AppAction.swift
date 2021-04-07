@@ -16,4 +16,5 @@ enum AppAction {
 //    case refreshStudentInfo(_ id:
     
     case insertAppointment(student: Student,  to: String)
+    case switchWeek(_ offset: Int)
 }

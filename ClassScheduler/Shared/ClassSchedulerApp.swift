@@ -13,7 +13,7 @@ struct ClassSchedulerApp: App {
         WindowGroup {
             #if os(macOS)
             RootView()
-            .frame(minWidth: 600, maxWidth: .infinity, minHeight: 800, maxHeight: .infinity)
+            .frame(minWidth: 1200, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
             .ignoresSafeArea()
             .environmentObject(Store())
             #else

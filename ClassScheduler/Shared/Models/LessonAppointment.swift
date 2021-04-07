@@ -9,7 +9,7 @@ import Foundation
 
 struct LessonAppointment: Codable, Identifiable {
     var id: String = UUID().uuidString
-    let week: Weeks
+    let day: CourseCalendar.Day
     let timeRange: TimeRanges
     let student: Student
 }

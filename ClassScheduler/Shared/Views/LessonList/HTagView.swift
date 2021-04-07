@@ -12,7 +12,16 @@ struct HTagView: View {
     
     var body: some View {
         ZStack {
-            Text("\(tagData.id)")
+            switch tagData {
+            case .week(let day):
+                VStack {
+                    Text("\(day.date.toString(.custom("YYYY-MM-dd")))")
+                        .font(.subheadline)
+                    Text("\(day.date.weekdayName(.short))")
+                        .font(.headline)
+                    
+                }
+            }
         }
         .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
         .background(Color.black)
@@ -21,6 +30,6 @@ struct HTagView: View {
 
 struct HTagView_Previews: PreviewProvider {
     static var previews: some View {
-        HTagView(tagData: .week(.monday))
+        HTagView(tagData: .week(.init(date: .init())))
     }
 }

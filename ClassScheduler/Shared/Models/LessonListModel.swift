@@ -10,7 +10,9 @@ import SwiftUI
 
 struct LessonList {
     var columns: [Column]
-    var colTypes: [ColumnType] = Weeks.allCases.map { .week($0) }
+    var weekOffset: Int = 0
+    var week: CourseCalendar.Week  { CourseCalendar.getWeek(weekOffset) }
+    var colTypes: [ColumnType] { week.days.map({ ColumnType.week($0)}) }
     var rowTypes: [ColumnAreaType] = TimeRanges.allCases.map { .timeRange($0) }
 }
 
@@ -28,7 +30,18 @@ extension LessonList {
         let type: ColumnAreaType
         var items: [Block]
     }
-           
+                   
+    enum ColumnType: Identifiable {
+        case week(_ week: CourseCalendar.Day)
+        
+        var id: String {
+            switch self {
+            case .week(let day):
+                return "\(day.date.timeIntervalSince1970)"
+            }
+        }
+    }
+    
     enum ColumnAreaType: Identifiable {
         case timeRange(_ range: TimeRanges)
         
@@ -39,23 +52,12 @@ extension LessonList {
             }
         }
     }
-    
-    enum ColumnType: Identifiable {
-        case week(_ week: Weeks)
-        
-        var id: String {
-            switch self {
-            case .week(let week):
-                return "week-\(week.rawValue)"
-            }
-        }
-    }
 }
 
 extension LessonList {
-    static let mock: LessonList = .init(columns: Weeks.allCases.map({ week in
-        Column(type: .week(week), areas: TimeRanges.allCases.map({ timeRange in
-            ColumnArea(type: .timeRange(timeRange), items: [AppointmentBlock(appointment: .init(week: week, timeRange: timeRange, student: .mock))])            
+    static let mock: LessonList = .init(columns: CourseCalendar.getWeek(0).days.map({ day in
+        Column(type: .week(day), areas: TimeRanges.allCases.map({ timeRange in
+            ColumnArea(type: .timeRange(timeRange), items: [AppointmentBlock(appointment: .init(day: day, timeRange: timeRange, student: .mock))])            
         }))
     }))
 }
@@ -64,19 +66,25 @@ protocol Block: Codable {
     var id: String { get }
 }
 
-enum Weeks: Int, Codable, CaseIterable {
-    case monday = 0
-    case tuesday
-    case wednesday
-    case thursday
-    case friday
-    case saturday
-    case sunday
-}
-
 enum TimeRanges: Int, Codable, CaseIterable {
     case one = 0
     case two
     case three
     case four
+    case five
+    
+    var range: (String, String) {
+        switch self {
+        case .one:
+            return ("09:00", "10:30")
+        case .two:
+            return ("11:00", "12:30")
+        case .three:
+            return ("14:00", "15:30")
+        case .four:
+            return ("17:30", "19:00")
+        case .five:
+            return ("19:30", "21:00")
+        }
+    }
 }

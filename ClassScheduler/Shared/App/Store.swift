@@ -46,6 +46,8 @@ extension Store {
             }
         case .insertAppointment(student: let student, to: let to):
             newState = inserAppointment(newState, student, to)
+        case .switchWeek(let offset):
+            newState.lessonList.weekOffset = offset
         }
         return (newState, command)
     }
@@ -64,8 +66,8 @@ extension Store {
         if let addedIndex = addedIndex {
             let col = newState.lessonList.columns[addedIndex.0]
              let area = col.areas[addedIndex.1]
-            if case .week(let week)  = col.type, case .timeRange(let timeRange) = area.type {
-                let appointment = LessonAppointment(week: week, timeRange: timeRange, student: student)
+            if case .week(let day)  = col.type, case .timeRange(let timeRange) = area.type {
+                let appointment = LessonAppointment(day: day, timeRange: timeRange, student: student)
                 let appointmentBlock = AppointmentBlock(appointment: appointment)
                 newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
             }
