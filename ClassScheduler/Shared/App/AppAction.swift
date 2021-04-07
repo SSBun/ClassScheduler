@@ -13,5 +13,7 @@ enum AppAction {
     case toggleSidebar(_ hide: Bool?)
     
     case requestStudentInfo(_ id: String)
-//    case refreshStudentInfo(_ id: String)
+//    case refreshStudentInfo(_ id:
+    
+    case insertAppointment(student: Student,  to: String)
 }

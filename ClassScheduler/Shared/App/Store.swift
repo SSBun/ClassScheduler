@@ -44,8 +44,33 @@ extension Store {
             } else {
                 newState.sidebar.isHidden.toggle()
             }
+        case .insertAppointment(student: let student, to: let to):
+            newState = inserAppointment(newState, student, to)
         }
         return (newState, command)
+    }
+    
+    static func inserAppointment(_ state: AppState, _ student: Student, _ to: String) -> AppState {
+        var addedIndex: (Int, Int)? = nil
+        var newState = state
+        for (ci, column) in state.lessonList.columns.enumerated() {
+            for (ai, area) in column.areas.enumerated() {
+                if area.id == to {
+                    addedIndex = (ci, ai)
+                    break
+                }
+            }
+        }
+        if let addedIndex = addedIndex {
+            let col = newState.lessonList.columns[addedIndex.0]
+             let area = col.areas[addedIndex.1]
+            if case .week(let week)  = col.type, case .timeRange(let timeRange) = area.type {
+                let appointment = LessonAppointment(week: week, timeRange: timeRange, student: student)
+                let appointmentBlock = AppointmentBlock(appointment: appointment)
+                newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
+            }
+        }
+        return newState
     }
     
     static func moveAction(_ state: AppState, _ block: String, _ to: String) -> AppState {

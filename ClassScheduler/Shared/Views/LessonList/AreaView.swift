@@ -27,12 +27,35 @@ struct AreaView: View {
         }
         .background(Color.blue.opacity(0.1))
         .frame(minWidth: 150, minHeight: 150)
-        .onDrop(of: DragDropData<AppointmentBlock>.readableTypeIdentifiersForItemProvider,
-                delegate: DropDelegator<AppointmentBlock>(isEnabled: area.items.count < 4, isEntered: $isEntered, receiptData: { block in
+        .onDrop(DropGroupDelegator(isEnabled: area.items.count < 4,
+                                   isEntered: $isEntered,
+                                   dropCallbacks: (AppointmentBlock.self, DragDropData<AppointmentBlock>.self, { p in
+                                    let block = (p as! DragDropData<AppointmentBlock>).data
+                                    DispatchQueue.main.async {
+                                        store.dispatch(.move(block.id, area.id))
+                                    }
+                                   }),
+                                   (Student.self, DragDropData<Student>.self, { p in
+                                    let student = (p as! DragDropData<Student>).data
+                                    DispatchQueue.main.async {
+                                        store.dispatch(.insertAppointment(student: student, to: area.id))
+                                    }
+                                   })
+        ))
+        //        .onDrop(of: AppointmentBlock.uttypeIdentifiers,
+        //                delegate: DropDelegator<AppointmentBlock>(isEnabled: area.items.count < 4, isEntered: $isEntered) { block in
+        //                    DispatchQueue.main.async {
+        //                        store.dispatch(.move(block.id, area.id))
+        //                    }
+        //                }
+        //        )
+        .onDrop(of: Student.uttypeIdentifiers,
+                delegate: DropDelegator<Student>(isEnabled: area.items.count < 4, isEntered: $isEntered) { student in
                     DispatchQueue.main.async {
-                        store.dispatch(.move(block.id, area.id))                        
+                        store.dispatch(.insertAppointment(student: student, to: area.id))
                     }
-        }))
+                }
+        )
     }
 }
 

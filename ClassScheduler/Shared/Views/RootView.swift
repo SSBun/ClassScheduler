@@ -17,9 +17,12 @@ struct RootView: View {
             }
             VStack(spacing: 0) {
                 ZStack {
-                    LessonListView().zIndex(store.appState.sidebar.sidebarSelection == .lessonList ? 1 : 0)
-                    StudentListView().zIndex(store.appState.sidebar.sidebarSelection == .studentList ? 1 : 0)
-                    SettingView().zIndex(store.appState.sidebar.sidebarSelection == .settings ? 1 : 0)
+                    LessonListView()
+                        .zIndex(store.appState.sidebar.sidebarSelection == .lessonList ? 1 : 0)
+                    StudentListView()
+                        .zIndex(store.appState.sidebar.sidebarSelection == .studentList ? 1 : 0)
+                    SettingView()
+                        .zIndex(store.appState.sidebar.sidebarSelection == .settings ? 1 : 0)
                 }
                 .clipped()
             }

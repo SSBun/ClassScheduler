@@ -9,15 +9,13 @@ import SwiftUI
 
 struct StudentSelector: View {
     @EnvironmentObject var store: Store
+    let canDrag: Bool
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack(spacing: 20) {
                 ForEach(store.appState.studentList.students) { student in
-                    Text(student.name)
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, minHeight: 40)
-                        .background(Color.orange)
+                    Cell(student: student, canDrag: canDrag)
                 }
             }
         }
@@ -26,8 +24,32 @@ struct StudentSelector: View {
     }
 }
 
+extension StudentSelector {
+    struct Cell: View {
+        let student: Student
+        let canDrag: Bool
+        
+        var body: some View {
+            if canDrag {
+                content
+                .onDrag({ DragDropData(student).itemProvider })
+            } else {
+                content
+            }
+        }
+        
+        @ViewBuilder
+        var content: some View {
+            Text(student.name)
+                .font(.headline)
+                .frame(maxWidth: .infinity, minHeight: 40)
+                .background(Color.orange)
+        }
+    }
+}
+
 struct StudentSelector_Previews: PreviewProvider {
     static var previews: some View {
-        StudentSelector()
+        StudentSelector(canDrag: false)
     }
 }

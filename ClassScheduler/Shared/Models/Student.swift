@@ -13,3 +13,7 @@ struct Student: Codable, Identifiable {
     
     static let mock: Student = .init(name: "Leta Pfeffer")
 }
+
+extension Student: DragDropAvailable {
+    static let dataIdentifier: String = "Student"
+}

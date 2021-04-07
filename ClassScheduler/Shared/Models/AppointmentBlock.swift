@@ -9,8 +9,12 @@ import Foundation
 import SwiftUI
 
 struct AppointmentBlock: Block, Codable {
-    let id: String
+    var id: String { appointment.id }
     let appointment: LessonAppointment
+}
+
+extension AppointmentBlock: DragDropAvailable {
+    static let dataIdentifier: String = "AppointmentBlock"
 }
 
 

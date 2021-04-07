@@ -31,6 +31,6 @@ struct AppointmentBlockView: View {
 
 struct AppointmentBlockView_Previews: PreviewProvider {
     static var previews: some View {
-        AppointmentBlockView(block: .init(id: "100", appointment: .init(week: .friday, timeRange: .four, student: .mock)))
+        AppointmentBlockView(block: .init(appointment: .init(week: .friday, timeRange: .four, student: .mock)))
     }
 }

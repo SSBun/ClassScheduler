@@ -11,7 +11,7 @@ struct StudentListView: View {
     @EnvironmentObject var store: Store
     var body: some View {
         HStack {
-            StudentSelector()
+            StudentSelector(canDrag: false)
             StudentDetailView()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }   

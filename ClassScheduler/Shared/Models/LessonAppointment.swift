@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct LessonAppointment: Codable {
+struct LessonAppointment: Codable, Identifiable {
+    var id: String = UUID().uuidString
     let week: Weeks
     let timeRange: TimeRanges
     let student: Student

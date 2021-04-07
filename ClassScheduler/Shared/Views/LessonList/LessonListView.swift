@@ -14,7 +14,7 @@ struct LessonListView: View {
         VStack(spacing: 0) {
             NavbarView()
             HSplitView {
-                StudentSelector()
+                StudentSelector(canDrag: true)
                 HStack(spacing: 0) {
                     VStack {
                         ForEach(store.appState.lessonList.rowTypes) {
