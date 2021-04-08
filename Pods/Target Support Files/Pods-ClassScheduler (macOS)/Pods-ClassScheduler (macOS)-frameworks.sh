@@ -178,13 +178,19 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON-macOS/HandyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-macOS/sqliterk.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate-macOS/SwiftDate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WCDB.swift-macOS/WCDBSwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher-macOS/sqlcipher.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON-macOS/HandyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-macOS/sqliterk.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate-macOS/SwiftDate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WCDB.swift-macOS/WCDBSwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher-macOS/sqlcipher.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

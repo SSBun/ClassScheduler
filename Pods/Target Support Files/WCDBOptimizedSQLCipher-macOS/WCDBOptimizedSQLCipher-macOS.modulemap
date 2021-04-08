@@ -1,0 +1,6 @@
+framework module sqlcipher {
+  umbrella header "WCDBOptimizedSQLCipher-macOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
