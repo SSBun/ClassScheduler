@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject var store: Store
+    @EnvironmentObject var store: Store    
     
     var body: some View {
         HSplitView {

@@ -29,6 +29,8 @@ extension StudentSelector {
         let student: Student
         let canDrag: Bool
         
+        @State private var message: Student? = nil
+        
         var body: some View {
             if canDrag {
                 content
@@ -44,6 +46,23 @@ extension StudentSelector {
                 .font(.headline)
                 .frame(maxWidth: .infinity, minHeight: 40)
                 .background(Color.orange)
+                .onTapGesture {
+                    message = student
+                }
+                .sheet(item: $message) { msg in
+                    VStack {
+                        Text("A big title")
+                            .font(.largeTitle)
+                        Button {
+                            withAnimation {
+                                message = nil
+                            }
+                        } label: {
+                            Text("close")
+                        }
+                    }
+                    .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity, alignment: .center)
+                }
         }
     }
 }

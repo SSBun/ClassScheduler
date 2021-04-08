@@ -20,6 +20,7 @@ struct WeekSwitcher: View {
                 Image(systemName: "arrowtriangle.left.fill")
             }
             Text("\(day.date.toString(.custom("YYYY年 MM月")))")
+                .font(.largeTitle)
             Button {
                 store.dispatch(.switchWeek(store.appState.lessonList.weekOffset+1))
             } label: {

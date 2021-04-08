@@ -15,7 +15,7 @@ struct AreaView: View {
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
-                .fill(isEntered ? Color.red.opacity(0.5) : Color.gray.opacity(0))
+                .fill(isEntered ? Color.gray.opacity(0.1) : Color.gray.opacity(0))
             VStack {
                 ForEach(area.items, id: \.id) { block in
                     if block is AppointmentBlock {
@@ -29,33 +29,23 @@ struct AreaView: View {
         .frame(minWidth: 150, minHeight: 150)
         .onDrop(DropGroupDelegator(isEnabled: area.items.count < 4,
                                    isEntered: $isEntered,
-                                   dropCallbacks: (AppointmentBlock.self, DragDropData<AppointmentBlock>.self, { p in
+                                   dropCallbacks:
+                                    (AppointmentBlock.self,
+                                     DragDropData<AppointmentBlock>.self,
+                                     { p in
                                     let block = (p as! DragDropData<AppointmentBlock>).data
                                     DispatchQueue.main.async {
                                         store.dispatch(.move(block.id, area.id))
-                                    }
-                                   }),
-                                   (Student.self, DragDropData<Student>.self, { p in
+                                    }}),
+                                   (Student.self,
+                                    DragDropData<Student>.self,
+                                    { p in
                                     let student = (p as! DragDropData<Student>).data
                                     DispatchQueue.main.async {
                                         store.dispatch(.insertAppointment(student: student, to: area.id))
                                     }
-                                   })
+                                    })
         ))
-        //        .onDrop(of: AppointmentBlock.uttypeIdentifiers,
-        //                delegate: DropDelegator<AppointmentBlock>(isEnabled: area.items.count < 4, isEntered: $isEntered) { block in
-        //                    DispatchQueue.main.async {
-        //                        store.dispatch(.move(block.id, area.id))
-        //                    }
-        //                }
-        //        )
-        .onDrop(of: Student.uttypeIdentifiers,
-                delegate: DropDelegator<Student>(isEnabled: area.items.count < 4, isEntered: $isEntered) { student in
-                    DispatchQueue.main.async {
-                        store.dispatch(.insertAppointment(student: student, to: area.id))
-                    }
-                }
-        )
     }
 }
 

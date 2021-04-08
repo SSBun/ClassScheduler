@@ -66,6 +66,10 @@
 		8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC99261B618700433B17 /* StudentListModel.swift */; };
 		8EDCBF79261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
 		8EDCBF7A261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
+		C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */; };
+		C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */; };
+		C4403CC1261EFB0D00E0B9EE /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */; };
+		C4403CC2261EFB0E00E0B9EE /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */; };
 		C451BA43261C663F0046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
 		C451BA46261C66430046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
 		C451BA4A261C71F70046CFBD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA49261C71F70046CFBD /* API.swift */; };
@@ -114,6 +118,8 @@
 		97CCB67AFE07F6D41DE25BC9 /* Pods_ClassScheduler__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassScheduler__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		B4C7420A18827EF9939FF1D1 /* Pods-ClassScheduler (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).debug.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegator.swift; sourceTree = "<group>"; };
+		C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		C451BA42261C663F0046CFBD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C451BA49261C71F70046CFBD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -239,7 +245,7 @@
 				8EC0217B261AF0A300856139 /* App */,
 				8EC0217A261AF09D00856139 /* Views */,
 				8EC02179261AF08B00856139 /* Models */,
-				8EC02156261AF04F00856139 /* ClassSchedulerApp.swift */,
+				C4403BCA261EDBD700E0B9EE /* Main */,
 				8EC02158261AF04F00856139 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -304,6 +310,7 @@
 				8EC02188261AF0F200856139 /* AppAction.swift */,
 				8EC0218D261AF0F800856139 /* AppCommand.swift */,
 				8EC02192261AF22D00856139 /* SubscriptionToken.swift */,
+				C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -315,6 +322,15 @@
 				8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */,
 			);
 			path = NavBar;
+			sourceTree = "<group>";
+		};
+		C4403BCA261EDBD700E0B9EE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8EC02156261AF04F00856139 /* ClassSchedulerApp.swift */,
+				C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		C4F5CD0F261C2A8F002A82D8 /* Api */ = {
@@ -512,7 +528,9 @@
 				C4F5CD11261C2AA6002A82D8 /* Color+Extension.swift in Sources */,
 				8EC0217D261AF0B000856139 /* Store.swift in Sources */,
 				8E2D52DB261B56FE00B59BEF /* StudentListView.swift in Sources */,
+				C4403CC1261EFB0D00E0B9EE /* AlertMessage.swift in Sources */,
 				8E47D3B6261B5BD00060AC04 /* SettingView.swift in Sources */,
+				C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				8EC02198261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9A261B618700433B17 /* StudentListModel.swift in Sources */,
 				C451BA4A261C71F70046CFBD /* API.swift in Sources */,
@@ -550,7 +568,9 @@
 				C4F5CD12261C2AA6002A82D8 /* Color+Extension.swift in Sources */,
 				8EC0217E261AF0B000856139 /* Store.swift in Sources */,
 				8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */,
+				C4403CC2261EFB0E00E0B9EE /* AlertMessage.swift in Sources */,
 				8ED5EC83261B5C5900433B17 /* SettingView.swift in Sources */,
+				C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				8EC02199261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */,
 				C451BA4B261C71F70046CFBD /* API.swift in Sources */,
