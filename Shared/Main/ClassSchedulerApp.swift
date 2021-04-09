@@ -13,6 +13,10 @@ struct ClassSchedulerApp: App {
     @Environment(\.scenePhase) private var scenePhase
     @NSApplicationDelegateAdaptor(AppDelegator.self) var appDelegate
     
+    init() {
+        try? DB.initialize()
+    }
+    
     var body: some Scene {
         WindowGroup {
             #if os(macOS)

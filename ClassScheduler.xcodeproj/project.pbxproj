@@ -53,6 +53,10 @@
 		8EC021A8261AFBF600856139 /* LessonAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC021A6261AFBF600856139 /* LessonAppointment.swift */; };
 		8EC021AE261AFDB700856139 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC021AD261AFDB700856139 /* LessonListView.swift */; };
 		8EC021AF261AFDB700856139 /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC021AD261AFDB700856139 /* LessonListView.swift */; };
+		8ECA1B44261F4B21004B169D /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA1B43261F4B21004B169D /* DB.swift */; };
+		8ECA1B45261F4B21004B169D /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA1B43261F4B21004B169D /* DB.swift */; };
+		8ECA1B5C261F5883004B169D /* CSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA1B5B261F5883004B169D /* CSExtension.swift */; };
+		8ECA1B5D261F5883004B169D /* CSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA1B5B261F5883004B169D /* CSExtension.swift */; };
 		8ECFA733261CA0E9008FFE36 /* HTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA732261CA0E9008FFE36 /* HTagView.swift */; };
 		8ECFA734261CA0E9008FFE36 /* HTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA732261CA0E9008FFE36 /* HTagView.swift */; };
 		8ECFA738261CA0EE008FFE36 /* VTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFA737261CA0EE008FFE36 /* VTagView.swift */; };
@@ -108,6 +112,8 @@
 		8EC021A1261AFBA800856139 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		8EC021A6261AFBF600856139 /* LessonAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAppointment.swift; sourceTree = "<group>"; };
 		8EC021AD261AFDB700856139 /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
+		8ECA1B43261F4B21004B169D /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
+		8ECA1B5B261F5883004B169D /* CSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSExtension.swift; sourceTree = "<group>"; };
 		8ECFA732261CA0E9008FFE36 /* HTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTagView.swift; sourceTree = "<group>"; };
 		8ECFA737261CA0EE008FFE36 /* VTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTagView.swift; sourceTree = "<group>"; };
 		8ED5EC86261B5E3C00433B17 /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 			children = (
 				8E2D52B3261B0CF700B59BEF /* Codable+Extension.swift */,
 				C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */,
+				8ECA1B5B261F5883004B169D /* CSExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +245,7 @@
 		8EC02155261AF04F00856139 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8ECA1B42261F4AE1004B169D /* DataBase */,
 				8E80AAFD261DE62C0099B92D /* Calendar */,
 				C4F5CD0F261C2A8F002A82D8 /* Api */,
 				8E2D52B2261B0CC900B59BEF /* Extensions */,
@@ -313,6 +321,14 @@
 				C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		8ECA1B42261F4AE1004B169D /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				8ECA1B43261F4B21004B169D /* DB.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 		8EDCBF75261E00CD00A23B81 /* NavBar */ = {
@@ -548,6 +564,7 @@
 				8EC021AE261AFDB700856139 /* LessonListView.swift in Sources */,
 				8EC0219D261AFB7400856139 /* AppointmentBlock.swift in Sources */,
 				8EC021A7261AFBF600856139 /* LessonAppointment.swift in Sources */,
+				8ECA1B5C261F5883004B169D /* CSExtension.swift in Sources */,
 				8E2D52C7261B3E0700B59BEF /* BlurView.swift in Sources */,
 				8E2D52AC261B0ADE00B59BEF /* DragDropData.swift in Sources */,
 				8E2D52C0261B0FA900B59BEF /* AppointmentBlockView.swift in Sources */,
@@ -557,6 +574,7 @@
 				8EC02169261AF05000856139 /* ClassSchedulerApp.swift in Sources */,
 				8EDCBF79261E010C00A23B81 /* WeekSwitcher.swift in Sources */,
 				8EC02184261AF0D600856139 /* AppState.swift in Sources */,
+				8ECA1B44261F4B21004B169D /* DB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +606,7 @@
 				8EC021AF261AFDB700856139 /* LessonListView.swift in Sources */,
 				8EC0219E261AFB7400856139 /* AppointmentBlock.swift in Sources */,
 				8EC021A8261AFBF600856139 /* LessonAppointment.swift in Sources */,
+				8ECA1B5D261F5883004B169D /* CSExtension.swift in Sources */,
 				8E2D52C8261B3E0700B59BEF /* BlurView.swift in Sources */,
 				8E2D52AD261B0ADE00B59BEF /* DragDropData.swift in Sources */,
 				8E2D52C1261B0FA900B59BEF /* AppointmentBlockView.swift in Sources */,
@@ -597,6 +616,7 @@
 				8EC0216A261AF05000856139 /* ClassSchedulerApp.swift in Sources */,
 				8EDCBF7A261E010C00A23B81 /* WeekSwitcher.swift in Sources */,
 				8EC02185261AF0D600856139 /* AppState.swift in Sources */,
+				8ECA1B45261F4B21004B169D /* DB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

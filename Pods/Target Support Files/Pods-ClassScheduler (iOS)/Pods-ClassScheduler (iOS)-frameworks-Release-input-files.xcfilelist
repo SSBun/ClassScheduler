@@ -2,4 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler 
 ${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/HandyJSON-iOS/HandyJSON.framework
 ${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework
+${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-iOS/sqliterk.framework
 ${BUILT_PRODUCTS_DIR}/SwiftDate-iOS/SwiftDate.framework
+${BUILT_PRODUCTS_DIR}/WCDB.swift-iOS/WCDBSwift.framework
+${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher-iOS/sqlcipher.framework
