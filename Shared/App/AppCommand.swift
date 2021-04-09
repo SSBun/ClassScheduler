@@ -30,3 +30,23 @@ struct RequestStudentInfoCommand: AppCommand {
         .seal(in: token)
     }
 }
+
+struct InitializeAppCommand: AppCommand {
+    let state: AppState
+    func execute(in store: Store) {
+        do {
+            var newState = state
+            let students = try Student.db.get(on: [])
+            let ids = students.map { $0.id }
+            var studentMap: [Int: Student] = [:]
+            students.forEach { student in
+                studentMap[student.id] = student
+            }
+            newState.studentList.students = ids
+            newState.studentList.studentsData = studentMap
+            store.dispatch(.loadApp(newState))
+        } catch(let error) {
+            LOG(category: .command, error)
+        }
+    }
+}

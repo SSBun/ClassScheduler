@@ -148,6 +148,7 @@ extension DBExtension where Base: DBTable {
                                               orderBy: orderList,
                                               limit: limit,
                                               offset: offset)
+            
         } catch(let error) {
             LOG(category: .database, error)
             throw(error)

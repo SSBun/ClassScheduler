@@ -27,6 +27,12 @@ extension Store {
         var newState = state
         var command: AppCommand?
         switch action {
+        case .loadApp(let initState):
+            if let initState = initState {
+                newState = initState
+            } else {
+                command = InitializeAppCommand(state: newState)
+            }
         case let .move(block, to):
             newState = moveAction(newState, block, to)
         case let .switchSidebar(item):

@@ -8,6 +8,8 @@
 import Foundation
 
 enum AppAction {
+    case loadApp(_ app: AppState?)
+    
     case move(_ block: String, _ toArea: String)
     case switchSidebar(_ item: AppState.SidebarItem)
     case toggleSidebar(_ hide: Bool?)
