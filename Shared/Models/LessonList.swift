@@ -57,7 +57,7 @@ extension LessonList {
 extension LessonList {
     static let mock: LessonList = .init(columns: CourseCalendar.getWeek(0).days.map({ day in
         Column(type: .week(day), areas: TimeRanges.allCases.map({ timeRange in
-            ColumnArea(type: .timeRange(timeRange), items: [AppointmentBlock(appointment: .init(day: day, timeRange: timeRange, student: .mock))])            
+            ColumnArea(type: .timeRange(timeRange), items: [])
         }))
     }))
 }

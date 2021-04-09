@@ -8,6 +8,9 @@
 import Foundation
 
 struct StudentList {
-    var students: [Student] = (0...30).map { .init(name: "student: \($0)") }
+    var students: [Int] = [1]
     var currentStudent: Student = .mock
+    
+    /// All student data, [ID: Student]
+    var studentsData: [Int: Student] = [1: .init(id: 1, name: "ssbun")]
 }

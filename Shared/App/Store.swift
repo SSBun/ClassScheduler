@@ -29,7 +29,6 @@ extension Store {
         switch action {
         case let .move(block, to):
             newState = moveAction(newState, block, to)
-            command = nil
         case let .switchSidebar(item):
             newState.sidebar.sidebarSelection = item
         case let .requestStudentInfo(id):
@@ -44,11 +43,13 @@ extension Store {
             newState = inserAppointment(newState, student, to)
         case .switchWeek(let offset):
             newState.lessonList.weekOffset = offset
+        case .refreshStudentInfo(let student):
+            newState.studentList.studentsData[student.id] = student
         }
         return (newState, command)
     }
     
-    static func inserAppointment(_ state: AppState, _ student: Student, _ to: String) -> AppState {
+    static func inserAppointment(_ state: AppState, _ student: Int, _ to: String) -> AppState {
         var addedIndex: (Int, Int)? = nil
         var newState = state
         for (ci, column) in state.lessonList.columns.enumerated() {
@@ -63,7 +64,7 @@ extension Store {
             let col = newState.lessonList.columns[addedIndex.0]
              let area = col.areas[addedIndex.1]
             if case .week(let day)  = col.type, case .timeRange(let timeRange) = area.type {
-                let appointment = LessonAppointment(day: day, timeRange: timeRange, student: student)
+                let appointment = LessonAppointment(day: day, timeRange: timeRange, studentId: student)
                 let appointmentBlock = AppointmentBlock(appointment: appointment)
                 newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
             }

@@ -14,8 +14,8 @@ struct StudentSelector: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack(spacing: 20) {
-                ForEach(store.appState.studentList.students) { student in
-                    Cell(student: student, canDrag: canDrag)
+                ForEach(store.appState.studentList.students, id: \.self) { studentId in
+                    Cell(studentId: studentId, canDrag: canDrag)
                 }
             }
         }
@@ -26,13 +26,15 @@ struct StudentSelector: View {
 
 extension StudentSelector {
     struct Cell: View {
-        let student: Student
+        @EnvironmentObject var store: Store
+        let studentId: Int
         let canDrag: Bool
         
         @State private var message: Student? = nil
+        private var student: Student? { store.appState.studentList.studentsData[studentId] }
         
         var body: some View {
-            if canDrag {
+            if canDrag, let student = student {
                 content
                 .onDrag({ DragDropData(student).itemProvider })
             } else {
@@ -42,30 +44,30 @@ extension StudentSelector {
         
         @ViewBuilder
         var content: some View {
-            Text(student.name)
+            Text(student?.name ?? "\(studentId): Not Found Info")
                 .font(.headline)
                 .frame(maxWidth: .infinity, minHeight: 40)
                 .background(Color.orange)
                 .onTapGesture {
                     message = student
                 }
-                .sheet(item: $message) { msg in
-                    VStack {
-                        Text("A big title")
-                            .font(.largeTitle)
-                        Button {
-                            withAnimation {
-                                message = nil
-                            }
-                        } label: {
-                            Text("close")
-                        }
-                    }
-                    .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity, alignment: .center)
+//                .sheet(item: $message) { msg in
+//                    VStack {
+//                        Text("A big title")
+//                            .font(.largeTitle)
+//                        Button {
+//                            withAnimation {
+//                                message = nil
+//                            }
+//                        } label: {
+//                            Text("close")
+//                        }
+//                    }
+//                    .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400, maxHeight: .infinity, alignment: .center)
                 }
         }
     }
-}
+
 
 struct StudentSelector_Previews: PreviewProvider {
     static var previews: some View {

@@ -10,13 +10,6 @@ import SwiftUI
 @main
 struct ClassSchedulerApp: App {
     
-    @Environment(\.scenePhase) private var scenePhase
-    @NSApplicationDelegateAdaptor(AppDelegator.self) var appDelegate
-    
-    init() {
-        
-    }
-    
     var body: some Scene {
         WindowGroup {
             #if os(macOS)
@@ -30,8 +23,5 @@ struct ClassSchedulerApp: App {
             #endif
         }
         .windowStyle(HiddenTitleBarWindowStyle())
-        .onChange(of: scenePhase) { phase in
-            
-        }
     }
 }

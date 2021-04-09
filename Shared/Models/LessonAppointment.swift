@@ -11,5 +11,6 @@ struct LessonAppointment: Codable, Identifiable {
     var id: String = UUID().uuidString
     let day: CourseCalendar.Day
     let timeRange: TimeRanges
-    let student: Student
+    let studentId: Int
 }
+

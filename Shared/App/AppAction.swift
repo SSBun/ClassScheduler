@@ -11,10 +11,10 @@ enum AppAction {
     case move(_ block: String, _ toArea: String)
     case switchSidebar(_ item: AppState.SidebarItem)
     case toggleSidebar(_ hide: Bool?)
+            
+    case insertAppointment(student: Int,  to: String)
+    case switchWeek(_ offset: Int)
     
     case requestStudentInfo(_ id: String)
-//    case refreshStudentInfo(_ id:
-    
-    case insertAppointment(student: Student,  to: String)
-    case switchWeek(_ offset: Int)
+    case refreshStudentInfo(_ student: Student)
 }

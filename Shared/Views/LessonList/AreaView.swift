@@ -42,7 +42,7 @@ struct AreaView: View {
                                     { p in
                                     let student = (p as! DragDropData<Student>).data
                                     DispatchQueue.main.async {
-                                        store.dispatch(.insertAppointment(student: student, to: area.id))
+                                        store.dispatch(.insertAppointment(student: student.id, to: area.id))
                                     }
                                     })
         ))

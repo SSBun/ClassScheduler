@@ -10,6 +10,7 @@ import SwiftUI
 struct AppointmentBlockView: View {
     @EnvironmentObject var store: Store
     let block: AppointmentBlock
+    var student: Student? { store.appState.studentList.studentsData[block.appointment.studentId] }
     
     var body: some View {
         content
@@ -21,7 +22,7 @@ struct AppointmentBlockView: View {
         ZStack {
             Rectangle()
                 .fill(Color.red)
-            Text(block.appointment.student.name)
+            Text(student?.name ?? "Not Found The Student")
         }
         .frame(minWidth: 20, maxWidth: .infinity, maxHeight: 40)
         .cornerRadius(5)
@@ -31,6 +32,6 @@ struct AppointmentBlockView: View {
 
 struct AppointmentBlockView_Previews: PreviewProvider {
     static var previews: some View {
-        AppointmentBlockView(block: .init(appointment: .init(day: .init(date: .init()), timeRange: .four, student: .mock)))
+        AppointmentBlockView(block: .init(appointment: .init(day: .init(date: .init()), timeRange: .four, studentId: 0)))
     }
 }

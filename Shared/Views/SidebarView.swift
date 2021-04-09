@@ -15,7 +15,6 @@ struct SidebarView: View {
             ForEach(AppState.SidebarItem.allCases) { item in
                 Button {
                     store.dispatch(.switchSidebar(item))
-                    store.dispatch(.requestStudentInfo("20"))
                 } label: {
                     Label(item.title, systemImage: "applelogo")
                         .padding(.leading, 10)
