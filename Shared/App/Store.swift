@@ -13,16 +13,12 @@ class Store: ObservableObject {
 
 extension Store {
     func dispatch(_ action: AppAction) {
-        #if DEBUG
-        print("[ACTION]: \(action)")
-        #endif
+        LOG(category: .action, action)
         let result = Store.reduce(appState, action)
         appState = result.0
         
         if let command = result.1 {
-            #if DEBUG
-            print("[COMMAND]: \(command)")
-            #endif
+            LOG(category: .command, command)
             command.execute(in: self)
         }
     }

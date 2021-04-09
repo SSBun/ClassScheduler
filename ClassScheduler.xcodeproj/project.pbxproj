@@ -78,6 +78,10 @@
 		C451BA46261C66430046CFBD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA42261C663F0046CFBD /* Services.swift */; };
 		C451BA4A261C71F70046CFBD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA49261C71F70046CFBD /* API.swift */; };
 		C451BA4B261C71F70046CFBD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451BA49261C71F70046CFBD /* API.swift */; };
+		C4BAEF8226202439009AFFA4 /* DatabaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAEF8126202439009AFFA4 /* DatabaseExtension.swift */; };
+		C4BAEF8326202439009AFFA4 /* DatabaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAEF8126202439009AFFA4 /* DatabaseExtension.swift */; };
+		C4BAEF8A26202939009AFFA4 /* LogSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAEF8926202939009AFFA4 /* LogSystem.swift */; };
+		C4BAEF8B2620293A009AFFA4 /* LogSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BAEF8926202939009AFFA4 /* LogSystem.swift */; };
 		C4F5CD11261C2AA6002A82D8 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */; };
 		C4F5CD12261C2AA6002A82D8 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */; };
 		F68D07D407C48EE9988A5569 /* Pods_ClassScheduler__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC9EC574B0DCA59064FEEAC /* Pods_ClassScheduler__macOS_.framework */; };
@@ -128,6 +132,8 @@
 		C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		C451BA42261C663F0046CFBD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C451BA49261C71F70046CFBD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		C4BAEF8126202439009AFFA4 /* DatabaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExtension.swift; sourceTree = "<group>"; };
+		C4BAEF8926202939009AFFA4 /* LogSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSystem.swift; sourceTree = "<group>"; };
 		C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		CEC9EC574B0DCA59064FEEAC /* Pods_ClassScheduler__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassScheduler__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EA2BC9DC8A07187C66721F /* Pods-ClassScheduler (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (iOS).debug.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (iOS)/Pods-ClassScheduler (iOS).debug.xcconfig"; sourceTree = "<group>"; };
@@ -245,11 +251,9 @@
 		8EC02155261AF04F00856139 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				8ECA1B42261F4AE1004B169D /* DataBase */,
-				8E80AAFD261DE62C0099B92D /* Calendar */,
+				C4BAEF86262028A3009AFFA4 /* Tools */,
 				C4F5CD0F261C2A8F002A82D8 /* Api */,
 				8E2D52B2261B0CC900B59BEF /* Extensions */,
-				8E2D52AA261B0A0300B59BEF /* DragDrop */,
 				8EC0217B261AF0A300856139 /* App */,
 				8EC0217A261AF09D00856139 /* Views */,
 				8EC02179261AF08B00856139 /* Models */,
@@ -327,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				8ECA1B43261F4B21004B169D /* DB.swift */,
+				C4BAEF8126202439009AFFA4 /* DatabaseExtension.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -347,6 +352,17 @@
 				C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		C4BAEF86262028A3009AFFA4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8E2D52AA261B0A0300B59BEF /* DragDrop */,
+				8ECA1B42261F4AE1004B169D /* DataBase */,
+				8E80AAFD261DE62C0099B92D /* Calendar */,
+				C4BAEF8926202939009AFFA4 /* LogSystem.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		C4F5CD0F261C2A8F002A82D8 /* Api */ = {
@@ -549,6 +565,7 @@
 				C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				8EC02198261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9A261B618700433B17 /* StudentListModel.swift in Sources */,
+				C4BAEF8A26202939009AFFA4 /* LogSystem.swift in Sources */,
 				C451BA4A261C71F70046CFBD /* API.swift in Sources */,
 				8E80AAFF261DE67C0099B92D /* CourseCalendar.swift in Sources */,
 				8EC0218E261AF0F800856139 /* AppCommand.swift in Sources */,
@@ -556,6 +573,7 @@
 				8EC021A2261AFBA800856139 /* Student.swift in Sources */,
 				8E2D52D1261B510600B59BEF /* SidebarView.swift in Sources */,
 				8ECFA733261CA0E9008FFE36 /* HTagView.swift in Sources */,
+				C4BAEF8226202439009AFFA4 /* DatabaseExtension.swift in Sources */,
 				8E2D52D6261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC87261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
 				8ECFA738261CA0EE008FFE36 /* VTagView.swift in Sources */,
@@ -591,6 +609,7 @@
 				C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				8EC02199261AF41400856139 /* LessonListModel.swift in Sources */,
 				8ED5EC9B261B618700433B17 /* StudentListModel.swift in Sources */,
+				C4BAEF8B2620293A009AFFA4 /* LogSystem.swift in Sources */,
 				C451BA4B261C71F70046CFBD /* API.swift in Sources */,
 				8E80AB00261DE67C0099B92D /* CourseCalendar.swift in Sources */,
 				8EC0218F261AF0F800856139 /* AppCommand.swift in Sources */,
@@ -598,6 +617,7 @@
 				8EC021A3261AFBA800856139 /* Student.swift in Sources */,
 				8E2D52D2261B510600B59BEF /* SidebarView.swift in Sources */,
 				8ECFA734261CA0E9008FFE36 /* HTagView.swift in Sources */,
+				C4BAEF8326202439009AFFA4 /* DatabaseExtension.swift in Sources */,
 				8E2D52D7261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC88261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
 				8ECFA739261CA0EE008FFE36 /* VTagView.swift in Sources */,

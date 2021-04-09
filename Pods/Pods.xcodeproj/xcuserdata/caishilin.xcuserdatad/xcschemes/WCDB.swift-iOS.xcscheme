@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65755AEDB332593D859C022F0183D49D"
-               BuildableName = "HandyJSON.framework"
-               BlueprintName = "HandyJSON-iOS"
+               BlueprintIdentifier = "8C495761F20C1BF871DEFC3DC9F0D91E"
+               BuildableName = "WCDBSwift.framework"
+               BlueprintName = "WCDB.swift-iOS"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

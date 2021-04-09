@@ -22,10 +22,10 @@ struct RequestStudentInfoCommand: AppCommand {
         API<Services.Student>.publisher(for: .info(id: id)).sink { finish in
             token.unseal()
             if case .failure(let error) = finish {
-                print("error: \(error)")
+                LOG(level: .error, error)
             }
         } receiveValue: { response in
-            print("request student info: \(response.data)")
+            LOG(category: .message, "request student info: \(response.data)")
         }
         .seal(in: token)
     }

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65755AEDB332593D859C022F0183D49D"
-               BuildableName = "HandyJSON.framework"
-               BlueprintName = "HandyJSON-iOS"
+               BlueprintIdentifier = "ADA3B46EBBF8D4D579E119E0F6318956"
+               BuildableName = "sqliterk.framework"
+               BlueprintName = "SQLiteRepairKit-macOS"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

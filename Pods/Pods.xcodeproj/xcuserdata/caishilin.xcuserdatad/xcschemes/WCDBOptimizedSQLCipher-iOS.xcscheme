@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65755AEDB332593D859C022F0183D49D"
-               BuildableName = "HandyJSON.framework"
-               BlueprintName = "HandyJSON-iOS"
+               BlueprintIdentifier = "0FB2AD201C4406F3E6CDB5A207662939"
+               BuildableName = "sqlcipher.framework"
+               BlueprintName = "WCDBOptimizedSQLCipher-iOS"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

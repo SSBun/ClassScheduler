@@ -14,7 +14,7 @@ struct ClassSchedulerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegator.self) var appDelegate
     
     init() {
-        try? DB.initialize()
+        
     }
     
     var body: some Scene {
