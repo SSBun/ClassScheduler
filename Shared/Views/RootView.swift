@@ -11,11 +11,12 @@ struct RootView: View {
     @EnvironmentObject var store: Store    
     
     var body: some View {
-        HSplitView {
+        HStack(spacing: 0) {
             if !store.appState.sidebar.isHidden {
                 SidebarView()
             }
             VStack(spacing: 0) {
+                NavbarView()
                 ZStack {
                     LessonListView()
                         .zIndex(store.appState.sidebar.sidebarSelection == .lessonList ? 1 : 0)
@@ -27,7 +28,10 @@ struct RootView: View {
                 .clipped()
             }
         }
-        .padding(.top, -30)
+        .onAppear {
+            LOG("RootView on appear")
+            store.dispatch(.loadApp(nil))
+        }
     }
 }
 

@@ -13,10 +13,20 @@ struct NavbarView: View {
     var body: some View {
         HStack(spacing: 0) {
             Text("Code Cat")
-                .font(.largeTitle)
+                .font(.system(size: 30, weight: .black, design: .rounded))
+                .shadow(color: Color.black, radius: 3, x: 0, y: 0)
                 .padding(.leading, store.appState.sidebar.isHidden ? 80 : 20)
             Spacer()
-            WeekSwitcher()
+            switch store.appState.sidebar.sidebarSelection {
+            case .lessonList:
+                ZStack {
+                    WeekSwitcher()
+                    RemoveAreaView().offset(x: 300, y: 0)
+                }
+            case .studentList, .settings:
+                Text(store.appState.sidebar.sidebarSelection.info.0)
+                    .font(.system(size: 25, weight: .bold, design: .rounded))
+            }
             Spacer()
             Button {
                 store.dispatch(.toggleSidebar(nil))
@@ -30,6 +40,26 @@ struct NavbarView: View {
         }
         .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
         .background(Color("topbar_bg"))
+    }
+}
+
+extension NavbarView {
+    struct RemoveAreaView: View {
+        @EnvironmentObject var store: Store
+        @State private var isEntered = false
+        
+        var body: some View {
+            Text("拖动到此处删除")
+                .font(.system(size: 20, weight: .black))
+                .foregroundColor(isEntered ? Color.white.opacity(0.6) : Color.black.opacity(0.6))
+                .shadow(color: Color.gray.opacity(0.5), radius: 3, x: 0, y: 1)
+                .frame(width: 180, height: 35, alignment: .center)
+                .overlay(RoundedRectangle(cornerRadius: 5, style: .continuous)
+                            .stroke(isEntered ? Color.white.opacity(0.6) : Color.black.opacity(0.6), style: StrokeStyle(lineWidth: 2, dash: [5])))
+                .onDrop(DropDelegator<AppointmentBlock>(isEntered: $isEntered, receiptData: { block in
+                    store.dispatch(.moveBlock(block.id, "blackhole"))
+                }))
+        }
     }
 }
 

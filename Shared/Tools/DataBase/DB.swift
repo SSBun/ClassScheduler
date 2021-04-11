@@ -53,10 +53,10 @@ extension DBExtension where Base: DBTable {
     
     func insert(on propertyConvertibleList: [WCDBSwift.PropertyConvertible]? = nil, replace: Bool = false) throws {
         try Self.checkTable()
-        try Self.insert(base, on: propertyConvertibleList, replace: replace)
+        try Self.insert([base], on: propertyConvertibleList, replace: replace)
     }
     
-    static func insert(_ objects: Base..., on propertyConvertibleList: [WCDBSwift.PropertyConvertible]? = nil, replace: Bool = false) throws {
+    static func insert(_ objects: [Base], on propertyConvertibleList: [WCDBSwift.PropertyConvertible]? = nil, replace: Bool = false) throws {
         do {
             try Self.checkTable()
             if replace {
@@ -67,7 +67,7 @@ extension DBExtension where Base: DBTable {
         } catch(let error) {
             LOG(category: .database, error)
             throw(error)
-        }
+        }        
     }
     
     // MARK: - DELETE
@@ -94,26 +94,36 @@ extension DBExtension where Base: DBTable {
     
     // MARK: - UPDATE
     /// Update the table using itself properties
-    func update(on propertyConvertibleList: [PropertyConvertible],
+    func update(on propertyConvertibleList: [PropertyConvertible]? = nil,
                 where condition: Condition? = nil,
                 orderBy orderList: [OrderBy]? = nil,
                 limit: Limit? = nil,
                 offset: Offset? = nil) throws {
         do {
             try Self.checkTable()
-            try DB.database.update(table: Base.tableName, on: propertyConvertibleList,
-                                   with: base,
-                                   where: condition,
-                                   orderBy: orderList,
-                                   limit: limit,
-                                   offset: offset)
+            if propertyConvertibleList == nil || propertyConvertibleList?.count  == 0 {
+                try DB.database.update(table: Base.tableName,
+                                       with: base,
+                                       where: condition,
+                                       orderBy: orderList,
+                                       limit: limit,
+                                       offset: offset)
+            } else {
+                try DB.database.update(table: Base.tableName,
+                                       on: propertyConvertibleList!,
+                                       with: base,
+                                       where: condition,
+                                       orderBy: orderList,
+                                       limit: limit,
+                                       offset: offset)
+            }
         } catch(let error) {
             LOG(category: .database, error)
             throw(error)
         }
     }
     
-    static func update(on propertyConvertibleList: [PropertyConvertible],
+    static func update(on propertyConvertibleList: [PropertyConvertible]? = nil,
                        with row: [ColumnEncodable],
                        where condition: Condition? = nil,
                        orderBy orderList: [OrderBy]? = nil,
@@ -121,13 +131,22 @@ extension DBExtension where Base: DBTable {
                        offset: Offset? = nil) throws {
         do {
             try Self.checkTable()
-            try DB.database.update(table: Base.tableName,
-                                   on: propertyConvertibleList,
-                                   with: row,
-                                   where: condition,
-                                   orderBy: orderList,
-                                   limit: limit,
-                                   offset: offset)
+            if propertyConvertibleList == nil || propertyConvertibleList?.count  == 0 {
+                try DB.database.update(table: Base.tableName,
+                                       with: row,
+                                       where: condition,
+                                       orderBy: orderList,
+                                       limit: limit,
+                                       offset: offset)
+            } else {
+                try DB.database.update(table: Base.tableName,
+                                       on: propertyConvertibleList!,
+                                       with: row,
+                                       where: condition,
+                                       orderBy: orderList,
+                                       limit: limit,
+                                       offset: offset)
+            }
         } catch(let error) {
             LOG(category: .database, error)
             throw(error)
@@ -135,19 +154,27 @@ extension DBExtension where Base: DBTable {
     }
     
     // MARK: - QUERY
-    static func get(on propertyConvertibleList: [PropertyConvertible],
+    static func get(on propertyConvertibleList: [PropertyConvertible]? = nil,
                     where condition: Condition? = nil,
                     orderBy orderList: [OrderBy]? = nil,
                     limit: Limit? = nil,
                     offset: Offset? = nil) throws -> [Base] {
         do {
             try Self.checkTable()
-            return try DB.database.getObjects(on: propertyConvertibleList,
-                                              fromTable: Base.tableName,
-                                              where: condition,
-                                              orderBy: orderList,
-                                              limit: limit,
-                                              offset: offset)
+            if propertyConvertibleList == nil || propertyConvertibleList?.count  == 0 {
+                return try DB.database.getObjects(fromTable: Base.tableName,
+                                                  where: condition,
+                                                  orderBy: orderList,
+                                                  limit: limit,
+                                                  offset: offset)
+            } else {
+                return try DB.database.getObjects(on: propertyConvertibleList!,
+                                                  fromTable: Base.tableName,
+                                                  where: condition,
+                                                  orderBy: orderList,
+                                                  limit: limit,
+                                                  offset: offset)
+            }
             
         } catch(let error) {
             LOG(category: .database, error)

@@ -19,7 +19,7 @@ struct VTagView: View {
             }
         }
         .frame(maxWidth: 40, maxHeight: .infinity)
-        .background(Color.black)
+        .background(Color("ruler_bar"))
     }
 }
 

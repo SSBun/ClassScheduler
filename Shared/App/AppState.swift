@@ -8,7 +8,7 @@
 import Foundation
 
 struct AppState {
-    var lessonList: LessonList = .mock
+    var lessonList: LessonList = .init(columns: [], weekOffset: 0)
     var studentList: StudentList = .init()
     var sidebar: Sidebar = .init()
     
@@ -18,14 +18,14 @@ struct AppState {
         case studentList
         case settings
         
-        var title: String {
+        var info: (String, String) {
             switch self {
             case .lessonList:
-                return "课程表"
+                return ("课程表", "calendar")
             case .studentList:
-                return "学生管理"
+                return ("学生管理", "person.2.fill")
             case .settings:
-                return "系统设置"
+                return ("系统设置", "gearshape.fill")
             }
         }
     }

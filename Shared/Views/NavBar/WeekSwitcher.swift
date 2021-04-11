@@ -11,6 +11,19 @@ struct WeekSwitcher: View {
     @EnvironmentObject var store: Store
     
     var day: CourseCalendar.Day { store.appState.lessonList.week.days[0] }
+    private var title: String {
+        let weekOffset = store.appState.lessonList.weekOffset
+        switch weekOffset {
+        case 0:
+            return "本周"
+        case -1:
+            return "上周"
+        case 1:
+            return "下周"
+        default:
+            return "\(day.date.toString(.custom("YYYY年 MM月")))"
+        }
+    }
     
     var body: some View {
         HStack {
@@ -19,8 +32,10 @@ struct WeekSwitcher: View {
             } label: {
                 Image(systemName: "arrowtriangle.left.fill")
             }
-            Text("\(day.date.toString(.custom("YYYY年 MM月")))")
-                .font(.largeTitle)
+        
+            Text(title)
+                .font(.system(size: 25, weight: .black, design: .rounded))
+                .frame(width: 200, height: 30, alignment: .center)
             Button {
                 store.dispatch(.switchWeek(store.appState.lessonList.weekOffset+1))
             } label: {

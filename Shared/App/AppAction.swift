@@ -9,14 +9,18 @@ import Foundation
 
 enum AppAction {
     case loadApp(_ app: AppState?)
-    
-    case move(_ block: String, _ toArea: String)
+        
     case switchSidebar(_ item: AppState.SidebarItem)
     case toggleSidebar(_ hide: Bool?)
-            
-    case insertAppointment(student: Int,  to: String)
+
+    case moveBlock(_ block: Int, _ toArea: String)
+    case insertAppointment(student: String,  to: String)
+    
     case switchWeek(_ offset: Int)
     
     case requestStudentInfo(_ id: String)
     case refreshStudentInfo(_ student: Student)
+    case searchStudents(_ condition: String)
+    
+    case importStudents(_ importedData: String)
 }

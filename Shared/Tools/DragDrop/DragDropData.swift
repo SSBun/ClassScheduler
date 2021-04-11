@@ -149,4 +149,8 @@ extension View {
         self
             .onDrop(of: delegator.dataUTTtypes, delegate: delegator)
     }
+    
+    func onDrop<DataType>(_ delegator: DropDelegator<DataType>) -> some View {
+        self.onDrop(of: DataType.uttypeIdentifiers, delegate: delegator)
+    }
 }

@@ -14,7 +14,7 @@ enum Services {
     }
     
     enum Student {
-        case info(id: String)
+        case info(id: Int)
     }
 }
 

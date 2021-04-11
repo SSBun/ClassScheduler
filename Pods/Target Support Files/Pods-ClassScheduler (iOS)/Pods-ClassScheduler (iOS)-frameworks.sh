@@ -176,19 +176,21 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON-iOS/HandyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-iOS/sqliterk.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate-iOS/SwiftDate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WCDB.swift-iOS/WCDBSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher-iOS/sqlcipher.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/HandyJSON-iOS/HandyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-iOS/sqliterk.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate-iOS/SwiftDate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WCDB.swift-iOS/WCDBSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher-iOS/sqlcipher.framework"
 fi

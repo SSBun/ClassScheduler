@@ -12,10 +12,28 @@ struct AreaView: View {
     var area: LessonList.ColumnArea
     @State var isEntered: Bool = false
     
+    private var markTitle: String {
+        var title = ""
+        if case let .week(day) = area.columnType {
+            title += day.date.weekdayName(.short)
+            if case let .timeRange(timeRange) = area.type {
+                title += "\n\n"
+                title += "\(timeRange.range.0) - \(timeRange.range.1)"
+            }
+        }
+        return title
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
                 .fill(isEntered ? Color.gray.opacity(0.1) : Color.gray.opacity(0))
+            Text(markTitle)
+                .font(.system(size: 24, weight: .black))
+                .foregroundColor(Color.black.opacity(0.3))
+                .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 1)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             VStack {
                 ForEach(area.items, id: \.id) { block in
                     if block is AppointmentBlock {
@@ -25,8 +43,8 @@ struct AreaView: View {
             }
             .padding(.vertical, 5)
         }
-        .background(Color.blue.opacity(0.1))
-        .frame(minWidth: 150, minHeight: 150)
+        .background(Color("area_bg").opacity(0.5))
+        .frame(minWidth: 150, minHeight: 180)
         .onDrop(DropGroupDelegator(isEnabled: area.items.count < 4,
                                    isEntered: $isEntered,
                                    dropCallbacks:
@@ -35,7 +53,7 @@ struct AreaView: View {
                                      { p in
                                     let block = (p as! DragDropData<AppointmentBlock>).data
                                     DispatchQueue.main.async {
-                                        store.dispatch(.move(block.id, area.id))
+                                        store.dispatch(.moveBlock(block.id, area.id))
                                     }}),
                                    (Student.self,
                                     DragDropData<Student>.self,
@@ -46,11 +64,5 @@ struct AreaView: View {
                                     }
                                     })
         ))
-    }
-}
-
-struct AreaView_Previews: PreviewProvider {
-    static var previews: some View {
-        AreaView(area: .init(type: .timeRange(.four), items: []))
     }
 }

@@ -4,9 +4,10 @@
 def commondPods
   pod 'Alamofire', '~> 5.2'
   pod 'Moya', '~> 14.0'
-  pod 'HandyJSON', '~> 5.0.2'
   pod 'SwiftDate', '~> 6.3.1'
   pod 'WCDB.swift', '~> 1.0.8.2'
+  pod 'SnapKit', '~> 5.0.1'
+  pod 'SwiftyJSON', '~> 5.0.1'
 end
 
 target 'ClassScheduler (iOS)' do

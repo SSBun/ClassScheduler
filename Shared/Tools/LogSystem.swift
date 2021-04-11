@@ -63,6 +63,6 @@ enum LogSystem {
 }
 
 
-func LOG(level: LogSystem.Level = .none, category: LogSystem.Category = .none, _ content: Any?) {
+func LOG(level: LogSystem.Level = .none, category: LogSystem.Category = .message, _ content: Any?) {
     LogSystem.echo(level, category, content == nil ? "nil" : "\(content!)")
 }

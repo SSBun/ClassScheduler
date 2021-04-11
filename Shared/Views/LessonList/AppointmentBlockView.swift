@@ -19,19 +19,14 @@ struct AppointmentBlockView: View {
     
     @ViewBuilder
     var content: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.red)
-            Text(student?.name ?? "Not Found The Student")
+        VStack {
+            Text("\(student?.fullName ?? "\(block.id)")")
+//            Text("\(block.appointment.day.date.toFormat("YYYY-MM-dd")) - \(block.appointment.timeRange.range.0)-\(block.appointment.timeRange.range.1)")
+//                .font(.subheadline)
         }
-        .frame(minWidth: 20, maxWidth: .infinity, maxHeight: 40)
+        .frame(maxWidth: .infinity, maxHeight: 40)
+        .background(Color("appointment_bg"))
         .cornerRadius(5)
-        .padding(.horizontal, 5)
-    }
-}
-
-struct AppointmentBlockView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppointmentBlockView(block: .init(appointment: .init(day: .init(date: .init()), timeRange: .four, studentId: 0)))
+        .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
     }
 }

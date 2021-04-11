@@ -9,12 +9,12 @@ import SwiftUI
 
 struct StudentListView: View {
     @EnvironmentObject var store: Store
-    var body: some View {
+    var body: some View {        
         HStack {
-            StudentSelector(canDrag: false)
+            StudentSelector(canDrag: false, topOffset: 5)
             StudentDetailView()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }   
+        }
         .background(Color("background"))
     }
 }

@@ -33,3 +33,5 @@ extension CSExtensionCompatible {
         set { }
     }
 }
+
+extension NSObject: CSExtensionCompatible {}

@@ -22,9 +22,8 @@ struct HTagView: View {
                     
                 }
             }
-        }
-        .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-        .background(Color.black)
+        }        
+        .background(Color("ruler_bar"))
     }
 }
 
