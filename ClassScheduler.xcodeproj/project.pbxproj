@@ -89,6 +89,8 @@
 		8ED5EC9B261B618700433B17 /* StudentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED5EC99261B618700433B17 /* StudentList.swift */; };
 		8EDCBF79261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
 		8EDCBF7A261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
+		C401525C262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */; };
+		C401525D262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */; };
 		C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */; };
 		C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */; };
 		C4403CC1261EFB0D00E0B9EE /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */; };
@@ -157,6 +159,7 @@
 		97CCB67AFE07F6D41DE25BC9 /* Pods_ClassScheduler__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClassScheduler__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		B4C7420A18827EF9939FF1D1 /* Pods-ClassScheduler (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).debug.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAppointmentDetailView.swift; sourceTree = "<group>"; };
 		C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegator.swift; sourceTree = "<group>"; };
 		C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		C451BA42261C663F0046CFBD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 				8E2D52BF261B0FA900B59BEF /* AppointmentBlockView.swift */,
 				8ECFA732261CA0E9008FFE36 /* HTagView.swift */,
 				8ECFA737261CA0EE008FFE36 /* VTagView.swift */,
+				C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */,
 			);
 			path = LessonList;
 			sourceTree = "<group>";
@@ -302,14 +306,14 @@
 		8EC02155261AF04F00856139 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				C4BAEF86262028A3009AFFA4 /* Tools */,
-				C4F5CD0F261C2A8F002A82D8 /* Api */,
-				8E2D52B2261B0CC900B59BEF /* Extensions */,
-				8EC0217B261AF0A300856139 /* App */,
-				8EC0217A261AF09D00856139 /* Views */,
-				8EC02179261AF08B00856139 /* Models */,
-				C4403BCA261EDBD700E0B9EE /* Main */,
 				8EC02158261AF04F00856139 /* Assets.xcassets */,
+				C4F5CD0F261C2A8F002A82D8 /* Api */,
+				8EC0217B261AF0A300856139 /* App */,
+				8E2D52B2261B0CC900B59BEF /* Extensions */,
+				C4403BCA261EDBD700E0B9EE /* Main */,
+				8EC02179261AF08B00856139 /* Models */,
+				C4BAEF86262028A3009AFFA4 /* Tools */,
+				8EC0217A261AF09D00856139 /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -370,12 +374,12 @@
 		8EC0217B261AF0A300856139 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				8EC0217C261AF0B000856139 /* Store.swift */,
-				8EC02183261AF0D600856139 /* AppState.swift */,
+				C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */,
 				8EC02188261AF0F200856139 /* AppAction.swift */,
 				8EC0218D261AF0F800856139 /* AppCommand.swift */,
+				8EC02183261AF0D600856139 /* AppState.swift */,
+				8EC0217C261AF0B000856139 /* Store.swift */,
 				8EC02192261AF22D00856139 /* SubscriptionToken.swift */,
-				C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */,
 				8E670B9F2621A805005755EF /* Models */,
 			);
 			path = App;
@@ -645,6 +649,7 @@
 				8E670BE12621F5EC005755EF /* Skill.swift in Sources */,
 				8E670B962621707B005755EF /* MacTextView.swift in Sources */,
 				8EC021A7261AFBF600856139 /* LessonAppointment.swift in Sources */,
+				C401525C262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */,
 				8ECA1B5C261F5883004B169D /* CSExtension.swift in Sources */,
 				8E2D52C7261B3E0700B59BEF /* BlurView.swift in Sources */,
 				8E2D52AC261B0ADE00B59BEF /* DragDropData.swift in Sources */,
@@ -671,6 +676,7 @@
 				8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */,
 				C4403CC2261EFB0E00E0B9EE /* AlertMessage.swift in Sources */,
 				8ED5EC83261B5C5900433B17 /* SettingView.swift in Sources */,
+				C401525D262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */,
 				C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				8EC02199261AF41400856139 /* LessonList.swift in Sources */,
 				8ED5EC9B261B618700433B17 /* StudentList.swift in Sources */,

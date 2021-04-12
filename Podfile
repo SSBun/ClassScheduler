@@ -1,5 +1,7 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+inhibit_all_warnings!
+
+install! 'cocoapods', :warn_for_unused_master_specs_repo => false
 
 def commondPods
   pod 'Alamofire', '~> 5.2'
@@ -26,3 +28,5 @@ target 'ClassScheduler (macOS)' do
   # Pods for ClassScheduler (macOS)
 
 end
+
+# warn_for_unused_master_specs_repo => false

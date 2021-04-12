@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA5043305D47AD54C26BDD233DEC1CD6"
-               BuildableName = "HandyJSON.framework"
-               BlueprintName = "HandyJSON-macOS"
+               BlueprintIdentifier = "6E3CE42DF5CA5A68311B8B79BCF5C14B"
+               BuildableName = "SnapKit.framework"
+               BlueprintName = "SnapKit-iOS"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

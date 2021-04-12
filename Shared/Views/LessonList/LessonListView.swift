@@ -10,6 +10,8 @@ import SwiftUI
 struct LessonListView: View {
     @EnvironmentObject var store: Store
     
+    @State var isAppointmentDetailViewHidden: Bool = true
+    
     private let hSpacing: CGFloat = 5
     private let vSpacing: CGFloat = 5
     private let hTagHeight: CGFloat = 40
@@ -50,6 +52,14 @@ struct LessonListView: View {
                     }
                 }
                 .background(Color("background"))
+                .zIndex(1)
+                LessonAppointmentDetailView()
+                    .isHidden(isAppointmentDetailViewHidden, remove: true)
+            }
+        }
+        .onReceive(store.$appState.map(\.lessonList.isSidebarHidden)) { value in
+            withAnimation {
+                isAppointmentDetailViewHidden = value
             }
         }
     }

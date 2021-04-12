@@ -14,6 +14,7 @@ struct LessonList {
     var week: CourseCalendar.Week  { CourseCalendar.getWeek(weekOffset) }
     var colTypes: [ColumnType] { week.days.map({ ColumnType.week($0)}) }
     var rowTypes: [ColumnAreaType] = TimeRanges.allCases.map { .timeRange($0) }
+    var isSidebarHidden: Bool = true
 }
 
 extension LessonList {

@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject var store: Store    
+    @EnvironmentObject var store: Store
+    
+    @State private var isHidden: Bool = false
     
     var body: some View {
         HStack(spacing: 0) {
-            if !store.appState.sidebar.isHidden {
-                SidebarView()
-            }
+            SidebarView()
+                .isHidden(isHidden, remove: true)
             VStack(spacing: 0) {
                 NavbarView()
                 ZStack {
@@ -26,6 +27,11 @@ struct RootView: View {
                         .zIndex(store.appState.sidebar.sidebarSelection == .settings ? 1 : 0)
                 }
                 .clipped()
+            }
+        }
+        .onReceive(store.$appState.map(\.sidebar.isHidden)) { value in
+            withAnimation {
+                isHidden = value
             }
         }
         .onAppear {

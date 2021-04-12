@@ -10,6 +10,9 @@ import SwiftUI
 struct SidebarView: View {
     @EnvironmentObject var store: Store
     
+    @Namespace var ns
+    @State private var sidebarSelectionitem: AppState.SidebarItem = .lessonList
+    
     var body: some View {
         VStack(spacing: 20) {
             ForEach(AppState.SidebarItem.allCases) { item in
@@ -23,15 +26,21 @@ struct SidebarView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .padding(10)
-                .foregroundColor(store.appState.sidebar.sidebarSelection == item ? Color("tabbar_selected") : Color("tabbar_normal"))
-                .background(store.appState.sidebar.sidebarSelection == item ? Color("tabbar_selected_bg") : Color.clear)
-                .cornerRadius(10)
+                .foregroundColor(sidebarSelectionitem == item ? Color("tabbar_selected") : Color("tabbar_normal"))
+                .matchedGeometryEffect(id: item.id, in: ns)
                 .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+
             }
         }
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color("tabbar_selected_bg")).matchedGeometryEffect(id: sidebarSelectionitem.id, in: ns, isSource: false))
         .padding(.top, 120)
         .frame(minWidth: 100, maxWidth: 100, maxHeight: .infinity, alignment: .top)
         .background(Color("sidebar_bg"))
+        .onReceive(store.$appState.map(\.sidebar.sidebarSelection)) { item in
+            withAnimation {
+                sidebarSelectionitem = item
+            }
+        }
     }
 }
 

@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import WCDBSwift
+import SwiftUI
 
 class Store: ObservableObject {
     @Published var appState: AppState = .init()
@@ -60,7 +61,7 @@ extension Store {
                 newState.sidebar.isHidden.toggle()
             }
         case .insertAppointment(student: let student, to: let to):
-            newState = inserAppointment(newState, student, to)
+            newState = insertAppointment(newState, student, to)
         case .switchWeek(let offset):
             newState = switchWeek(newState, offset)
         case .refreshStudentInfo(let student):
@@ -87,11 +88,17 @@ extension Store {
             } catch(_) {
                 
             }
+        case .toggleLessonListSidebar(let hide):
+            if let hide = hide {
+                newState.lessonList.isSidebarHidden = hide
+            } else {
+                newState.lessonList.isSidebarHidden.toggle()
+            }
         }
         return (newState, command)
     }
     
-    static func inserAppointment(_ state: AppState, _ student: String, _ to: String) -> AppState {
+    static func insertAppointment(_ state: AppState, _ student: String, _ to: String) -> AppState {
         var addedIndex: (Int, Int)? = nil
         var newState = state
         for (ci, column) in state.lessonList.columns.enumerated() {
