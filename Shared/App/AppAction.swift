@@ -22,6 +22,7 @@ enum AppAction {
     case requestStudentInfo(_ id: String)
     case refreshStudentInfo(_ student: Student)
     case searchStudents(_ condition: String)
+    case selectStudent(_ id: String)
     
     case importStudents(_ importedData: String)
 }

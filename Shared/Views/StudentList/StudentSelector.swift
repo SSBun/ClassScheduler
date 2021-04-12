@@ -76,7 +76,6 @@ extension StudentSelector {
         let canDrag: Bool
         @State private var isAlertPresented = false
         
-        @State private var message: Student? = nil
         private var student: Student? { store.appState.studentList.studentsData[studentId] }
         
         var body: some View {
@@ -113,7 +112,7 @@ extension StudentSelector {
             .background(Color("student_block_bg_noinfo"))
             .cornerRadius(6)
             .onTapGesture {
-                message = student
+                store.dispatch(.selectStudent(studentId))
             }
             .alert(isPresented: $isAlertPresented) {
                 Alert(title: Text("请求信息"),

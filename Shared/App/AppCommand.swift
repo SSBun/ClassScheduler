@@ -18,25 +18,24 @@ struct RequestStudentInfoCommand: AppCommand {
     let id: String
     
     func execute(in store: Store) {
-        if id == "1425727" {
+        let token = SubscriptionToken()
+        API<Services.Student>.publisher(for: .info(id: id)).sink { finish in
+            token.unseal()
+            if case .failure(let error) = finish {
+                LOG(level: .error, error)
+            }
+        } receiveValue: { response in
+            LOG(category: .message, "request student info: \(response.data)")
             do {
-                let studentJson = JSON(MockData.studentJson)
-                let student = try Student.unpack(studentJson.rawData())
-                store.dispatch(.refreshStudentInfo(student))
+                let student = try Student.unpack(response.data)
+                DispatchQueue.main.async {
+                    store.dispatch(.refreshStudentInfo(student))
+                }
             } catch(let error) {
                 LOG(level: .error, error)
             }
         }
-//        let token = SubscriptionToken()
-//        API<Services.Student>.publisher(for: .info(id: id)).sink { finish in
-//            token.unseal()
-//            if case .failure(let error) = finish {
-//                LOG(level: .error, error)
-//            }
-//        } receiveValue: { response in
-//            LOG(category: .message, "request student info: \(response.data)")
-//        }
-//        .seal(in: token)
+        .seal(in: token)
     }
 }
 

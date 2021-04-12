@@ -94,6 +94,8 @@ extension Store {
             } else {
                 newState.lessonList.isSidebarHidden.toggle()
             }
+        case .selectStudent(let studentId):
+            newState.studentList.currentStudent = studentId
         }
         return (newState, command)
     }

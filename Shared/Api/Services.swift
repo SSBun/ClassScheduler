@@ -10,30 +10,30 @@ import Moya
 
 enum Services {
     enum Authorization {
-        case loing(account: String, password: String)
+        case loin(account: String, password: String)
     }
     
     enum Student {
-        case info(id: Int)
+        case info(id: String)
     }
 }
 
 extension Services.Student: TargetType {
     var baseURL: URL {
-        URL(string: "http://httpbin.org")!
+        URL(string: "https://cloud-gateway.codemao.cn")!
     }
     
     var path: String {
         switch self {
-        case .info(id: _):
-            return "post"
+        case .info(id: let id):
+            return "/api-crm-web/admin/users/\(id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .info(id: _):
-            return .post
+            return .get
         }
     }
     
@@ -46,13 +46,19 @@ extension Services.Student: TargetType {
     
     var task: Task {
         switch self {
-        case .info(id: let id):
-            return .requestParameters(parameters: ["id": id], encoding: JSONEncoding.default)
+        case .info(id: _):
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        return ["Content-type": "application/json"]
+        return ["Content-type": "application/json",
+                "authorization_type": "3",
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
+                "Cookie": Teacher.shared.token,
+                "Host": "cloud-gateway.codemao.cn",
+                "Origin": "https://crm.codemao.cn",
+                "Referer": "https://crm.codemao.cn"]
     }
 }
 
