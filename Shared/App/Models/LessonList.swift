@@ -24,7 +24,7 @@ extension LessonList {
     struct AppointmentDetail {
         var appointment: Int?
         var isRequesting: Bool = false
-        var requestedResult: Result<String, Error>?
+        var requestedResult: Result<String, CSError>?
     }
 }
 

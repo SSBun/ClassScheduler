@@ -24,18 +24,26 @@ struct LessonAppointmentDetailView: View {
         ScrollView(.vertical) {
             if let appointment = store.appState.appointmentsData[detailInfo.appointment ?? -1] {
                 VStack(alignment: .leading) {
+                    Text("预约信息")
+                        .foregroundColor(Color.white.opacity(0.5))
+                        .font(.system(size: 25, weight: .bold, design: .rounded))
+                        .padding(.vertical, 20)
+                        .frame(maxWidth: .infinity)
                     ForEach(infos, id: \.0) { info in
                         InfoCell(title: info.0, value: info.1)
                             .frame(maxWidth: .infinity, minHeight: 40)
+                            .padding(.horizontal, 10)
                     }
                     Button {
                         if appointment.state == .normal {
                             store.dispatch(.requestAppointment(appointment.id))
+                        } else {
+                            store.dispatch(.cancelAppointment(appointment.id))
                         }
                     } label: {
                         Group {
                             if detailInfo.isRequesting {
-                                Text("正在预约中...")
+                                IndicatorView()
                             } else {
                                 if appointment.state == .normal {
                                     Text("预约课程")
@@ -45,7 +53,7 @@ struct LessonAppointmentDetailView: View {
                             }
                         }
                         .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                        .background(Color.blue.opacity(0.8))
+                        .background(appointment.state == .normal ? Color.blue.opacity(0.8) : Color.red.opacity(0.8))
                         .cornerRadius(10)
                     }
                     .disabled(detailInfo.isRequesting)
@@ -55,14 +63,15 @@ struct LessonAppointmentDetailView: View {
                 }
             }
         }
-        .frame(minWidth: 200, maxWidth: 200, maxHeight: .infinity)
+        .frame(minWidth: 250, maxWidth: 250, maxHeight: .infinity)
         .background(Color("student_list_bg"))
         .shadow(color: Color.black.opacity(0.1), radius: 2, x: -2, y: 2)
         .alert(item: $store.appState.lessonList.appointmentDetail.requestedResult) { result in
-            if case .success(_) = result {
-                return Alert(title: Text("预约课程成功"))
-            } else {
-                return Alert(title: Text("预约课程失败"))
+            switch result {
+            case .success(let title):
+                return Alert(title: Text(title))
+            case .failure(let error):
+                return Alert(title: Text(error.title))
             }
         }
     }
@@ -89,7 +98,7 @@ extension LessonAppointmentDetailView {
 }
 
 
-extension Result: Identifiable where Success == String, Failure == Error {
+extension Result: Identifiable where Success == String, Failure: Error {
     public var id: String {
         switch self {
         case .success(let value):

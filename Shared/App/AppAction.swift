@@ -19,7 +19,9 @@ enum AppAction {
     case selectAppointment(_ appointment: Int)
     
     case requestAppointment(_ appointment: Int)
-    case requestAppointmentCompletion(_ result: Result<String, Error>)
+    case requestAppointmentCompletion(_ result: Result<String, CSError>)
+    case cancelAppointment(_ appointment: Int)
+    case cancelAppointmentCompletion(_ result: Result<String, CSError>)
     
     case switchWeek(_ offset: Int)
     

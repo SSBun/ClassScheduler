@@ -18,3 +18,4 @@ struct API<Services: TargetType> {
         }.eraseToAnyPublisher()
     }
 }
+

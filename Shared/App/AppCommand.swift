@@ -43,9 +43,9 @@ struct RequestAppointmentCommand: AppCommand {
     
     func execute(in store: Store) {
         let token = SubscriptionToken()
-        Future<String, Error> { promise in
+        Future<String, CSError> { promise in
             DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
-                promise(.success("successful"))
+                promise(Bool.random() ? .success("预约课程成功") : .failure("预约课程失败"))
             }
         }
         .eraseToAnyPublisher()
@@ -56,6 +56,29 @@ struct RequestAppointmentCommand: AppCommand {
             }
         } receiveValue: {
             store.dispatch(.requestAppointmentCompletion(.success($0)))
+        }
+        .seal(in: token)
+    }
+}
+
+struct CancelAppointmentCommand: AppCommand {
+    let appointment: Int
+    
+    func execute(in store: Store) {
+        let token = SubscriptionToken()
+        Future<String, CSError> { promise in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+                promise(Bool.random() ? .success("取消预约成功") : .failure("取消预约失败"))
+            }
+        }
+        .eraseToAnyPublisher()
+        .sink { completion in
+            token.unseal()
+            if case let .failure(error) = completion {
+                store.dispatch(.cancelAppointmentCompletion(.failure(error)))
+            }
+        } receiveValue: {
+            store.dispatch(.cancelAppointmentCompletion(.success($0)))
         }
         .seal(in: token)
     }

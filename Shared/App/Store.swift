@@ -129,6 +129,23 @@ extension Store {
                     
                 }
             }
+        case .cancelAppointment(let appointment):
+            newState.lessonList.appointmentDetail.isRequesting = true
+            command = CancelAppointmentCommand(appointment: appointment)
+        case .cancelAppointmentCompletion(let result):
+            newState.lessonList.appointmentDetail.isRequesting = false
+            newState.lessonList.appointmentDetail.requestedResult = result
+            if let appointmentId = newState.lessonList.appointmentDetail.appointment,
+               var appointment = newState.appointmentsData[appointmentId],
+               case .success(_) = result {
+                do {
+                    appointment.state = .normal
+                    newState.appointmentsData[appointment.id] = appointment
+                    try appointment.db.update(on: [LessonAppointment.Properties.state], where: LessonAppointment.Properties.id == appointment.id)
+                } catch (_) {
+                    
+                }
+            }
         }
         return (newState, command)
     }
