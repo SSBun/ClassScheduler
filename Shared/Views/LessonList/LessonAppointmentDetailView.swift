@@ -26,6 +26,7 @@ struct LessonAppointmentDetailView: View {
         ("课程", "bbbbbbbbb"),
         ("课节", "aaaaa课节"),
         ("时间", openningTimeString),
+        ("时间戳", "\(Int(appointment?.openningTime.timeIntervalSince1970 ?? 0))"),
         ("老师", Teacher.shared.name)]
     }
     
@@ -43,6 +44,24 @@ struct LessonAppointmentDetailView: View {
                             .frame(maxWidth: .infinity, minHeight: 40)
                             .padding(.horizontal, 10)
                     }
+                    Button {
+                        
+                    } label: {
+                        Group {
+                            if detailInfo.isRequesting {
+                                IndicatorView()
+                            } else {
+                                Text("获取预约信息")
+                            }
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                        .background(appointment.state == .normal ? Color.blue.opacity(0.8) : Color.red.opacity(0.8))
+                        .cornerRadius(10)
+                    }
+                    .disabled(detailInfo.isRequesting)
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.horizontal, 10)
+                    .padding(.top, 30)
                     Button {
                         if appointment.state == .normal {
                             store.dispatch(.requestAppointment(appointment.id))
@@ -68,7 +87,7 @@ struct LessonAppointmentDetailView: View {
                     .disabled(detailInfo.isRequesting)
                     .buttonStyle(PlainButtonStyle())
                     .padding(.horizontal, 10)
-                    .padding(.top, 30)
+                    .padding(.top, 10)
                 }
             }
         }

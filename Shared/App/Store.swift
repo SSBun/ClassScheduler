@@ -146,6 +146,21 @@ extension Store {
                     
                 }
             }
+        case .requestAppointmentInfo(student: let student):
+            newState.lessonList.appointmentDetail.isRequesting = true
+            command = RequestAppointmentInfoCommand(student: student)
+        case .requestAppointmentInfoCompletion(let result):
+            newState.lessonList.appointmentDetail.isRequesting = false
+            if var appointment = newState.appointmentsData[newState.lessonList.appointmentDetail.appointment ?? -1],
+               case let .success(data) = result {
+                do {
+                    appointment.lessonInfo = data
+                    newState.appointmentsData[appointment.id] = appointment
+                    try appointment.db.update(on: [LessonAppointment.Properties.lessonInfo], where: LessonAppointment.Properties.id == appointment.id)
+                } catch (_) {
+                    
+                }
+            }
         }
         return (newState, command)
     }

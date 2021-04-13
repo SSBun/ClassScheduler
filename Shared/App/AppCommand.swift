@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import Moya
 import SwiftyJSON
+import PromiseKit
 
 
 protocol AppCommand {
@@ -19,22 +20,18 @@ struct RequestStudentInfoCommand: AppCommand {
     let id: String
     
     func execute(in store: Store) {
-        let token = SubscriptionToken()
-        API<Services.Student>.publisher(for: .info(id: id)).sink { finish in
-            token.unseal()
-            if case .failure(let error) = finish {
-                LOG(level: .error, error)
-            }
-        } receiveValue: { response in
-            LOG(category: .message, "request student info: \(response.data)")
+        firstly {
+            API<Services>.promise(for: .info(id: id))
+        }.done { response in
             do {
                 let student = try Student.unpack(response.data)
                 store.dispatch(.refreshStudentInfo(student))
             } catch(let error) {
                 LOG(level: .error, error)
             }
+        }.catch { error in
+            LOG(level: .error, error)
         }
-        .seal(in: token)
     }
 }
 
@@ -63,9 +60,9 @@ struct RequestAppointmentCommand: AppCommand {
 
 struct CancelAppointmentCommand: AppCommand {
     let appointment: Int
-    
     func execute(in store: Store) {
         let token = SubscriptionToken()
+        
         Future<String, CSError> { promise in
             DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
                 promise(Bool.random() ? .success("取消预约成功") : .failure("取消预约失败"))
@@ -81,6 +78,32 @@ struct CancelAppointmentCommand: AppCommand {
             store.dispatch(.cancelAppointmentCompletion(.success($0)))
         }
         .seal(in: token)
+    }
+}
+
+struct RequestAppointmentInfoCommand: AppCommand {
+    let student: String
+    
+    func execute(in store: Store) {
+        var info: LessonAppointment.LessonInfo = .init()
+        info.studentId = student
+        firstly {
+            API<Services>.promise(for: .getSubjects(studentId: student))
+        }.then { response -> Promise<Response> in
+            let json = JSON(response.data)
+            let subject = json["subjects"][0]
+            info.subjectId = subject["id"].intValue
+            info.subjectName = subject["name"].stringValue
+            return API<Services>.promise(for: .getCurrentTrack(studentId: student, subjectId: subject["id"].intValue))
+        }.then { response -> Promise<Response> in
+            let json = JSON(response.data)
+            let subject = json["subjects"][0]
+            info.subjectId = subject["id"].intValue
+            info.subjectName = subject["name"].stringValue
+            return API<Services>.promise(for: .getCurrentTrack(studentId: student, subjectId: subject["id"].intValue))
+        }.catch { _ in
+            
+        }
     }
 }
 

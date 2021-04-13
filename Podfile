@@ -10,6 +10,7 @@ def commondPods
   pod 'WCDB.swift', '~> 1.0.8.2'
   pod 'SnapKit', '~> 5.0.1'
   pod 'SwiftyJSON', '~> 5.0.1'
+  pod 'PromiseKit', '~> 6.13.1'
 end
 
 target 'ClassScheduler (iOS)' do

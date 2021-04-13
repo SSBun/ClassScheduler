@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS)-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework
+${BUILT_PRODUCTS_DIR}/PromiseKit.root-CorePromise-Foundation/PromiseKit.framework
 ${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-macOS/sqliterk.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SwiftDate-macOS/SwiftDate.framework

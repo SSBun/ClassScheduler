@@ -4,6 +4,15 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
   - SnapKit (5.0.1)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
@@ -17,6 +26,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Moya (~> 14.0)
+  - PromiseKit (~> 6.13.1)
   - SnapKit (~> 5.0.1)
   - SwiftDate (~> 6.3.1)
   - SwiftyJSON (~> 5.0.1)
@@ -26,6 +36,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Moya
+    - PromiseKit
     - SnapKit
     - SQLiteRepairKit
     - SwiftDate
@@ -36,6 +47,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
@@ -43,6 +55,6 @@ SPEC CHECKSUMS:
   WCDB.swift: 05d509d7a0e60fb6e11c34eb7e4027c0fab5849f
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
 
-PODFILE CHECKSUM: de374588096a8c4ac77c5c2f5582d4b8c4cc14a1
+PODFILE CHECKSUM: 58e151809d16953c82aa32c8edacdad7fa28420a
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

@@ -18,6 +18,8 @@ enum AppAction {
     case insertAppointment(student: String,  to: String)
     case selectAppointment(_ appointment: Int)
     
+    case requestAppointmentInfo(student: String)
+    case requestAppointmentInfoCompletion(_ result: Result<LessonAppointment.LessonInfo, CSError>)
     case requestAppointment(_ appointment: Int)
     case requestAppointmentCompletion(_ result: Result<String, CSError>)
     case cancelAppointment(_ appointment: Int)

@@ -8,14 +8,20 @@
 import Foundation
 import Combine
 import Moya
+import PromiseKit
 
 struct API<Services: TargetType> {
-    static func publisher(for service: Services) -> AnyPublisher<Moya.Response, MoyaError> {
-        Future { promise in
+    static func promise(for service: Services) -> Promise<Moya.Response> {
+        Promise { seal in
             MoyaProvider<Services>().request(service) { result in
-                promise(result)
+                switch result {
+                case .success(let response):
+                    seal.fulfill(response)
+                case .failure(let error):
+                    seal.reject(error)
+                }
             }
-        }.eraseToAnyPublisher()
+        }
     }
 }
 

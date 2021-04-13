@@ -177,6 +177,7 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit.root-CorePromise-Foundation/PromiseKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-macOS/sqliterk.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate-macOS/SwiftDate.framework"
@@ -187,6 +188,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromiseKit.root-CorePromise-Foundation/PromiseKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SQLiteRepairKit-macOS/sqliterk.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit-macOS/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate-macOS/SwiftDate.framework"

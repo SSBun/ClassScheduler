@@ -120,7 +120,7 @@ extension StudentSelector {
                     .buttonStyle(PlainButtonStyle())
                     .padding([.top, .trailing], 5)
                 }
-                Text("\(student?.fullName ?? "暂无信息")")
+                Text("\(student?.nickName ?? "暂无信息")")
                     .font(.system(size: 15, weight: .medium, design: .monospaced))
                     .frame(maxWidth: .infinity, minHeight: 40)
             }
