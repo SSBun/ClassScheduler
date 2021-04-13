@@ -51,17 +51,14 @@ struct AreaView: View {
                                     (AppointmentBlock.self,
                                      DragDropData<AppointmentBlock>.self,
                                      { p in
-                                    let block = (p as! DragDropData<AppointmentBlock>).data
-                                    DispatchQueue.main.async {
+                                        let block = (p as! DragDropData<AppointmentBlock>).data
                                         store.dispatch(.moveBlock(block.id, area.id))
-                                    }}),
+                                     }),
                                    (Student.self,
                                     DragDropData<Student>.self,
                                     { p in
-                                    let student = (p as! DragDropData<Student>).data
-                                    DispatchQueue.main.async {
+                                        let student = (p as! DragDropData<Student>).data
                                         store.dispatch(.insertAppointment(student: student.id, to: area.id))
-                                    }
                                     })
         ))
     }

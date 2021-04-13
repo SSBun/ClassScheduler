@@ -71,10 +71,17 @@ extension StudentSelector {
 
 extension StudentSelector {
     struct Cell: View {
+        enum Action: Int, Identifiable {
+            case requestInfo
+            case remove
+            
+            var id: Int { self.rawValue }
+        }
+        
         @EnvironmentObject var store: Store
         let studentId: String
         let canDrag: Bool
-        @State private var isAlertPresented = false
+        @State private var alertMessage: Action? = nil
         
         private var student: Student? { store.appState.studentList.studentsData[studentId] }
         
@@ -98,7 +105,15 @@ extension StudentSelector {
                         .cornerRadius(3)
                     Spacer()
                     Button {
-                        self.isAlertPresented = true
+                        self.alertMessage = .remove
+                    } label: {
+                        Image(systemName: "trash.circle.fill")
+                            .foregroundColor(Color.red.opacity(0.8))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding([.top, .trailing], 5)
+                    Button {
+                        self.alertMessage = .requestInfo
                     } label: {
                         Image(systemName: "info.circle.fill")
                     }
@@ -114,11 +129,18 @@ extension StudentSelector {
             .onTapGesture {
                 store.dispatch(.selectStudent(studentId))
             }
-            .alert(isPresented: $isAlertPresented) {
-                Alert(title: Text("请求信息"),
-                      message: Text("要请求  \(studentId) 的信息"),
-                      primaryButton: .default(Text("请求"), action: {
-                        store.dispatch(.requestStudentInfo(studentId))
+            .alert(item: $alertMessage) { message in
+                let title = message == .remove
+                    ? "删除学生\(student?.fullName ?? "\(studentId)")信息"
+                    : " 更新学生\(student?.fullName ?? "\(studentId)")信息"
+                
+                return Alert(title: Text(title),
+                      primaryButton: .default(Text("确定"), action: {
+                        if message == .remove {
+                            store.dispatch(.removeStudent(studentId))
+                        } else {
+                            store.dispatch(.requestStudentInfo(studentId))
+                        }
                       }),
                       secondaryButton: .cancel(Text("取消")))
             }

@@ -8,7 +8,7 @@
 import Foundation
 
 struct AppState {
-    var lessonList: LessonList = .init(columns: [], weekOffset: 0)
+    var lessonList: LessonList = .init()
     var studentList: StudentList = .init()
     var sidebar: Sidebar = .init()
     

@@ -28,13 +28,14 @@ class Store: ObservableObject {
 
 extension Store {
     func dispatch(_ action: AppAction) {
-        LOG(category: .action, action)
-        let result = Store.reduce(appState, action)
-        appState = result.0
-        
-        if let command = result.1 {
-            LOG(category: .command, command)
-            command.execute(in: self)
+        DispatchQueue.main.async {
+            LOG(category: .action, action)
+            let result = Store.reduce(self.appState, action)
+            self.appState = result.0
+            if let command = result.1 {
+                LOG(category: .command, command)
+                command.execute(in: self)
+            }
         }
     }
     
@@ -96,6 +97,36 @@ extension Store {
             }
         case .selectStudent(let studentId):
             newState.studentList.currentStudent = studentId
+        case .removeStudent(let studentId):
+            do {
+                try Student.db.delete(where: Student.Properties.id == studentId)
+                newState.studentList.studentsData.removeValue(forKey: studentId)
+                newState.studentList.search.content = ""
+            } catch(_) {
+                
+            }
+        case .selectAppointment(let lessonAppointment):
+            if !newState.lessonList.appointmentDetail.isRequesting {
+                newState.lessonList.appointmentDetail = LessonList.AppointmentDetail(appointment: lessonAppointment)
+            } else {
+                LOG(level: .warning, "This is requesting an appointment, so you can't select another appointment")
+            }
+        case .requestAppointment(let lessonAppointment):
+            newState.lessonList.appointmentDetail.isRequesting = true
+            command = RequestAppointmentCommand(appointment: lessonAppointment)
+        case .requestAppointmentCompletion(let result):
+            newState.lessonList.appointmentDetail.isRequesting = false
+            newState.lessonList.appointmentDetail.requestedResult = result
+            if var appointment = newState.lessonList.appointmentDetail.appointment, case .success(_) = result {
+                do {
+                    appointment.state = .locked
+                    try appointment.db.update(on: [LessonAppointment.Properties.state], where: LessonAppointment.Properties.id == appointment.id)
+                    newState.lessonList.appointmentDetail.appointment?.state = .locked
+                    
+                } catch (_) {
+                    
+                }
+            }
         }
         return (newState, command)
     }
@@ -119,6 +150,7 @@ extension Store {
                     var appointment = LessonAppointment(id: 0, day: day, timeRange: timeRange, studentId: student)
                     try appointment.db.insert()
                     appointment.id = try LessonAppointment.db.get(orderBy: [LessonAppointment.Properties.id.asOrder(by: .descending)], limit: 1, offset: 0).first!.id
+                    newState.lessonList.appointmentsData[appointment.id] = appointment
                     let appointmentBlock = AppointmentBlock(appointment: appointment)
                     newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
                     
@@ -170,6 +202,7 @@ extension Store {
                     appointment.day = day
                     appointment.timeRange = timeRange
                     try appointment.db.update(on: LessonAppointment.Properties.all, where: LessonAppointment.Properties.id == appointment.id)
+                    newState.lessonList.appointmentsData[appointment.id] = appointment
                     let appointmentBlock = AppointmentBlock(appointment: appointment)
                     newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
                     newState.lessonList.columns[removedIndex.0].areas[removedIndex.1].items.remove(at: removedIndex.2)
@@ -192,6 +225,9 @@ extension Store {
                         try LessonAppointment.db.get(on: LessonAppointment.Properties.all,
                                                      where: LessonAppointment.Properties.timeRange == timeRange
                                                         && LessonAppointment.Properties.day == day)
+                    appointments.forEach {
+                        newState.lessonList.appointmentsData[$0.id] = $0
+                    }
                     let blocks = appointments.map(AppointmentBlock.init(appointment:))
                     areas.append(.init(type: .timeRange(timeRange), columnType: .week(day) , items: blocks))
                 } catch(let error) {

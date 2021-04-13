@@ -13,8 +13,30 @@ struct LessonAppointment: Codable, Identifiable {
     var day: CourseCalendar.Day
     var timeRange: TimeRanges
     var studentId: String
+    var state: State = .normal
     
     var isAutoIncrement: Bool { true }
+}
+
+extension LessonAppointment {
+    enum State: Int, Codable {
+        case normal
+        case locked
+    }
+}
+
+extension LessonAppointment.State: ColumnCodable {
+    init?(with value: FundamentalValue) {
+        self = LessonAppointment.State(rawValue: Int(value.int32Value)) ?? .normal
+    }
+    
+    func archivedValue() -> FundamentalValue {
+        .init(self.rawValue)
+    }
+    
+    static var columnType: ColumnType {
+        .integer32
+    }
 }
 
 extension LessonAppointment: DBTable {
@@ -27,6 +49,7 @@ extension LessonAppointment: DBTable {
         case day = "day"
         case timeRange = "timeRange"
         case studentId = "studentId"
+        case state = "state"
         
         static var columnConstraintBindings: [LessonAppointment.CodingKeys : ColumnConstraintBinding]? {
             return [id: .init(isPrimary: true, isAutoIncrement: true)]

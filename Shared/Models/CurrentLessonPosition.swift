@@ -32,6 +32,4 @@ extension CurrentLessonPosition: ColumnCodable {
     static var columnType: ColumnType {
         .BLOB
     }
-    
-    
 }

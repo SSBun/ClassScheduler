@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import Moya
 import SwiftyJSON
 
@@ -28,12 +29,33 @@ struct RequestStudentInfoCommand: AppCommand {
             LOG(category: .message, "request student info: \(response.data)")
             do {
                 let student = try Student.unpack(response.data)
-                DispatchQueue.main.async {
-                    store.dispatch(.refreshStudentInfo(student))
-                }
+                store.dispatch(.refreshStudentInfo(student))
             } catch(let error) {
                 LOG(level: .error, error)
             }
+        }
+        .seal(in: token)
+    }
+}
+
+struct RequestAppointmentCommand: AppCommand {
+    let appointment: LessonAppointment
+    
+    func execute(in store: Store) {
+        let token = SubscriptionToken()
+        Future<String, Error> { promise in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+                promise(.success("successful"))
+            }
+        }
+        .eraseToAnyPublisher()
+        .sink { completion in
+            token.unseal()
+            if case let .failure(error) = completion {
+                store.dispatch(.requestAppointmentCompletion(.failure(error)))
+            }
+        } receiveValue: {
+            store.dispatch(.requestAppointmentCompletion(.success($0)))
         }
         .seal(in: token)
     }

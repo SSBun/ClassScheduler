@@ -13,20 +13,25 @@ struct AppointmentBlockView: View {
     var student: Student? { store.appState.studentList.studentsData[block.appointment.studentId] }
     
     var body: some View {
-        content
-        .onDrag({ DragDropData(block).itemProvider })
+        if block.appointment.state == .normal && !store.appState.lessonList.appointmentDetail.isRequesting {
+            content
+                .onDrag({ DragDropData(block).itemProvider })
+        } else {
+            content
+        }
     }
     
     @ViewBuilder
     var content: some View {
         VStack {
             Text("\(student?.fullName ?? "\(block.id)")")
-//            Text("\(block.appointment.day.date.toFormat("YYYY-MM-dd")) - \(block.appointment.timeRange.range.0)-\(block.appointment.timeRange.range.1)")
-//                .font(.subheadline)
         }
         .frame(maxWidth: .infinity, maxHeight: 40)
-        .background(Color("appointment_bg"))
+        .background(block.appointment.state == .normal ? Color("appointment_bg") : Color("appointment_bg_locked"))
         .cornerRadius(5)
         .padding(.init(top: 1, leading: 5, bottom: 1, trailing: 5))
+        .onTapGesture {
+            store.dispatch(.selectAppointment(block.appointment))
+        }
     }
 }
