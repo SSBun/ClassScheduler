@@ -7,6 +7,7 @@
 
 import Foundation
 import WCDBSwift
+import SwiftDate
 
 struct LessonAppointment: Codable, Identifiable {
     var id: Int
@@ -22,6 +23,18 @@ extension LessonAppointment {
     enum State: Int, Codable {
         case normal
         case locked
+    }
+    
+    var openningTime: DateInRegion {
+        let date = day.date
+        return DateInRegion(year: date.year,
+                            month: date.month,
+                            day: date.day,
+                            hour: timeRange.beginningTime.0,
+                            minute: timeRange.beginningTime.1,
+                            second: 0,
+                            nanosecond: 0,
+                            region: CourseCalendar.region)
     }
 }
 

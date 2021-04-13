@@ -78,6 +78,22 @@ enum TimeRanges: Int, Codable, CaseIterable {
             return ("19:30", "21:00")
         }
     }
+    
+    /// Return the beginning time with format (Hour, Minute)
+    var beginningTime: (Int, Int) {
+        switch self {
+        case .one:
+            return (9, 0)
+        case .two:
+            return (11, 0)
+        case .three:
+            return (14, 0)
+        case .four:
+            return (17, 30)
+        case .five:
+            return (19, 30)
+        }
+    }
 }
 
 extension TimeRanges: ColumnCodable, ExpressionConvertible {

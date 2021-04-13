@@ -11,18 +11,27 @@ struct LessonAppointmentDetailView: View {
     @EnvironmentObject var store: Store
     
     private var detailInfo: LessonList.AppointmentDetail { store.appState.lessonList.appointmentDetail }
+    private var appointment: LessonAppointment? { store.appState.appointmentsData[detailInfo.appointment ?? -1] }
+    private var student: Student? { store.appState.studentList.studentsData[appointment?.studentId ?? ""] }
     
     private var infos: [(String, String?)] {
-        [("姓名", "ssbun"),
-        ("课程", "AAAfsfdsfsdfsdfsdfsdfA课程"),
+        var openningTimeString = ""
+        if let openningTime = appointment?.openningTime {
+            openningTimeString += "\(openningTime.weekdayName(.short))"
+            openningTimeString += "\(openningTime.toFormat("hh:mm"))  "
+            openningTimeString += "\(openningTime.monthName(.default))"
+            openningTimeString += "\(openningTime.day)号 "
+        }
+        return [("姓名", student?.fullName),
+        ("课程", "bbbbbbbbb"),
         ("课节", "aaaaa课节"),
-        ("时间", "2021-03-23 周日"),
-        ("老师", "大象在天上飞")]
+        ("时间", openningTimeString),
+        ("老师", Teacher.shared.name)]
     }
     
     var body: some View {
         ScrollView(.vertical) {
-            if let appointment = store.appState.appointmentsData[detailInfo.appointment ?? -1] {
+            if let appointment = appointment {
                 VStack(alignment: .leading) {
                     Text("预约信息")
                         .foregroundColor(Color.white.opacity(0.5))
