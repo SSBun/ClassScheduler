@@ -22,7 +22,7 @@ struct LessonAppointmentDetailView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            if let appointment = detailInfo.appointment {
+            if let appointment = store.appState.appointmentsData[detailInfo.appointment ?? -1] {
                 VStack(alignment: .leading) {
                     ForEach(infos, id: \.0) { info in
                         InfoCell(title: info.0, value: info.1)
@@ -30,7 +30,7 @@ struct LessonAppointmentDetailView: View {
                     }
                     Button {
                         if appointment.state == .normal {
-                            store.dispatch(.requestAppointment(appointment))
+                            store.dispatch(.requestAppointment(appointment.id))
                         }
                     } label: {
                         Group {

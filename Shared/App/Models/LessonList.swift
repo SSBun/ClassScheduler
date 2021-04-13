@@ -9,10 +9,9 @@ import Foundation
 import SwiftUI
 
 struct LessonList {
-    var columns: [Column] = []
-    var weekOffset: Int = 0
+    var columns: [Column]    
+    var weekOffset: Int
     var week: CourseCalendar.Week  { CourseCalendar.getWeek(weekOffset) }
-    var appointmentsData: [Int: LessonAppointment] = [:]
     
     var colTypes: [ColumnType] { week.days.map({ ColumnType.week($0)}) }
     var rowTypes: [ColumnAreaType] = TimeRanges.allCases.map { .timeRange($0) }
@@ -23,7 +22,7 @@ struct LessonList {
 
 extension LessonList {
     struct AppointmentDetail {
-        var appointment: LessonAppointment?
+        var appointment: Int?
         var isRequesting: Bool = false
         var requestedResult: Result<String, Error>?
     }

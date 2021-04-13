@@ -12,6 +12,13 @@ struct AreaView: View {
     var area: LessonList.ColumnArea
     @State var isEntered: Bool = false
     
+    private var isInPast: Bool {
+        if case .week(let day) = area.columnType {
+            return day.date.isInPast || day.date.isToday
+        }
+        return false
+    }
+    
     private var markTitle: String {
         var title = ""
         if case let .week(day) = area.columnType {
@@ -43,9 +50,9 @@ struct AreaView: View {
             }
             .padding(.vertical, 5)
         }
-        .background(Color("area_bg").opacity(0.5))
+        .background(Color("area_bg").opacity(isInPast ? 0.2 : 0.7))
         .frame(minWidth: 150, minHeight: 180)
-        .onDrop(DropGroupDelegator(isEnabled: area.items.count < 4,
+        .onDrop(DropGroupDelegator(isEnabled: !isInPast,
                                    isEntered: $isEntered,
                                    dropCallbacks:
                                     (AppointmentBlock.self,

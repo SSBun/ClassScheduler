@@ -8,8 +8,9 @@
 import Foundation
 
 struct AppState {
-    var lessonList: LessonList = .init()
+    var lessonList: LessonList = .init(columns: [], weekOffset: 0)
     var studentList: StudentList = .init()
+    var appointmentsData: [Int: LessonAppointment] = [:]
     var sidebar: Sidebar = .init()
     
     enum SidebarItem: Int, CaseIterable, Identifiable {

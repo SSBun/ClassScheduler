@@ -108,6 +108,7 @@ extension Store {
         case .selectAppointment(let lessonAppointment):
             if !newState.lessonList.appointmentDetail.isRequesting {
                 newState.lessonList.appointmentDetail = LessonList.AppointmentDetail(appointment: lessonAppointment)
+                newState.lessonList.isSidebarHidden = false
             } else {
                 LOG(level: .warning, "This is requesting an appointment, so you can't select another appointment")
             }
@@ -117,12 +118,13 @@ extension Store {
         case .requestAppointmentCompletion(let result):
             newState.lessonList.appointmentDetail.isRequesting = false
             newState.lessonList.appointmentDetail.requestedResult = result
-            if var appointment = newState.lessonList.appointmentDetail.appointment, case .success(_) = result {
+            if let appointmentId = newState.lessonList.appointmentDetail.appointment,
+               var appointment = newState.appointmentsData[appointmentId],
+               case .success(_) = result {
                 do {
                     appointment.state = .locked
+                    newState.appointmentsData[appointment.id] = appointment
                     try appointment.db.update(on: [LessonAppointment.Properties.state], where: LessonAppointment.Properties.id == appointment.id)
-                    newState.lessonList.appointmentDetail.appointment?.state = .locked
-                    
                 } catch (_) {
                     
                 }
@@ -150,8 +152,8 @@ extension Store {
                     var appointment = LessonAppointment(id: 0, day: day, timeRange: timeRange, studentId: student)
                     try appointment.db.insert()
                     appointment.id = try LessonAppointment.db.get(orderBy: [LessonAppointment.Properties.id.asOrder(by: .descending)], limit: 1, offset: 0).first!.id
-                    newState.lessonList.appointmentsData[appointment.id] = appointment
-                    let appointmentBlock = AppointmentBlock(appointment: appointment)
+                    newState.appointmentsData[appointment.id] = appointment
+                    let appointmentBlock = AppointmentBlock(id: appointment.id)
                     newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
                     
                 } catch(_) {
@@ -188,6 +190,7 @@ extension Store {
             do {
                 try LessonAppointment.db.delete(where: LessonAppointment.Properties.id == block)
                 newState.lessonList.columns[removedIndex.0].areas[removedIndex.1].items.remove(at: removedIndex.2)
+                newState.appointmentsData.removeValue(forKey: block)
             } catch(_) {
                 
             }
@@ -196,14 +199,13 @@ extension Store {
         if let removedIndex = removedIndex, let addedIndex = addedIndex, let movedBlock = movedBlock as? AppointmentBlock {
             let col = newState.lessonList.columns[addedIndex.0]
             let area = col.areas[addedIndex.1]
-            if case .week(let day)  = col.type, case .timeRange(let timeRange) = area.type {
+            if case .week(let day)  = col.type, case .timeRange(let timeRange) = area.type, var appointment = state.appointmentsData[movedBlock.id] {
                 do {
-                    var appointment = movedBlock.appointment
                     appointment.day = day
                     appointment.timeRange = timeRange
                     try appointment.db.update(on: LessonAppointment.Properties.all, where: LessonAppointment.Properties.id == appointment.id)
-                    newState.lessonList.appointmentsData[appointment.id] = appointment
-                    let appointmentBlock = AppointmentBlock(appointment: appointment)
+                    newState.appointmentsData[appointment.id] = appointment
+                    let appointmentBlock = AppointmentBlock(id: appointment.id)
                     newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
                     newState.lessonList.columns[removedIndex.0].areas[removedIndex.1].items.remove(at: removedIndex.2)
                 } catch(_) {
@@ -226,9 +228,9 @@ extension Store {
                                                      where: LessonAppointment.Properties.timeRange == timeRange
                                                         && LessonAppointment.Properties.day == day)
                     appointments.forEach {
-                        newState.lessonList.appointmentsData[$0.id] = $0
+                        newState.appointmentsData[$0.id] = $0
                     }
-                    let blocks = appointments.map(AppointmentBlock.init(appointment:))
+                    let blocks = appointments.map { AppointmentBlock(id: $0.id) }
                     areas.append(.init(type: .timeRange(timeRange), columnType: .week(day) , items: blocks))
                 } catch(let error) {
                     LOG(level: .error, category: .database, error)
@@ -236,7 +238,8 @@ extension Store {
             }
             columns.append(.init(type: .week(day), areas: areas))
         }
-        newState.lessonList = LessonList(columns: columns, weekOffset: weekOffset)
+        newState.lessonList.columns = columns
+        newState.lessonList.weekOffset = weekOffset
         return newState
     }
     

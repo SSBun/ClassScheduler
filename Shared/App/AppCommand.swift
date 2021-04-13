@@ -39,7 +39,7 @@ struct RequestStudentInfoCommand: AppCommand {
 }
 
 struct RequestAppointmentCommand: AppCommand {
-    let appointment: LessonAppointment
+    let appointment: Int
     
     func execute(in store: Store) {
         let token = SubscriptionToken()

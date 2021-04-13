@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct AppointmentBlock: Block, Codable {
-    var id: Int { appointment.id }
-    let appointment: LessonAppointment
+    /// This is the id of the wrapped lesson appointment.
+    var id: Int
 }
 
 extension AppointmentBlock: DragDropAvailable {

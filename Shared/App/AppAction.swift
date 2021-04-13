@@ -16,9 +16,9 @@ enum AppAction {
 
     case moveBlock(_ block: Int, _ toArea: String)
     case insertAppointment(student: String,  to: String)
-    case selectAppointment(_ appointment: LessonAppointment)
+    case selectAppointment(_ appointment: Int)
     
-    case requestAppointment(_ appointment: LessonAppointment)
+    case requestAppointment(_ appointment: Int)
     case requestAppointmentCompletion(_ result: Result<String, Error>)
     
     case switchWeek(_ offset: Int)
