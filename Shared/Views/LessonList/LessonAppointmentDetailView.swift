@@ -18,16 +18,15 @@ struct LessonAppointmentDetailView: View {
         var openningTimeString = ""
         if let openningTime = appointment?.openningTime {
             openningTimeString += "\(openningTime.weekdayName(.short))"
-            openningTimeString += "\(openningTime.toFormat("hh:mm"))  "
+            openningTimeString += "\(openningTime.toFormat("HH:mm"))  "
             openningTimeString += "\(openningTime.monthName(.default))"
             openningTimeString += "\(openningTime.day)号 "
         }
-        return [("姓名", [student?.fullName, student?.nickName, student?.userName].compactMap({$0}).first),
+        return [("姓名", [student?.fullName, student?.nickName, student?.userName].compactMap({$0}).filter({ $0.count > 0 }).first),
                 ("系列", appointment?.info?.subject.name),
                 ("课程", appointment?.info?.track.name),
                 ("课节", appointment?.info?.point.name),
                 ("时间", openningTimeString),
-                ("时间戳", "\(Int(appointment?.openningTime.timeIntervalSince1970 ?? 0))"),
                 ("老师", Teacher.mock.name)]
     }
     
@@ -59,7 +58,7 @@ struct LessonAppointmentDetailView: View {
                         .background(Color("student_block_bg_noinfo").opacity(0.8))
                         .cornerRadius(10)
                     }
-                    .disabled(detailInfo.isRequesting)
+                    .disabled(detailInfo.isRequesting || appointment.state == .locked)
                     .buttonStyle(PlainButtonStyle())
                     .padding(.horizontal, 10)
                     .padding(.top, 30)
@@ -116,10 +115,10 @@ extension LessonAppointmentDetailView {
                 Text("\(title): ")
                     .font(.system(size: 15, weight: .bold, design: .default))
                     .foregroundColor(Color.white.opacity(0.5))
-                Text(value ?? "NULL")
+                Text(value ?? "请获取预约信息")
                     .font(.system(size: 16, weight: .heavy, design: .rounded))
                     .lineLimit(3)
-                    .foregroundColor(Color.white.opacity(0.8))
+                    .foregroundColor(value == nil ? Color.red.opacity(0.8) : Color.white.opacity(0.8))
                 Spacer()
             }
         }

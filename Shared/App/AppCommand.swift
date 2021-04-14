@@ -51,25 +51,30 @@ struct RequestStudentInfoCommand: AppCommand {
 }
 
 struct RequestAppointmentCommand: AppCommand {
-    let appointment: Int
+    let appointmentId: Int
     
     func execute(in store: Store) {
-        let token = SubscriptionToken()
-        Future<String, CSError> { promise in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-                promise(.success("预约课程成功"))
-            }
+        guard var appointment = store.appState.appointmentsData[appointmentId],
+              var info = appointment.info else {
+            store.dispatch(.requestAppointmentCompletion(.failure("约课失败")))
+            return
         }
-        .eraseToAnyPublisher()
-        .sink { completion in
-            token.unseal()
-            if case let .failure(error) = completion {
-                store.dispatch(.requestAppointmentCompletion(.failure(error)))
-            }
-        } receiveValue: {
-            store.dispatch(.requestAppointmentCompletion(.success($0)))
+        info.time = Int(appointment.openningTime.timeIntervalSince1970)
+        info.teacher = Teacher.mock
+        appointment.info = info
+        firstly {
+            API<Services>.promise(for: .appointment(studentId: info.studentId,
+                                                    teacherId: info.teacher!.id,
+                                                    subjectId: info.subject.id,
+                                                    trackId: info.track.id,
+                                                    pointId: info.point.id,
+                                                    time: info.time!)) as Promise<Data>
+        }.done { _ in
+            store.appState.appointmentsData[appointmentId] = appointment
+            store.dispatch(.requestAppointmentCompletion(.success("约课成功")))
+        }.catch { error in
+            store.dispatch(.requestAppointmentCompletion(.failure("约课失败: \(error)")))
         }
-        .seal(in: token)
     }
 }
 
@@ -120,7 +125,7 @@ struct RequestAppointmentInfoCommand: AppCommand {
             $0.points.first
         }.done { point in
             if let subject = subject, let track = track {
-                let info = LessonAppointment.Info(subject: subject, track: track, point: point)
+                let info = LessonAppointment.Info(studentId: student, subject: subject, track: track, point: point)
                 store.dispatch(.requestAppointmentInfoCompletion(.success(info)))
             } else {
                 store.dispatch(.requestAppointmentInfoCompletion(.failure(.init(stringLiteral: "获取课程信息失败"))))

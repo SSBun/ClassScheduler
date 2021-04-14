@@ -22,6 +22,7 @@ struct LessonAppointment: Codable, Identifiable {
 
 extension LessonAppointment {
     struct Info: Codable {
+        var studentId: String
         var subject: CourseSubject
         var track: CourseTrack
         var point: CoursePoint

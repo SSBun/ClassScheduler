@@ -44,12 +44,12 @@ extension Services: TargetType {
             return "/admin/lessons/student-position/users/\(studentId)/subjects"
         case .getAllTracks(subjectId: let subjectId):
             return "/admin/lessons/knowledge/subjects/\(subjectId)/tracks/all"
-        case .getCurrentTrack(studentId: let studentId, subjectId: let subjectId):
-            return "/admin/lessons/student-position/users/\(studentId)/tracks?subject_id=\(subjectId)".urlEscaped
+        case .getCurrentTrack(studentId: let studentId, subjectId: _):
+            return "/admin/lessons/student-position/users/\(studentId)/tracks"
         case .getAllPoints(trackId: let trackId):
             return "/admin/lessons/knowledge/tracks/\(trackId)/points/all"
-        case .getCurrentPoint(studentId: let studentId, trackId: let trackId):
-            return "/admin/lessons/student-position/users/\(studentId)/points?track_id=\(trackId)".urlEscaped
+        case .getCurrentPoint(studentId: let studentId, trackId: _):
+            return "/admin/lessons/student-position/users/\(studentId)/points"
         case .appointment(studentId: _, teacherId: _, subjectId: _, trackId: _, pointId: _, time: _):
             return "/attendances/inside"
         }
@@ -78,10 +78,12 @@ extension Services: TargetType {
         case .info(id: _),
              .getSubjects(studentId: _),
              .getAllTracks(subjectId: _),
-             .getCurrentTrack(studentId: _, subjectId: _),
-             .getAllPoints(trackId: _),
-             .getCurrentPoint(studentId: _, trackId: _):
+             .getAllPoints(trackId: _):
             return .requestPlain
+        case .getCurrentTrack(studentId: _, subjectId: let subjectId):
+            return .requestParameters(parameters: ["subject_id": subjectId], encoding: URLEncoding.queryString)
+        case .getCurrentPoint(studentId: _, trackId: let trackId):
+            return .requestParameters(parameters: ["track_id": trackId], encoding: URLEncoding.queryString)
         case .appointment(studentId: let studentId,
                           teacherId: let teacherId,
                           subjectId: let subjectId,

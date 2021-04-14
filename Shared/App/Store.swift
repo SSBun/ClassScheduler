@@ -114,7 +114,7 @@ extension Store {
             }
         case .requestAppointment(let lessonAppointment):
             newState.lessonList.appointmentDetail.isRequestingAppointment = true
-            command = RequestAppointmentCommand(appointment: lessonAppointment)
+            command = RequestAppointmentCommand(appointmentId: lessonAppointment)
         case .requestAppointmentCompletion(let result):
             newState.lessonList.appointmentDetail.isRequestingAppointment = false
             newState.lessonList.appointmentDetail.requestedResult = result
@@ -124,7 +124,7 @@ extension Store {
                 do {
                     appointment.state = .locked
                     newState.appointmentsData[appointment.id] = appointment
-                    try appointment.db.update(on: [LessonAppointment.Properties.state], where: LessonAppointment.Properties.id == appointment.id)
+                    try appointment.db.update(on: LessonAppointment.Properties.all, where: LessonAppointment.Properties.id == appointment.id)
                 } catch (_) {
                     
                 }
@@ -141,7 +141,7 @@ extension Store {
                 do {
                     appointment.state = .normal
                     newState.appointmentsData[appointment.id] = appointment
-                    try appointment.db.update(on: [LessonAppointment.Properties.state], where: LessonAppointment.Properties.id == appointment.id)
+                    try appointment.db.update(on: LessonAppointment.Properties.all, where: LessonAppointment.Properties.id == appointment.id)
                 } catch (_) {
                     
                 }
@@ -157,7 +157,7 @@ extension Store {
                 do {
                     appointment.info = data
                     newState.appointmentsData[appointment.id] = appointment
-                    try appointment.db.update(on: [LessonAppointment.Properties.info], where: LessonAppointment.Properties.id == appointment.id)
+                    try appointment.db.update(on: LessonAppointment.Properties.all, where: LessonAppointment.Properties.id == appointment.id)
                 } catch (_) {
                     
                 }
