@@ -38,15 +38,16 @@ extension DBExtension where Base: DBTable {
     }
     
     static func checkTable() throws {
-        do {
-            let isExist = try DB.database.isTableExists(Base.tableName)
-            if !isExist {
-                try create()
-            }
-        } catch(let error) {
-            LOG(category: .database, error)
-            throw error
-        }
+        try create()
+//        do {
+//            let isExist = try DB.database.isTableExists(Base.tableName)
+//            if !isExist {
+//                try create()
+//            }
+//        } catch(let error) {
+//            LOG(category: .database, error)
+//            throw error
+//        }
     }
     
     // MARK:- INSERT

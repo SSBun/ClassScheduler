@@ -15,23 +15,18 @@ struct LessonAppointment: Codable, Identifiable {
     var timeRange: TimeRanges
     var studentId: String
     var state: State = .normal
-    var lessonInfo: LessonInfo?
+    var info: Info?
     
     var isAutoIncrement: Bool { true }
 }
 
 extension LessonAppointment {
-    struct LessonInfo: Codable {
-        var studentId: String?
-        var subjectName: String?
-        var subjectId: Int?
-        var trackName: String?
-        var trackId: Int?
-        var lessonName: String?
-        var lessonId: Int?
+    struct Info: Codable {
+        var subject: CourseSubject
+        var track: CourseTrack
+        var point: CoursePoint
         var time: Int?
-        var teacherNmae: String?
-        var teacherId: Int?
+        var teacher: Teacher?
     }
 }
 
@@ -68,9 +63,9 @@ extension LessonAppointment.State: ColumnCodable {
     }
 }
 
-extension LessonAppointment.LessonInfo: ColumnCodable {
+extension LessonAppointment.Info: ColumnCodable {
     init?(with value: FundamentalValue) {
-        guard let result = try? LessonAppointment.LessonInfo.unpack(value.dataValue) else { return nil }
+        guard let result = try? LessonAppointment.Info.unpack(value.dataValue) else { return nil }
         self = result
     }
     
@@ -94,7 +89,7 @@ extension LessonAppointment: DBTable {
         case timeRange = "timeRange"
         case studentId = "studentId"
         case state = "state"
-        case lessonInfo = "lessonInfo"
+        case info = "info"
         
         static var columnConstraintBindings: [LessonAppointment.CodingKeys : ColumnConstraintBinding]? {
             return [id: .init(isPrimary: true, isAutoIncrement: true)]

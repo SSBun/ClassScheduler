@@ -93,6 +93,12 @@
 		8EDCBF7A261E010C00A23B81 /* WeekSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCBF78261E010C00A23B81 /* WeekSwitcher.swift */; };
 		C401525C262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */; };
 		C401525D262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */; };
+		C438697E26269A7C00B22C1D /* SubjectsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438697D26269A7C00B22C1D /* SubjectsResult.swift */; };
+		C438697F26269A7C00B22C1D /* SubjectsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438697D26269A7C00B22C1D /* SubjectsResult.swift */; };
+		C43869852626ADA400B22C1D /* CurrentTrackResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43869842626ADA400B22C1D /* CurrentTrackResult.swift */; };
+		C43869862626ADA400B22C1D /* CurrentTrackResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43869842626ADA400B22C1D /* CurrentTrackResult.swift */; };
+		C438698A2626AE0400B22C1D /* CurrentPointResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43869892626AE0400B22C1D /* CurrentPointResult.swift */; };
+		C438698B2626AE0400B22C1D /* CurrentPointResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43869892626AE0400B22C1D /* CurrentPointResult.swift */; };
 		C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */; };
 		C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */; };
 		C4403CC1261EFB0D00E0B9EE /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */; };
@@ -167,6 +173,9 @@
 		9F82BFEDD5B78394F916CC37 /* Pods-ClassScheduler (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).release.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		B4C7420A18827EF9939FF1D1 /* Pods-ClassScheduler (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClassScheduler (macOS).debug.xcconfig"; path = "Target Support Files/Pods-ClassScheduler (macOS)/Pods-ClassScheduler (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		C401525B262408BD00AD50F2 /* LessonAppointmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonAppointmentDetailView.swift; sourceTree = "<group>"; };
+		C438697D26269A7C00B22C1D /* SubjectsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsResult.swift; sourceTree = "<group>"; };
+		C43869842626ADA400B22C1D /* CurrentTrackResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTrackResult.swift; sourceTree = "<group>"; };
+		C43869892626AE0400B22C1D /* CurrentPointResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPointResult.swift; sourceTree = "<group>"; };
 		C4403BCD261EDBFD00E0B9EE /* AppDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegator.swift; sourceTree = "<group>"; };
 		C4403CC0261EFB0D00E0B9EE /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		C451BA42261C663F0046CFBD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -358,11 +367,12 @@
 		8EC02179261AF08B00856139 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8EC021A1261AFBA800856139 /* Student.swift */,
+				8E670BD62621E7B5005755EF /* CurrentLessonPosition.swift */,
 				8EC021A6261AFBF600856139 /* LessonAppointment.swift */,
 				8E670BDB2621E7C0005755EF /* ParentsInfo.swift */,
-				8E670BD62621E7B5005755EF /* CurrentLessonPosition.swift */,
 				8E670BE02621F5EC005755EF /* Skill.swift */,
+				8EC021A1261AFBA800856139 /* Student.swift */,
+				8EA007F026249400006C940E /* Teacher.swift */,
 				8E670BE72621F607005755EF /* UserTag.swift */,
 			);
 			path = Models;
@@ -414,6 +424,16 @@
 			path = NavBar;
 			sourceTree = "<group>";
 		};
+		C438697C26269A5900B22C1D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C438697D26269A7C00B22C1D /* SubjectsResult.swift */,
+				C43869842626ADA400B22C1D /* CurrentTrackResult.swift */,
+				C43869892626AE0400B22C1D /* CurrentPointResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C4403BCA261EDBD700E0B9EE /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,10 +457,10 @@
 		C4F5CD0F261C2A8F002A82D8 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				C451BA42261C663F0046CFBD /* Services.swift */,
 				C451BA49261C71F70046CFBD /* API.swift */,
 				8E670BBB2621E2E1005755EF /* MockData.swift */,
-				8EA007F026249400006C940E /* Teacher.swift */,
+				C451BA42261C663F0046CFBD /* Services.swift */,
+				C438697C26269A5900B22C1D /* Models */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -633,6 +653,7 @@
 				8E2D52DB261B56FE00B59BEF /* StudentListView.swift in Sources */,
 				C4E41D312625ABF500E0F07B /* IndicatorView.swift in Sources */,
 				C4403CC1261EFB0D00E0B9EE /* AlertMessage.swift in Sources */,
+				C438698A2626AE0400B22C1D /* CurrentPointResult.swift in Sources */,
 				8E47D3B6261B5BD00060AC04 /* SettingView.swift in Sources */,
 				C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				C4E41D2A2625A96900E0F07B /* CSError.swift in Sources */,
@@ -651,6 +672,7 @@
 				8E670BE82621F607005755EF /* UserTag.swift in Sources */,
 				8ECFA733261CA0E9008FFE36 /* HTagView.swift in Sources */,
 				8E670BBC2621E2E1005755EF /* MockData.swift in Sources */,
+				C438697E26269A7C00B22C1D /* SubjectsResult.swift in Sources */,
 				8E2104EF2622962600931B7E /* View+Extension.swift in Sources */,
 				C4BAEF8226202439009AFFA4 /* DatabaseExtension.swift in Sources */,
 				8E2D52D6261B516A00B59BEF /* RootView.swift in Sources */,
@@ -660,6 +682,7 @@
 				8EC02189261AF0F200856139 /* AppAction.swift in Sources */,
 				8EC021AE261AFDB700856139 /* LessonListView.swift in Sources */,
 				8EC0219D261AFB7400856139 /* AppointmentBlock.swift in Sources */,
+				C43869852626ADA400B22C1D /* CurrentTrackResult.swift in Sources */,
 				8E670BE12621F5EC005755EF /* Skill.swift in Sources */,
 				8E670B962621707B005755EF /* MacTextView.swift in Sources */,
 				8EC021A7261AFBF600856139 /* LessonAppointment.swift in Sources */,
@@ -690,6 +713,7 @@
 				8EC0217E261AF0B000856139 /* Store.swift in Sources */,
 				8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */,
 				C4403CC2261EFB0E00E0B9EE /* AlertMessage.swift in Sources */,
+				C438698B2626AE0400B22C1D /* CurrentPointResult.swift in Sources */,
 				8ED5EC83261B5C5900433B17 /* SettingView.swift in Sources */,
 				C401525D262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */,
 				C4403BCF261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
@@ -697,6 +721,7 @@
 				8ED5EC9B261B618700433B17 /* StudentList.swift in Sources */,
 				C4BAEF8B2620293A009AFFA4 /* LogSystem.swift in Sources */,
 				8EA007F226249400006C940E /* Teacher.swift in Sources */,
+				C438697F26269A7C00B22C1D /* SubjectsResult.swift in Sources */,
 				C451BA4B261C71F70046CFBD /* API.swift in Sources */,
 				8E80AB00261DE67C0099B92D /* CourseCalendar.swift in Sources */,
 				8E670BE22621F5EC005755EF /* Skill.swift in Sources */,
@@ -712,6 +737,7 @@
 				8E670BDD2621E7C0005755EF /* ParentsInfo.swift in Sources */,
 				8ECFA739261CA0EE008FFE36 /* VTagView.swift in Sources */,
 				8E2104F02622962600931B7E /* View+Extension.swift in Sources */,
+				C43869862626ADA400B22C1D /* CurrentTrackResult.swift in Sources */,
 				C4E41D322625ABF500E0F07B /* IndicatorView.swift in Sources */,
 				8E670BBD2621E2E1005755EF /* MockData.swift in Sources */,
 				C451BA46261C66430046CFBD /* Services.swift in Sources */,

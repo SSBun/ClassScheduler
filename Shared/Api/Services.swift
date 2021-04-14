@@ -14,8 +14,8 @@ enum Services {
     case getSubjects(studentId: String)
     case getAllTracks(subjectId: Int)
     case getCurrentTrack(studentId: String, subjectId: Int)
-    case getAllLessons(trackId: Int)
-    case getCurrentLesson(studentId: String, trackId: Int)
+    case getAllPoints(trackId: Int)
+    case getCurrentPoint(studentId: String, trackId: Int)
     case appointment(studentId: String, teacherId: Int, subjectId: Int, trackId: Int, pointId: Int, time: Int)
 }
 
@@ -28,8 +28,8 @@ extension Services: TargetType {
         case .getSubjects(studentId: _),
              .getAllTracks(subjectId: _),
              .getCurrentTrack(studentId: _, subjectId: _),
-             .getAllLessons(trackId: _),
-             .getCurrentLesson(studentId: _, trackId: _):
+             .getAllPoints(trackId: _),
+             .getCurrentPoint(studentId: _, trackId: _):
             return URL(string: "https://api-education-codemaster.codemao.cn")!
         case .appointment(studentId: _, teacherId: _, subjectId: _, trackId: _, pointId: _, time: _):
             return URL(string: "https://api-attendance-codemaster.codemao.cn")!
@@ -45,11 +45,11 @@ extension Services: TargetType {
         case .getAllTracks(subjectId: let subjectId):
             return "/admin/lessons/knowledge/subjects/\(subjectId)/tracks/all"
         case .getCurrentTrack(studentId: let studentId, subjectId: let subjectId):
-            return "/admin/lessons/student-position/users/\(studentId)/tracks?subject_id=\(subjectId)"
-        case .getAllLessons(trackId: let trackId):
+            return "/admin/lessons/student-position/users/\(studentId)/tracks?subject_id=\(subjectId)".urlEscaped
+        case .getAllPoints(trackId: let trackId):
             return "/admin/lessons/knowledge/tracks/\(trackId)/points/all"
-        case .getCurrentLesson(studentId: let studentId, trackId: let trackId):
-            return "/admin/lessons/student-position/users/\(studentId)/points?track_id=\(trackId)"
+        case .getCurrentPoint(studentId: let studentId, trackId: let trackId):
+            return "/admin/lessons/student-position/users/\(studentId)/points?track_id=\(trackId)".urlEscaped
         case .appointment(studentId: _, teacherId: _, subjectId: _, trackId: _, pointId: _, time: _):
             return "/attendances/inside"
         }
@@ -61,8 +61,8 @@ extension Services: TargetType {
              .getSubjects(studentId: _),
              .getAllTracks(subjectId: _),
              .getCurrentTrack(studentId: _, subjectId: _),
-             .getAllLessons(trackId: _),
-             .getCurrentLesson(studentId: _, trackId: _):
+             .getAllPoints(trackId: _),
+             .getCurrentPoint(studentId: _, trackId: _):
             return .get
         case .appointment(studentId: _, teacherId: _, subjectId: _, trackId: _, pointId: _, time: _):
             return .post
@@ -79,8 +79,8 @@ extension Services: TargetType {
              .getSubjects(studentId: _),
              .getAllTracks(subjectId: _),
              .getCurrentTrack(studentId: _, subjectId: _),
-             .getAllLessons(trackId: _),
-             .getCurrentLesson(studentId: _, trackId: _):
+             .getAllPoints(trackId: _),
+             .getCurrentPoint(studentId: _, trackId: _):
             return .requestPlain
         case .appointment(studentId: let studentId,
                           teacherId: let teacherId,
@@ -102,7 +102,7 @@ extension Services: TargetType {
         return ["Content-type": "application/json",
                 "authorization_type": "3",
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36",
-                "Cookie": Teacher.shared.token]
+                "Cookie": Teacher.mock.token ?? ""]
     }
 }
 

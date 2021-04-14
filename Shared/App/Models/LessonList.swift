@@ -23,7 +23,9 @@ struct LessonList {
 extension LessonList {
     struct AppointmentDetail {
         var appointment: Int?
-        var isRequesting: Bool = false
+        var isRequesting: Bool { isRequestingInfo || isRequestingAppointment }
+        var isRequestingInfo: Bool = false
+        var isRequestingAppointment: Bool = false
         var requestedResult: Result<String, CSError>?
     }
 }

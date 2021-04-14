@@ -16,19 +16,34 @@ protocol AppCommand {
     func execute(in store: Store)
 }
 
+struct InitializeAppCommand: AppCommand {
+    let state: AppState
+    func execute(in store: Store) {
+        do {
+            var newState = state
+            let students = try Student.db.get()
+            var studentMap: [String: Student] = [:]
+            students.forEach { student in
+                studentMap[student.id] = student
+            }
+            newState.studentList.studentsData = studentMap
+            newState.studentList.searchedStudents = studentMap.keys.sorted()
+            store.dispatch(.loadApp(newState))
+            store.dispatch(.switchWeek(0))
+        } catch(let error) {
+            LOG(category: .command, error)
+        }
+    }
+}
+
 struct RequestStudentInfoCommand: AppCommand {
     let id: String
     
     func execute(in store: Store) {
         firstly {
             API<Services>.promise(for: .info(id: id))
-        }.done { response in
-            do {
-                let student = try Student.unpack(response.data)
-                store.dispatch(.refreshStudentInfo(student))
-            } catch(let error) {
-                LOG(level: .error, error)
-            }
+        }.done { student in
+            store.dispatch(.refreshStudentInfo(student))
         }.catch { error in
             LOG(level: .error, error)
         }
@@ -41,8 +56,8 @@ struct RequestAppointmentCommand: AppCommand {
     func execute(in store: Store) {
         let token = SubscriptionToken()
         Future<String, CSError> { promise in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
-                promise(Bool.random() ? .success("预约课程成功") : .failure("预约课程失败"))
+            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                promise(.success("预约课程成功"))
             }
         }
         .eraseToAnyPublisher()
@@ -64,8 +79,8 @@ struct CancelAppointmentCommand: AppCommand {
         let token = SubscriptionToken()
         
         Future<String, CSError> { promise in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
-                promise(Bool.random() ? .success("取消预约成功") : .failure("取消预约失败"))
+            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                promise(.success("取消预约成功"))
             }
         }
         .eraseToAnyPublisher()
@@ -85,44 +100,34 @@ struct RequestAppointmentInfoCommand: AppCommand {
     let student: String
     
     func execute(in store: Store) {
-        var info: LessonAppointment.LessonInfo = .init()
-        info.studentId = student
+        var subject: CourseSubject?
+        var track: CourseTrack?        
         firstly {
-            API<Services>.promise(for: .getSubjects(studentId: student))
-        }.then { response -> Promise<Response> in
-            let json = JSON(response.data)
-            let subject = json["subjects"][0]
-            info.subjectId = subject["id"].intValue
-            info.subjectName = subject["name"].stringValue
-            return API<Services>.promise(for: .getCurrentTrack(studentId: student, subjectId: subject["id"].intValue))
-        }.then { response -> Promise<Response> in
-            let json = JSON(response.data)
-            let subject = json["subjects"][0]
-            info.subjectId = subject["id"].intValue
-            info.subjectName = subject["name"].stringValue
-            return API<Services>.promise(for: .getCurrentTrack(studentId: student, subjectId: subject["id"].intValue))
-        }.catch { _ in
-            
+            API<Services>.promise(for: .getSubjects(studentId: student)) as Promise<SubjectsResult>
+        }.compactMap {
+            $0.subjects.first
+        }.get {
+            subject = $0
+        }.then {
+            API<Services>.promise(for: .getCurrentTrack(studentId: student, subjectId: $0.id)) as Promise<CurrentTrackResult>
+        }.compactMap {
+            $0.tracks.first
+        }.get {
+            track = $0
+        }.then {
+            API<Services>.promise(for: .getCurrentPoint(studentId: student, trackId: $0.id)) as Promise<CurrentPointResult>
+        }.compactMap {
+            $0.points.first
+        }.done { point in
+            if let subject = subject, let track = track {
+                let info = LessonAppointment.Info(subject: subject, track: track, point: point)
+                store.dispatch(.requestAppointmentInfoCompletion(.success(info)))
+            } else {
+                store.dispatch(.requestAppointmentInfoCompletion(.failure(.init(stringLiteral: "获取课程信息失败"))))
+            }
+        }.catch { error in
+            store.dispatch(.requestAppointmentInfoCompletion(.failure(.init(stringLiteral: "获取课程信息失败"))))
         }
     }
 }
 
-struct InitializeAppCommand: AppCommand {
-    let state: AppState
-    func execute(in store: Store) {
-        do {
-            var newState = state
-            let students = try Student.db.get()
-            var studentMap: [String: Student] = [:]
-            students.forEach { student in
-                studentMap[student.id] = student
-            }
-            newState.studentList.studentsData = studentMap
-            newState.studentList.searchedStudents = studentMap.keys.sorted()
-            store.dispatch(.loadApp(newState))
-            store.dispatch(.switchWeek(0))
-        } catch(let error) {
-            LOG(category: .command, error)
-        }
-    }
-}

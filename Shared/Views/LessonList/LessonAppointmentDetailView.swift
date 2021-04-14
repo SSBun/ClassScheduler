@@ -22,17 +22,18 @@ struct LessonAppointmentDetailView: View {
             openningTimeString += "\(openningTime.monthName(.default))"
             openningTimeString += "\(openningTime.day)号 "
         }
-        return [("姓名", student?.fullName),
-        ("课程", "bbbbbbbbb"),
-        ("课节", "aaaaa课节"),
-        ("时间", openningTimeString),
-        ("时间戳", "\(Int(appointment?.openningTime.timeIntervalSince1970 ?? 0))"),
-        ("老师", Teacher.shared.name)]
+        return [("姓名", [student?.fullName, student?.nickName, student?.userName].compactMap({$0}).first),
+                ("系列", appointment?.info?.subject.name),
+                ("课程", appointment?.info?.track.name),
+                ("课节", appointment?.info?.point.name),
+                ("时间", openningTimeString),
+                ("时间戳", "\(Int(appointment?.openningTime.timeIntervalSince1970 ?? 0))"),
+                ("老师", Teacher.mock.name)]
     }
     
     var body: some View {
         ScrollView(.vertical) {
-            if let appointment = appointment {
+            if let appointment = appointment, let student = student {
                 VStack(alignment: .leading) {
                     Text("预约信息")
                         .foregroundColor(Color.white.opacity(0.5))
@@ -45,17 +46,17 @@ struct LessonAppointmentDetailView: View {
                             .padding(.horizontal, 10)
                     }
                     Button {
-                        
+                        store.dispatch(.requestAppointmentInfo(student: student.id))
                     } label: {
                         Group {
-                            if detailInfo.isRequesting {
+                            if detailInfo.isRequestingInfo {
                                 IndicatorView()
                             } else {
-                                Text("获取预约信息")
+                                Text("刷新预约信息")
                             }
                         }
                         .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                        .background(appointment.state == .normal ? Color.blue.opacity(0.8) : Color.red.opacity(0.8))
+                        .background(Color("student_block_bg_noinfo").opacity(0.8))
                         .cornerRadius(10)
                     }
                     .disabled(detailInfo.isRequesting)
@@ -70,7 +71,7 @@ struct LessonAppointmentDetailView: View {
                         }
                     } label: {
                         Group {
-                            if detailInfo.isRequesting {
+                            if detailInfo.isRequestingAppointment {
                                 IndicatorView()
                             } else {
                                 if appointment.state == .normal {
@@ -84,7 +85,7 @@ struct LessonAppointmentDetailView: View {
                         .background(appointment.state == .normal ? Color.blue.opacity(0.8) : Color.red.opacity(0.8))
                         .cornerRadius(10)
                     }
-                    .disabled(detailInfo.isRequesting)
+                    .disabled(detailInfo.isRequesting || appointment.info == nil)
                     .buttonStyle(PlainButtonStyle())
                     .padding(.horizontal, 10)
                     .padding(.top, 10)
@@ -115,8 +116,8 @@ extension LessonAppointmentDetailView {
                 Text("\(title): ")
                     .font(.system(size: 15, weight: .bold, design: .default))
                     .foregroundColor(Color.white.opacity(0.5))
-                Text(value ?? "null")
-                    .font(.system(size: 16, weight: .heavy, design: .default))
+                Text(value ?? "NULL")
+                    .font(.system(size: 16, weight: .heavy, design: .rounded))
                     .lineLimit(3)
                     .foregroundColor(Color.white.opacity(0.8))
                 Spacer()

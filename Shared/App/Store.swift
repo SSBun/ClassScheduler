@@ -113,10 +113,10 @@ extension Store {
                 LOG(level: .warning, "This is requesting an appointment, so you can't select another appointment")
             }
         case .requestAppointment(let lessonAppointment):
-            newState.lessonList.appointmentDetail.isRequesting = true
+            newState.lessonList.appointmentDetail.isRequestingAppointment = true
             command = RequestAppointmentCommand(appointment: lessonAppointment)
         case .requestAppointmentCompletion(let result):
-            newState.lessonList.appointmentDetail.isRequesting = false
+            newState.lessonList.appointmentDetail.isRequestingAppointment = false
             newState.lessonList.appointmentDetail.requestedResult = result
             if let appointmentId = newState.lessonList.appointmentDetail.appointment,
                var appointment = newState.appointmentsData[appointmentId],
@@ -130,10 +130,10 @@ extension Store {
                 }
             }
         case .cancelAppointment(let appointment):
-            newState.lessonList.appointmentDetail.isRequesting = true
+            newState.lessonList.appointmentDetail.isRequestingAppointment = true
             command = CancelAppointmentCommand(appointment: appointment)
         case .cancelAppointmentCompletion(let result):
-            newState.lessonList.appointmentDetail.isRequesting = false
+            newState.lessonList.appointmentDetail.isRequestingAppointment = false
             newState.lessonList.appointmentDetail.requestedResult = result
             if let appointmentId = newState.lessonList.appointmentDetail.appointment,
                var appointment = newState.appointmentsData[appointmentId],
@@ -147,16 +147,17 @@ extension Store {
                 }
             }
         case .requestAppointmentInfo(student: let student):
-            newState.lessonList.appointmentDetail.isRequesting = true
+            newState.lessonList.appointmentDetail.isRequestingInfo = true
             command = RequestAppointmentInfoCommand(student: student)
         case .requestAppointmentInfoCompletion(let result):
-            newState.lessonList.appointmentDetail.isRequesting = false
+            newState.lessonList.appointmentDetail.isRequestingInfo = false
+            newState.lessonList.appointmentDetail.requestedResult = result.map({ _ in "获取预约信息成功" })
             if var appointment = newState.appointmentsData[newState.lessonList.appointmentDetail.appointment ?? -1],
                case let .success(data) = result {
                 do {
-                    appointment.lessonInfo = data
+                    appointment.info = data
                     newState.appointmentsData[appointment.id] = appointment
-                    try appointment.db.update(on: [LessonAppointment.Properties.lessonInfo], where: LessonAppointment.Properties.id == appointment.id)
+                    try appointment.db.update(on: [LessonAppointment.Properties.info], where: LessonAppointment.Properties.id == appointment.id)
                 } catch (_) {
                     
                 }
