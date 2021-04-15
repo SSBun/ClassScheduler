@@ -23,8 +23,8 @@ struct RootView: View {
                         .zIndex(store.appState.sidebar.sidebarSelection == .lessonList ? 1 : 0)
                     StudentListView()
                         .zIndex(store.appState.sidebar.sidebarSelection == .studentList ? 1 : 0)
-                    SettingView()
-                        .zIndex(store.appState.sidebar.sidebarSelection == .settings ? 1 : 0)
+                    CourseEvaluationView()
+                        .zIndex(store.appState.sidebar.sidebarSelection == .courseEvaluation ? 1 : 0)
                 }
                 .clipped()
             }
