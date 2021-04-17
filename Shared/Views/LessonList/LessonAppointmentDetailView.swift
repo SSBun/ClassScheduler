@@ -76,7 +76,7 @@ struct LessonAppointmentDetailView: View {
                                 if appointment.state == .normal {
                                     Text("预约课程")
                                 } else {
-                                    Text("取消预约")
+                                    Text("标记为未预约")
                                 }
                             }
                         }

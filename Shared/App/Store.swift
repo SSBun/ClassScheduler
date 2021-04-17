@@ -23,6 +23,18 @@ class Store: ObservableObject {
             LOG("Search Student: \(content)")
             self.dispatch(.searchStudents(content))
         }.store(in: &bag)
+        
+        appState.courseEvaluation.infoObserver.courseInfoChanged.sink { [self] in
+            self.dispatch(.updateCourse(appState.courseEvaluation.currentCourse))
+        }.store(in: &bag)
+        
+        appState.courseEvaluation.infoObserver.coursePerformanceInfoChanged.sink { [self] in
+            self.dispatch(.updateCoursePerformance(appState.courseEvaluation.selectedPerformance))
+        }.store(in: &bag)
+        
+        appState.courseEvaluation.infoObserver.teacherMessageInfoChanged.sink { [self] in
+            self.dispatch(.updateTeacherMessage(appState.courseEvaluation.selectedMessage))
+        }.store(in: &bag)
     }
 }
 
@@ -162,8 +174,159 @@ extension Store {
                     
                 }
             }
+        case .updateCourse(let courseId):
+            if let id = courseId {
+                if var course = newState.courseEvaluation.coursesData[id] {
+                    do {
+                        course.title = newState.courseEvaluation.infoObserver.courseTitle
+                        course.evaluation = newState.courseEvaluation.infoObserver.courseContent
+                        try course.db.update(on: Course.Properties.all, where: Course.Properties.id == id)
+                        newState.courseEvaluation.coursesData[id] = course
+                        newState = updateEvaluation(newState)
+                    } catch(_) {
+                    }
+                }
+            } else {
+                do {
+                    var course = Course(id: 0, title: "无名",
+                                        evaluation: "暂无内容")
+                    try course.db.insert()
+                    course.id = try Course.db.get(orderBy: [Course.Properties.id.asOrder(by: .descending)], limit: 1, offset: 0).first!.id
+                    newState.courseEvaluation.coursesData[course.id] = course
+                    newState.courseEvaluation.currentCourse = course.id
+                } catch(_) {
+                    
+                }
+            }
+        case .updateCoursePerformance(let performanceId):
+            if let id = performanceId {
+                if var performance = newState.courseEvaluation.coursePerformances[id] {
+                    do {
+                        performance.content = newState.courseEvaluation.infoObserver.coursePerformance
+                        try performance.db.update(on: CoursePerformance.Properties.all, where: CoursePerformance.Properties.id == id)
+                        newState.courseEvaluation.coursePerformances[id] = performance
+                        newState = updateEvaluation(newState)
+                    } catch(_) {
+                        
+                    }
+                }
+            } else {
+                do {
+                    var performance = CoursePerformance(id: 0, content: newState.courseEvaluation.infoObserver.coursePerformance)
+                    try performance.db.insert()
+                    performance.id = try CoursePerformance.db.get(orderBy: [Course.Properties.id.asOrder(by: .descending)], limit: 1, offset: 0).first!.id
+                    newState.courseEvaluation.coursePerformances[performance.id] = performance
+                } catch(_) {
+                    
+                }
+            }
+        case .updateTeacherMessage(let messageId):
+            if let id = messageId {
+                if var message = newState.courseEvaluation.teacherMessages[id] {
+                    do {
+                        message.content = newState.courseEvaluation.infoObserver.teacherMessage
+                        try message.db.update(on: TeacherMessage.Properties.all, where: TeacherMessage.Properties.id == id)
+                        newState.courseEvaluation.teacherMessages[id] = message
+                        newState = updateEvaluation(newState)
+                    } catch(_) {
+                        
+                    }
+                }
+            } else {
+                do {
+                    var message = TeacherMessage(id: 0, content: newState.courseEvaluation.infoObserver.teacherMessage)
+                    try message.db.insert()
+                    message.id = try TeacherMessage.db.get(orderBy: [Course.Properties.id.asOrder(by: .descending)], limit: 1, offset: 0).first!.id
+                    newState.courseEvaluation.teacherMessages[message.id] = message
+                } catch(_) {
+                    
+                }
+            }
+        case .selectCoursePerformance(let id):
+            if let performance = newState.courseEvaluation.coursePerformances[id] {
+                newState.courseEvaluation.selectedPerformance = id
+                newState.courseEvaluation.infoObserver.coursePerformance = performance.content
+                newState = updateEvaluation(newState)
+            }
+        case .selectTeachingMessage(let id):
+            if let message = newState.courseEvaluation.teacherMessages[id] {
+                newState.courseEvaluation.selectedMessage = id
+                newState.courseEvaluation.infoObserver.teacherMessage = message.content
+                newState = updateEvaluation(newState)
+            }
+        case .selectCourse(let id):
+            if let course = newState.courseEvaluation.coursesData[id] {
+                newState.courseEvaluation.currentCourse = id
+                newState.courseEvaluation.infoObserver.courseTitle = course.title
+                newState.courseEvaluation.infoObserver.courseContent = course.evaluation
+            }
+        case .activateCourse(let id, let isEnabled):
+            if let isEnabled = isEnabled {
+                if !newState.courseEvaluation.selectedCourses.contains(id) {
+                    if isEnabled {
+                        newState.courseEvaluation.selectedCourses.append(id)
+                    }
+                } else if !isEnabled, let index = newState.courseEvaluation.selectedCourses.firstIndex(of: id) {
+                    newState.courseEvaluation.selectedCourses.remove(at: index)
+                }
+            } else {
+                if !newState.courseEvaluation.selectedCourses.contains(id) {
+                    newState.courseEvaluation.selectedCourses.append(id)
+                } else if let index = newState.courseEvaluation.selectedCourses.firstIndex(of: id) {
+                    newState.courseEvaluation.selectedCourses.remove(at: index)
+                }
+            }
+            newState = updateEvaluation(newState)
+        case .removeCourse(let id):
+            do {
+                try Course.db.delete(where: Course.Properties.id == id)
+                newState.courseEvaluation.coursesData.removeValue(forKey: id)
+                newState = updateEvaluation(newState)
+            } catch(_) {
+                
+            }
+        case .removeCoursePerformance(let id):
+            do {
+                try CoursePerformance.db.delete(where: CoursePerformance.Properties.id == id)
+                newState.courseEvaluation.coursePerformances.removeValue(forKey: id)
+                newState = updateEvaluation(newState)
+            } catch(_) {
+                
+            }
+        case .removeTeacherMessage(let id):
+            do {
+                try TeacherMessage.db.delete(where: TeacherMessage.Properties.id == id)
+                newState.courseEvaluation.teacherMessages.removeValue(forKey: id)
+                newState = updateEvaluation(newState)
+            } catch(_) {
+                
+            }
+        case .deactivateAllCourse:
+            newState.courseEvaluation.selectedCourses = []
+            newState = updateEvaluation(newState)
+        case .updateEvaluationResult:
+            newState = updateEvaluation(newState)
         }
         return (newState, command)
+    }
+    
+    static func updateEvaluation(_ state: AppState) -> AppState {
+        var newState = state
+        var result = ""
+        let courses = newState.courseEvaluation.selectedCourses.compactMap({ newState.courseEvaluation.coursesData[$0] })
+        courses.forEach {
+            result += "[课程名称]: \($0.title)\n"
+            result += "[完成情况]: \($0.evaluation)\n"
+        }
+        if let performance = newState.courseEvaluation.coursePerformances[newState.courseEvaluation.selectedPerformance] {
+            result += "[课堂表现]: \(performance.textContent)\n"
+        }
+        
+        if let message = newState.courseEvaluation.teacherMessages[newState.courseEvaluation.selectedMessage] {
+            result += "[老师寄语]: \(message.textContent)\n"
+        }
+        newState.courseEvaluation.result = result
+        return newState
     }
     
     static func insertAppointment(_ state: AppState, _ student: String, _ to: String) -> AppState {
@@ -248,6 +411,8 @@ extension Store {
         }
         return newState
     }
+    
+    
     
     static func switchWeek(_ state: AppState, _ weekOffset: Int) -> AppState {
         var newState = state

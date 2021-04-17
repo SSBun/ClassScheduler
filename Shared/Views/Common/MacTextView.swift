@@ -23,7 +23,9 @@ struct MacTextView: NSViewRepresentable {
     }
     
     func updateNSView(_ nsView: ContentView, context: Context) {
-        nsView.text = text
+        if nsView.text != text {
+            nsView.text = text
+        }
         nsView.placeholder = placeholder
         nsView.font = font
         nsView.backgroundColor = backgroundColor
@@ -32,16 +34,19 @@ struct MacTextView: NSViewRepresentable {
 
 extension MacTextView {
     class ContentView: NiblessView, NSTextViewDelegate {
-        var text: String = "" {
-            didSet {
-                textView.string = text
+        var text: String {
+            set {
+                textView.string = newValue
+            }
+            get {
+                textView.string
             }
         }
         var textDidChanged: ((String) -> Void)?
         var placeholder: String? { didSet { refreshConfig() } }
         
         let textView = NSTextView()
-        let placeholderLabel = NSTextField()
+        let placeholderLabel = StaticTextField()
         var font: NSFont? { didSet { refreshConfig() } }
         var backgroundColor: NSColor? { didSet { refreshConfig() }}
         
@@ -69,8 +74,6 @@ extension MacTextView {
             }
             
             textView.delegate = self
-            placeholderLabel.isEditable = false
-            placeholderLabel.isEnabled = false
             placeholderLabel.backgroundColor = .clear
             placeholderLabel.maximumNumberOfLines = 0
             placeholderLabel.isBordered = false
@@ -86,8 +89,10 @@ extension MacTextView {
         }
         
         func textDidChange(_ notification: Notification) {
-            textDidChanged?(textView.string)
-            placeholderLabel.isHidden = textView.string.count > 0
+            if notification.object as! NSObject == textView {
+                textDidChanged?(textView.string)
+                placeholderLabel.isHidden = textView.string.count > 0
+            }
         }
     }
 }

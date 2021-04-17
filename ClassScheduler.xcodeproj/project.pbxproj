@@ -30,6 +30,12 @@
 		8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D52DA261B56FE00B59BEF /* StudentListView.swift */; };
 		8E47D3B6261B5BD00060AC04 /* CourseEvaluationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E47D3B5261B5BD00060AC04 /* CourseEvaluationView.swift */; };
 		8E53A0FF26209801005A3647 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53A0FE26209801005A3647 /* SearchField.swift */; };
+		8E66EAAA262A7EBE00B75DE5 /* RightClickableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66EAA9262A7EBE00B75DE5 /* RightClickableView.swift */; };
+		8E66EAAB262A7EBE00B75DE5 /* RightClickableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66EAA9262A7EBE00B75DE5 /* RightClickableView.swift */; };
+		8E66EAAF262A89B300B75DE5 /* Identifiable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66EAAE262A89B300B75DE5 /* Identifiable+Extension.swift */; };
+		8E66EAB0262A89B300B75DE5 /* Identifiable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66EAAE262A89B300B75DE5 /* Identifiable+Extension.swift */; };
+		8E66EAB4262AA00B00B75DE5 /* StaticTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66EAB3262AA00B00B75DE5 /* StaticTextField.swift */; };
+		8E66EAB5262AA00B00B75DE5 /* StaticTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66EAB3262AA00B00B75DE5 /* StaticTextField.swift */; };
 		8E670B9126215B3A005755EF /* ImportStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670B9026215B3A005755EF /* ImportStudentView.swift */; };
 		8E670B9226215B3A005755EF /* ImportStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670B9026215B3A005755EF /* ImportStudentView.swift */; };
 		8E670B962621707B005755EF /* MacTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E670B952621707B005755EF /* MacTextView.swift */; };
@@ -139,6 +145,9 @@
 		8E2D52DA261B56FE00B59BEF /* StudentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListView.swift; sourceTree = "<group>"; };
 		8E47D3B5261B5BD00060AC04 /* CourseEvaluationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEvaluationView.swift; sourceTree = "<group>"; };
 		8E53A0FE26209801005A3647 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		8E66EAA9262A7EBE00B75DE5 /* RightClickableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightClickableView.swift; sourceTree = "<group>"; };
+		8E66EAAE262A89B300B75DE5 /* Identifiable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Identifiable+Extension.swift"; sourceTree = "<group>"; };
+		8E66EAB3262AA00B00B75DE5 /* StaticTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTextField.swift; sourceTree = "<group>"; };
 		8E670B9026215B3A005755EF /* ImportStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportStudentView.swift; sourceTree = "<group>"; };
 		8E670B952621707B005755EF /* MacTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTextView.swift; sourceTree = "<group>"; };
 		8E670B9A2621729F005755EF /* NiblessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessView.swift; sourceTree = "<group>"; };
@@ -253,6 +262,7 @@
 				C4F5CD10261C2AA6002A82D8 /* Color+Extension.swift */,
 				8ECA1B5B261F5883004B169D /* CSExtension.swift */,
 				8E2104EE2622962600931B7E /* View+Extension.swift */,
+				8E66EAAE262A89B300B75DE5 /* Identifiable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -298,6 +308,8 @@
 				8E670B952621707B005755EF /* MacTextView.swift */,
 				8E670B9A2621729F005755EF /* NiblessView.swift */,
 				C4E41D302625ABF500E0F07B /* IndicatorView.swift */,
+				8E66EAA9262A7EBE00B75DE5 /* RightClickableView.swift */,
+				8E66EAB3262AA00B00B75DE5 /* StaticTextField.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -660,6 +672,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2D52B4261B0CF700B59BEF /* Codable+Extension.swift in Sources */,
+				8E66EAAA262A7EBE00B75DE5 /* RightClickableView.swift in Sources */,
 				C4F5CD11261C2AA6002A82D8 /* Color+Extension.swift in Sources */,
 				8EC0217D261AF0B000856139 /* Store.swift in Sources */,
 				8E2D52DB261B56FE00B59BEF /* StudentListView.swift in Sources */,
@@ -667,6 +680,7 @@
 				C4403CC1261EFB0D00E0B9EE /* AlertMessage.swift in Sources */,
 				C438698A2626AE0400B22C1D /* CurrentPointResult.swift in Sources */,
 				8E47D3B6261B5BD00060AC04 /* CourseEvaluationView.swift in Sources */,
+				8E66EAAF262A89B300B75DE5 /* Identifiable+Extension.swift in Sources */,
 				C4403BCE261EDBFD00E0B9EE /* AppDelegator.swift in Sources */,
 				C4E41D2A2625A96900E0F07B /* CSError.swift in Sources */,
 				8E670B9B2621729F005755EF /* NiblessView.swift in Sources */,
@@ -702,6 +716,7 @@
 				8EC021A7261AFBF600856139 /* LessonAppointment.swift in Sources */,
 				C401525C262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */,
 				8ECA1B5C261F5883004B169D /* CSExtension.swift in Sources */,
+				8E66EAB4262AA00B00B75DE5 /* StaticTextField.swift in Sources */,
 				8EA007F126249400006C940E /* Teacher.swift in Sources */,
 				8E2D52C7261B3E0700B59BEF /* BlurView.swift in Sources */,
 				8E2D52AC261B0ADE00B59BEF /* DragDropData.swift in Sources */,
@@ -726,9 +741,11 @@
 				C4F5CD12261C2AA6002A82D8 /* Color+Extension.swift in Sources */,
 				8E53A0FF26209801005A3647 /* SearchField.swift in Sources */,
 				8EC0217E261AF0B000856139 /* Store.swift in Sources */,
+				8E66EAAB262A7EBE00B75DE5 /* RightClickableView.swift in Sources */,
 				8E2D52DC261B56FE00B59BEF /* StudentListView.swift in Sources */,
 				C4403CC2261EFB0E00E0B9EE /* AlertMessage.swift in Sources */,
 				C438698B2626AE0400B22C1D /* CurrentPointResult.swift in Sources */,
+				8E66EAB0262A89B300B75DE5 /* Identifiable+Extension.swift in Sources */,
 				8ED5EC83261B5C5900433B17 /* CourseEvaluationView.swift in Sources */,
 				8EBB37542628842700FEC99C /* Course.swift in Sources */,
 				C401525D262408BD00AD50F2 /* LessonAppointmentDetailView.swift in Sources */,
@@ -751,6 +768,7 @@
 				8E2D52D7261B516A00B59BEF /* RootView.swift in Sources */,
 				8ED5EC88261B5E3C00433B17 /* StudentDetailView.swift in Sources */,
 				8E670BDD2621E7C0005755EF /* ParentsInfo.swift in Sources */,
+				8E66EAB5262AA00B00B75DE5 /* StaticTextField.swift in Sources */,
 				8ECFA739261CA0EE008FFE36 /* VTagView.swift in Sources */,
 				8E2104F02622962600931B7E /* View+Extension.swift in Sources */,
 				C43869862626ADA400B22C1D /* CurrentTrackResult.swift in Sources */,

@@ -21,13 +21,41 @@ struct InitializeAppCommand: AppCommand {
     func execute(in store: Store) {
         do {
             var newState = state
+            
             let students = try Student.db.get()
             var studentMap: [String: Student] = [:]
             students.forEach { student in
                 studentMap[student.id] = student
             }
             newState.studentList.studentsData = studentMap
+            
             newState.studentList.searchedStudents = studentMap.keys.sorted()
+            
+            let courses = try Course.db.get()
+            var coursesData: [Int: Course] = [:]
+            courses.forEach { course in
+                coursesData[course.id] = course
+            }
+            newState.courseEvaluation.coursesData = coursesData
+            newState.courseEvaluation.currentCourse = coursesData.keys.sorted().first ?? 0
+            
+            let performances = try CoursePerformance.db.get()
+            var performancesData: [Int: CoursePerformance] = [:]
+            performances.forEach { performance in
+                performancesData[performance.id] = performance
+            }
+            newState.courseEvaluation.coursePerformances = performancesData
+            newState.courseEvaluation.selectedPerformance = performancesData.keys.sorted().first ?? 0
+            
+            let messages = try TeacherMessage.db.get()
+            var messagesData: [Int: TeacherMessage] = [:]
+            messages.forEach { message in
+                messagesData[message.id] = message
+            }
+            newState.courseEvaluation.teacherMessages = messagesData
+            newState.courseEvaluation.selectedMessage = messagesData.keys.sorted().first ?? 0
+            
+            
             store.dispatch(.loadApp(newState))
             store.dispatch(.switchWeek(0))
         } catch(let error) {
@@ -84,8 +112,8 @@ struct CancelAppointmentCommand: AppCommand {
         let token = SubscriptionToken()
         
         Future<String, CSError> { promise in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-                promise(.success("取消预约成功"))
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
+                promise(.success("已经标记为未预约, 只用于标记,并未进行网络操作,取消预约请在CRM上进行操作"))
             }
         }
         .eraseToAnyPublisher()
