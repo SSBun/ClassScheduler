@@ -32,16 +32,16 @@ extension CourseEvaluation {
         @Published var coursePerformance: String = ""
         @Published var teacherMessage: String = ""
         
-        var courseInfoChanged: AnyPublisher<Void, Never> {
-            $courseTitle.combineLatest($courseContent).map { _ in  }.throttle(for: .milliseconds(200), scheduler: RunLoop.main, latest: true).eraseToAnyPublisher()
-        }
-        
-        var coursePerformanceInfoChanged: AnyPublisher<Void, Never> {
-            $coursePerformance.map({ _ in }).throttle(for: .milliseconds(200), scheduler: RunLoop.main, latest: true).eraseToAnyPublisher()
-        }
-        
-        var teacherMessageInfoChanged: AnyPublisher<Void, Never> {
-            $teacherMessage.map({ _ in }).throttle(for: .milliseconds(200), scheduler: RunLoop.main, latest: true).eraseToAnyPublisher()
-        }
+//        var courseInfoChanged: AnyPublisher<Void, Never> {
+//            $courseTitle.combineLatest($courseContent).map { _ in  }.throttle(for: .milliseconds(200), scheduler: RunLoop.main, latest: true).eraseToAnyPublisher()
+//        }
+//        
+//        var coursePerformanceInfoChanged: AnyPublisher<Void, Never> {
+//            $coursePerformance.map({ _ in }).throttle(for: .milliseconds(200), scheduler: RunLoop.main, latest: true).eraseToAnyPublisher()
+//        }
+//        
+//        var teacherMessageInfoChanged: AnyPublisher<Void, Never> {
+//            $teacherMessage.map({ _ in }).throttle(for: .milliseconds(200), scheduler: RunLoop.main, latest: true).eraseToAnyPublisher()
+//        }
     }
 }

@@ -120,11 +120,12 @@ extension StudentSelector {
                     .buttonStyle(PlainButtonStyle())
                     .padding([.top, .trailing], 5)
                 }
-                Text("\(student?.nickName ?? "暂无信息")")
+                Text("\(student?.fullName ?? "暂无信息")")
                     .font(.system(size: 15, weight: .medium, design: .monospaced))
                     .frame(maxWidth: .infinity, minHeight: 40)
             }
-            .background(Color("student_block_bg_noinfo"))
+            .background(student?.customerId == nil ? Color("student_block_bg_noinfo") : Color("student_block_bg"))
+            .border(store.appState.studentList.currentStudent == student?.id ? Color.orange : Color.clear, width: 2)
             .cornerRadius(6)
             .onTapGesture {
                 store.dispatch(.selectStudent(studentId))

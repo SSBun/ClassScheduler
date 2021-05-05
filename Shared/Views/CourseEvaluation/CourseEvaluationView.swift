@@ -12,6 +12,7 @@ struct CourseEvaluationView: View {
     
     var body: some View {
         HSplitView {
+            StudentSelector(canDrag: false, topOffset: 5)
             ZStack(alignment: .bottomTrailing) {
                 MacTextView(text: $store.appState.courseEvaluation.result, backgroundColor: NSColor(named: "import_student_text_bg"), placeholder: "")
                     .padding(.all, 10)
@@ -33,8 +34,18 @@ struct CourseEvaluationView: View {
             }
             HStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
-                    titleLabel("课程名称")
-                        .padding([.leading, .top], 10)
+                    HStack(alignment: .center, spacing: 20) {
+                        titleLabel("课程名称")
+                        Button {
+                            store.dispatch(.updateCourse(store.appState.courseEvaluation.currentCourse))
+                        } label: {
+                            Image(systemName: "arrow.clockwise.circle")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.orange)
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+                    .padding([.leading, .top], 10)
                     MacTextView(text: $store.appState.courseEvaluation.infoObserver.courseTitle, backgroundColor: NSColor(named: "import_student_text_bg"), placeholder: "")
                         .padding(.all, 10)
                         .background(Color("import_student_text_bg"))
@@ -50,13 +61,23 @@ struct CourseEvaluationView: View {
                         .padding(10)
                         .frame(maxWidth: .infinity, minHeight: 150)
                     VStack(alignment: .leading) {
-                        titleLabel("课堂表现")
-                            .padding(.leading, 10)
-                            .padding(.top, 30)
+                        HStack(alignment: .center, spacing: 20) {
+                            titleLabel("课堂表现")
+                            Button {
+                                store.dispatch(.updateCoursePerformance(store.appState.courseEvaluation.selectedPerformance))
+                            } label: {
+                                Image(systemName: "arrow.clockwise.circle")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.orange)
+                            }.buttonStyle(PlainButtonStyle())
+                        }
+                        .padding(.leading, 10)
+                        .padding(.top, 30)
                         Selector(items: store.appState.courseEvaluation.coursePerformances.values.map{ Selector.Item(id: $0.id, title: $0.content) }.sorted(by: {
                             $0.id < $1.id
                         }),
-                                 selectedItemId: store.appState.courseEvaluation.selectedPerformance) { itemId in
+                        selectedItemId: store.appState.courseEvaluation.selectedPerformance) { itemId in
                             store.dispatch(.selectCoursePerformance(itemId))
                         } addNewHandle: {
                             store.dispatch(.updateCoursePerformance(nil))
@@ -73,12 +94,22 @@ struct CourseEvaluationView: View {
                             .frame(maxWidth: .infinity, minHeight: 150)
                     }
                     VStack(alignment: .leading) {
-                        titleLabel("老师寄语")
-                            .padding(.leading, 10)
+                        HStack(alignment: .center, spacing: 20) {
+                            titleLabel("老师寄语")
+                            Button {
+                                store.dispatch(.updateTeacherMessage(store.appState.courseEvaluation.selectedMessage))
+                            } label: {
+                                Image(systemName: "arrow.clockwise.circle")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(.orange)
+                            }.buttonStyle(PlainButtonStyle())
+                        }
+                        .padding(.leading, 10)
                         Selector(items: store.appState.courseEvaluation.teacherMessages.values.map{ Selector.Item(id: $0.id, title: $0.content) }.sorted(by: {
                             $0.id < $1.id
                         }),
-                                 selectedItemId: store.appState.courseEvaluation.selectedMessage) { itemId in
+                        selectedItemId: store.appState.courseEvaluation.selectedMessage) { itemId in
                             store.dispatch(.selectTeachingMessage(itemId))
                         } addNewHandle: {
                             store.dispatch(.updateTeacherMessage(nil))

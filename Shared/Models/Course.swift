@@ -80,7 +80,7 @@ struct TeacherMessage: Identifiable, Codable, DBTable {
         if content.count == 0 {
             return "没有内容"
         }
-        return content.split(separator: "\n")[0...].joined(separator: "\n")
+        return content.split(separator: "\n")[1...].joined(separator: "\n")
     }
     
     var isAutoIncrement: Bool { true }

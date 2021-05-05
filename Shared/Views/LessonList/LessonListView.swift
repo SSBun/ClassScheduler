@@ -54,6 +54,7 @@ struct LessonListView: View {
                 .background(Color("background"))
                 .zIndex(1)
                 LessonAppointmentDetailView()
+                    .transition(.asymmetric(insertion: .identity, removal: .slide))
                     .isHidden(isAppointmentDetailViewHidden, remove: true)
             }
         }

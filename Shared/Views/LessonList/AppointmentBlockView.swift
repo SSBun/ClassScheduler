@@ -25,7 +25,7 @@ struct AppointmentBlockView: View {
     @ViewBuilder
     var content: some View {
         VStack {
-            Text("\(student?.nickName ?? "\(block.id)")")
+            Text("\(student?.fullName ?? "\(block.id)")")
         }
         .frame(maxWidth: .infinity, maxHeight: 40)
         .background(appointment?.state == .normal ? Color("appointment_bg") : Color("appointment_bg_locked"))

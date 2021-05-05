@@ -35,7 +35,7 @@ struct AppState {
 
 extension AppState {
     struct Sidebar {
-        var sidebarSelection: SidebarItem = .courseEvaluation
+        var sidebarSelection: SidebarItem = .lessonList
         var isHidden: Bool = false
     }
 }

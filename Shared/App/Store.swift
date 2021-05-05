@@ -24,17 +24,17 @@ class Store: ObservableObject {
             self.dispatch(.searchStudents(content))
         }.store(in: &bag)
         
-        appState.courseEvaluation.infoObserver.courseInfoChanged.sink { [self] in
-            self.dispatch(.updateCourse(appState.courseEvaluation.currentCourse))
-        }.store(in: &bag)
-        
-        appState.courseEvaluation.infoObserver.coursePerformanceInfoChanged.sink { [self] in
-            self.dispatch(.updateCoursePerformance(appState.courseEvaluation.selectedPerformance))
-        }.store(in: &bag)
-        
-        appState.courseEvaluation.infoObserver.teacherMessageInfoChanged.sink { [self] in
-            self.dispatch(.updateTeacherMessage(appState.courseEvaluation.selectedMessage))
-        }.store(in: &bag)
+//        appState.courseEvaluation.infoObserver.courseInfoChanged.sink { [self] in
+//            self.dispatch(.updateCourse(appState.courseEvaluation.currentCourse))
+//        }.store(in: &bag)
+//
+//        appState.courseEvaluation.infoObserver.coursePerformanceInfoChanged.sink { [self] in
+//            self.dispatch(.updateCoursePerformance(appState.courseEvaluation.selectedPerformance))
+//        }.store(in: &bag)
+//
+//        appState.courseEvaluation.infoObserver.teacherMessageInfoChanged.sink { [self] in
+//            self.dispatch(.updateTeacherMessage(appState.courseEvaluation.selectedMessage))
+//        }.store(in: &bag)
     }
 }
 
@@ -79,15 +79,15 @@ extension Store {
             newState = switchWeek(newState, offset)
         case .refreshStudentInfo(let student):
             newState.studentList.studentsData[student.id] = student
-            try? student.db.update(on: Student.Properties.all)
+            try? student.db.update(on: Student.Properties.all, where: Student.Properties.id == student.id)
         case .searchStudents(let condition):
             if condition.count == 0 {
                 newState.studentList.searchedStudents = newState.studentList.studentsData.keys.sorted()
             } else {
                 if let _ = Int(condition) {
-                    newState.studentList.searchedStudents = newState.studentList.studentsData.keys.filter { $0 == condition }
+                    newState.studentList.searchedStudents = newState.studentList.studentsData.keys.filter { $0.hasPrefix(condition) }.sorted()
                 } else {
-                    newState.studentList.searchedStudents = newState.studentList.studentsData.values.filter({ ($0.userName ?? "").contains(condition) }).map { $0.id }.sorted()
+                    newState.studentList.searchedStudents = newState.studentList.studentsData.values.filter({ ($0.fullName ?? "").hasPrefix(condition) }).map { $0.id }.sorted()
                 }
             }
         case .importStudents(let importedData):
@@ -313,19 +313,20 @@ extension Store {
     static func updateEvaluation(_ state: AppState) -> AppState {
         var newState = state
         var result = ""
+        let studentName = state.studentList.studentsData[state.studentList.currentStudent ?? ""]?.fullName ?? "名字"
         let courses = newState.courseEvaluation.selectedCourses.compactMap({ newState.courseEvaluation.coursesData[$0] })
         courses.forEach {
-            result += "[课程名称]: \($0.title)\n"
-            result += "[完成情况]: \($0.evaluation)\n"
+            result += "\($0.title)\n"
+            result += "\($0.evaluation)\n"
         }
         if let performance = newState.courseEvaluation.coursePerformances[newState.courseEvaluation.selectedPerformance] {
-            result += "[课堂表现]: \(performance.textContent)\n"
+            result += "\(performance.textContent)\n"
         }
         
         if let message = newState.courseEvaluation.teacherMessages[newState.courseEvaluation.selectedMessage] {
-            result += "[老师寄语]: \(message.textContent)\n"
+            result += "\(message.textContent)\n"
         }
-        newState.courseEvaluation.result = result
+        newState.courseEvaluation.result = result.replacingOccurrences(of: "<name>", with: studentName)
         return newState
     }
     
