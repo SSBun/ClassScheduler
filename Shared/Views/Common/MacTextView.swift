@@ -77,6 +77,7 @@ extension MacTextView {
             placeholderLabel.backgroundColor = .clear
             placeholderLabel.maximumNumberOfLines = 0
             placeholderLabel.isBordered = false
+            placeholderLabel.alphaValue = 0.4
             addSubview(placeholderLabel)
             placeholderLabel.snp.makeConstraints {
                 $0.leading.top.trailing.equalTo(self)
