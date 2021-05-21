@@ -7,24 +7,30 @@
 
 import SwiftUI
 
+#if os(macOS)
 @main
 struct ClassSchedulerApp: App {
-    
     @NSApplicationDelegateAdaptor var delegator: AppDelegator
     
     var body: some Scene {
         WindowGroup {
-            #if os(macOS)
-            RootView()
+            WindowRootView()
             .frame(minWidth: 1200, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
             .ignoresSafeArea()
             .environmentObject(Store())
             .colorScheme(.dark)
-            #else
-            LessonListView()
-                .environmentObject(Store())
-            #endif
         }
         .windowStyle(HiddenTitleBarWindowStyle())
     }
 }
+#elseif os(iOS)
+@main
+struct ClassSchedulerApp: App {
+    var body: some Scene {
+        WindowGroup {
+            MobileRootView()
+                .environmentObject(Store())
+        }
+    }
+}
+#endif

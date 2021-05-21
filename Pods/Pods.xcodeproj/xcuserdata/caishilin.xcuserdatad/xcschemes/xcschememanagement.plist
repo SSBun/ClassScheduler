@@ -49,12 +49,12 @@
 		<key>PromiseKit.root-CorePromise-Foundation.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>21</integer>
 		</dict>
 		<key>PromiseKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>19</integer>
 		</dict>
 		<key>SQLiteRepairKit-iOS.xcscheme</key>
 		<dict>

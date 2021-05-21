@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(macOS)
 struct BlurView: NSViewRepresentable {
     let material: NSVisualEffectView.Material
     let blendingMode: NSVisualEffectView.BlendingMode
@@ -24,3 +25,4 @@ struct BlurView: NSViewRepresentable {
         visualEffectView.blendingMode = blendingMode
     }
 }
+#endif

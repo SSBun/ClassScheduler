@@ -34,6 +34,38 @@
             endingLineNumber = "120"
             landmarkName = "execute(in:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "410D802B-CB63-4939-8C6D-BB8C0285FB27 - e779b0f82e11785d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ClassScheduler.CancelAppointmentCommand.execute(in: ClassScheduler.Store) -&gt; ()"
+                  moduleName = "ClassScheduler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caishilin/Desktop/ClassScheduler/Shared/App/AppCommand.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  uuid = "410D802B-CB63-4939-8C6D-BB8C0285FB27 - cc284bd6f0a40cd7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Combine.Subscribers.Completion&lt;ClassScheduler.CSError&gt;) -&gt; () in ClassScheduler.CancelAppointmentCommand.execute(in: ClassScheduler.Store) -&gt; ()"
+                  moduleName = "ClassScheduler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caishilin/Desktop/ClassScheduler/Shared/App/AppCommand.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "279">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -82,6 +114,38 @@
             endingLineNumber = "114"
             landmarkName = "execute(in:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EC780D17-51CB-4596-A2B1-D32BA2D21C64 - e779b0f82e117893"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ClassScheduler.CancelAppointmentCommand.execute(in: ClassScheduler.Store) -&gt; ()"
+                  moduleName = "ClassScheduler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caishilin/Desktop/ClassScheduler/Shared/App/AppCommand.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "77">
+               </Location>
+               <Location
+                  uuid = "EC780D17-51CB-4596-A2B1-D32BA2D21C64 - ea9496c27924f013"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;Swift.String, ClassScheduler.CSError&gt;) -&gt; ()) -&gt; () in ClassScheduler.CancelAppointmentCommand.execute(in: ClassScheduler.Store) -&gt; ()"
+                  moduleName = "ClassScheduler"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caishilin/Desktop/ClassScheduler/Shared/App/AppCommand.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "298">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

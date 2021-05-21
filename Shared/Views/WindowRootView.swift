@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct RootView: View {
+/// Used in MacOS
+struct WindowRootView: View {
     @EnvironmentObject var store: Store
     
     @State private var isHidden: Bool = false
@@ -43,6 +44,6 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        WindowRootView()
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 extension Color: CSExtensionCompatible {}
 
+#if os(macOS)
 extension CSExtension where Base == Color {
     var nsColor: NSColor? {
         if let cgColor = base.cgColor, let color = NSColor(cgColor: cgColor) {
@@ -23,3 +24,5 @@ extension CSExtension where Base == NSColor {
         Color(base.cgColor)
     }
 }
+#elseif os(iOS)
+#endif

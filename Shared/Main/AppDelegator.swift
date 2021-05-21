@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+#if os(macOS)
 class AppDelegator: NSObject, NSApplicationDelegate {
     
 }
+#elseif os(iOS)
+#endif
