@@ -53,4 +53,8 @@ enum AppAction {
     case activateCourse(_ id: Int, _ isEnabled: Bool?)
     case deactivateAllCourse
     case updateEvaluationResult
+    
+    // MARK: - Settings
+    case updateRepeatTimesOfInsertingAnAppointment(_ times: Int)
+    case toggleSettingsView(_ display: Bool?)
 }

@@ -30,6 +30,9 @@ struct WindowRootView: View {
                 .clipped()
             }
         }
+        .sheet(isPresented: $store.appState.settings.isPresented, content: {
+            SettingView()
+        })
         .onReceive(store.$appState.map(\.sidebar.isHidden)) { value in
             withAnimation {
                 isHidden = value

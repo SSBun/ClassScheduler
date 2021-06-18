@@ -35,7 +35,7 @@ struct NavbarView: View {
                     WeekSwitcher()
                     RemoveAreaView().offset(x: 300, y: 0)
                 }
-            case .studentList, .courseEvaluation:
+            case .studentList, .courseEvaluation, .settings:
                 Text(store.appState.sidebar.sidebarSelection.info.0)
                     .font(.system(size: 25, weight: .bold, design: .rounded))
             }

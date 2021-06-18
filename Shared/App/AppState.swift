@@ -13,12 +13,14 @@ struct AppState {
     var appointmentsData: [Int: LessonAppointment] = [:]
     var sidebar: Sidebar = .init()
     var courseEvaluation: CourseEvaluation = .init()
+    var settings: Settings = .init()
     
     enum SidebarItem: Int, CaseIterable, Identifiable {
         var id: Int { self.rawValue }
         case lessonList
         case courseEvaluation
         case studentList
+        case settings
         
         var info: (String, String) {
             switch self {
@@ -28,6 +30,8 @@ struct AppState {
                 return ("学生管理", "person.2.fill")
             case .courseEvaluation:
                 return ("课程评价", "text.bubble.fill")
+            case .settings:
+                return ("设置", "gearshape.fill")
             }
         }
     }

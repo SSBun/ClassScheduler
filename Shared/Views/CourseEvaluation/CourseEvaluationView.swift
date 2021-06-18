@@ -195,7 +195,7 @@ extension CourseEvaluationView {
     }
 }
 
-struct SettingView_Previews: PreviewProvider {
+struct CourseEvaluationView_Previews: PreviewProvider {
     static var previews: some View {
         CourseEvaluationView()
     }

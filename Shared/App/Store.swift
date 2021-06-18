@@ -129,7 +129,7 @@ extension Store {
             command = RequestAppointmentCommand(appointmentId: lessonAppointment)
         case .requestAppointmentCompletion(let result):
             newState.lessonList.appointmentDetail.isRequestingAppointment = false
-            newState.lessonList.appointmentDetail.requestedResult = result
+//            newState.lessonList.appointmentDetail.requestedResult = result
             if let appointmentId = newState.lessonList.appointmentDetail.appointment,
                var appointment = newState.appointmentsData[appointmentId],
                case .success(_) = result {
@@ -163,7 +163,7 @@ extension Store {
             command = RequestAppointmentInfoCommand(student: student)
         case .requestAppointmentInfoCompletion(let result):
             newState.lessonList.appointmentDetail.isRequestingInfo = false
-            newState.lessonList.appointmentDetail.requestedResult = result.map({ _ in "获取预约信息成功" })
+//            newState.lessonList.appointmentDetail.requestedResult = result.map({ _ in "获取预约信息成功" })
             if var appointment = newState.appointmentsData[newState.lessonList.appointmentDetail.appointment ?? -1],
                case let .success(data) = result {
                 do {
@@ -306,6 +306,14 @@ extension Store {
             newState = updateEvaluation(newState)
         case .updateEvaluationResult:
             newState = updateEvaluation(newState)
+        case .updateRepeatTimesOfInsertingAnAppointment(let times):
+            newState.settings.repeatTimesOfInsertingAnAppointment = times
+        case .toggleSettingsView(let display):
+            if let display = display {
+                newState.settings.isPresented = display
+            } else {
+                newState.settings.isPresented.toggle()
+            }
         }
         return (newState, command)
     }
@@ -352,6 +360,12 @@ extension Store {
                     newState.appointmentsData[appointment.id] = appointment
                     let appointmentBlock = AppointmentBlock(id: appointment.id)
                     newState.lessonList.columns[addedIndex.0].areas[addedIndex.1].items.append(appointmentBlock)
+                    
+                    for weekOffset in 1..<(newState.settings.repeatTimesOfInsertingAnAppointment) {
+                        let newDay: CourseCalendar.Day = .init(date: day.date.addingTimeInterval(TimeInterval(60 * 60 * 24 * 7 * weekOffset)))
+                        let appointment = LessonAppointment(id: 0, day: newDay, timeRange: timeRange, studentId: student)
+                        try appointment.db.insert()
+                    }
                     
                 } catch(_) {
                     

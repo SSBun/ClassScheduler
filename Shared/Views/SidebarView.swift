@@ -17,7 +17,11 @@ struct SidebarView: View {
         VStack(spacing: 20) {
             ForEach(AppState.SidebarItem.allCases) { item in
                 Button {
-                    store.dispatch(.switchSidebar(item))
+                    if item == .settings {
+                        store.dispatch(.toggleSettingsView(true))
+                    } else {
+                        store.dispatch(.switchSidebar(item))
+                    }
                 } label: {
                     Image(systemName: item.info.1)
                         .resizable()
